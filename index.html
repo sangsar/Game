@@ -3,58 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آخرین صلیب</title>
+    <title>آخرین صلیب | The Last Cross</title>
+    
+    <!-- فونت‌ها -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Mirza:wght@400;500;600;700&display=swap');
+        :root {
+            --bg: #0d0d0d;
+            --surface: #1a1a1a;
+            --surface2: #222222;
+            --border: #2a2a2a;
+            --text: #c8c0b8;
+            --text-light: #a09890;
+            --accent: #8b0000;
+            --accent-glow: #b01010;
+            --gold: #c8a850;
+            --font-main: 'Vazirmatn', 'Crimson Text', serif;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* تم روشن */
+        .theme-light {
+            --bg: #f5f0eb;
+            --surface: #ffffff;
+            --surface2: #f0ebe3;
+            --border: #d4c5b5;
+            --text: #3a2a1a;
+            --text-light: #6b5040;
+            --accent: #8b0000;
+            --accent-glow: #b01010;
+        }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            background: #050505;
-            color: #b0b0b0;
-            font-family: 'Crimson Text', 'Mirza', serif;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             background-image: 
-                radial-gradient(ellipse at center, rgba(30,0,0,0.6) 0%, rgba(0,0,0,0) 70%),
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(20,0,0,0.1) 2px, rgba(20,0,0,0.1) 4px);
-            cursor: default;
+                radial-gradient(ellipse at 50% 0%, rgba(139,0,0,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(139,0,0,0.04) 0%, transparent 50%);
+            transition: background 0.5s, color 0.5s;
         }
         
-        body::before {
+        /* نویز متحرک */
+        body::after {
             content: '';
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.015;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
+            animation: grain 0.5s steps(5) infinite;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
         
-        .game-wrapper {
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            20% { transform: translate(-1%, -1%); }
+            40% { transform: translate(1%, 1%); }
+            60% { transform: translate(-1%, 1%); }
+            80% { transform: translate(1%, -1%); }
+        }
+        
+        .app-wrapper {
             position: relative;
-            z-index: 2;
-            max-width: 750px;
+            z-index: 1;
             width: 100%;
+            max-width: 780px;
         }
         
+        /* نوار بالایی */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 5px;
+        }
+        
+        .theme-toggle {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .theme-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .theme-dot.dark {
+            background: #1a1a1a;
+            border-color: #444;
+        }
+        
+        .theme-dot.light {
+            background: #f5f0eb;
+            border-color: #d4c5b5;
+        }
+        
+        .theme-dot.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(139,0,0,0.4);
+        }
+        
+        .badge {
+            background: rgba(139,0,0,0.12);
+            border: 1px solid rgba(139,0,0,0.25);
+            padding: 6px 14px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* کارت اصلی */
         .game-container {
             width: 100%;
-            background: linear-gradient(180deg, #0c0a0a 0%, #0f0d0d 50%, #0a0808 100%);
-            border: 1px solid #2a1a1a;
-            padding: 45px;
-            border-radius: 2px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 40px 45px;
+            border-radius: 4px;
             box-shadow: 
-                0 0 100px rgba(139,0,0,0.1),
-                0 20px 60px rgba(0,0,0,0.8),
-                inset 0 1px 0 rgba(255,255,255,0.01);
-            min-height: 520px;
-            display: flex;
-            flex-direction: column;
+                0 20px 60px rgba(0,0,0,0.5),
+                0 0 80px rgba(139,0,0,0.06),
+                inset 0 1px 0 rgba(255,255,255,0.02);
             position: relative;
             overflow: hidden;
+            transition: background 0.5s, border-color 0.5s, box-shadow 0.5s;
         }
         
         .game-container::before {
@@ -62,135 +149,154 @@
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(139,0,0,0.3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(139,0,0,0.25), transparent);
         }
         
-        .game-container::after {
-            content: '◈';
-            position: absolute;
-            top: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(139,0,0,0.2);
-            font-size: 10px;
+        /* هدر */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
         }
         
         .game-title {
-            text-align: center;
-            color: #6b0000;
-            font-size: 24px;
-            letter-spacing: 8px;
-            margin-bottom: 30px;
-            margin-top: 10px;
-            font-weight: 400;
-            text-transform: uppercase;
-            text-shadow: 0 0 30px rgba(139,0,0,0.3), 0 2px 4px rgba(0,0,0,0.8);
-            border-bottom: 1px solid #1a0a0a;
-            padding-bottom: 25px;
             font-family: 'Crimson Text', serif;
+            color: var(--accent);
+            font-size: 22px;
+            letter-spacing: 6px;
+            font-weight: 400;
+            text-shadow: 0 0 25px rgba(139,0,0,0.25);
         }
         
+        .status-pills {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .status-pill {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .status-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--text-light);
+            opacity: 0.4;
+        }
+        
+        .status-dot.live {
+            background: var(--accent);
+            opacity: 1;
+            box-shadow: 0 0 6px var(--accent);
+            animation: pulse-dot 2s infinite;
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        /* لوکیشن */
         .location {
-            color: #5a1010;
-            font-size: 12px;
-            margin-bottom: 25px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-weight: 600;
-            opacity: 0.9;
-        }
-        
-        .location::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: #8b0000;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; box-shadow: 0 0 5px #8b0000; }
-            50% { opacity: 1; box-shadow: 0 0 15px #8b0000; }
-        }
-        
-        .scene-text {
-            line-height: 2.2;
-            font-size: 17px;
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent);
             margin-bottom: 25px;
-            color: #c8c0b8;
-            animation: fadeIn 0.6s ease;
-            letter-spacing: 0.3px;
+            opacity: 0.85;
         }
         
-        .dialogue-box {
-            margin-bottom: 30px;
-            padding: 18px 22px;
-            border-right: 3px solid #8b0000;
-            background: linear-gradient(90deg, rgba(139,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
-            line-height: 2.1;
-            border-radius: 0 3px 3px 0;
-            animation: fadeIn 0.8s ease;
-            position: relative;
-            font-style: italic;
-            color: #a89080;
+        .location-icon {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+        
+        /* متن اصلی */
+        .scene-text {
             font-size: 16px;
+            line-height: 2.3;
+            color: var(--text);
+            margin-bottom: 25px;
+            animation: fadeUp 0.5s ease;
+        }
+        
+        /* باکس دیالوگ */
+        .dialogue-box {
+            padding: 18px 22px;
+            margin-bottom: 30px;
+            border-right: 3px solid var(--accent);
+            background: linear-gradient(90deg, rgba(139,0,0,0.05) 0%, transparent 100%);
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 2.2;
+            border-radius: 0 3px 3px 0;
+            animation: fadeUp 0.7s ease;
+            position: relative;
         }
         
         .dialogue-box::before {
             content: '❝';
             position: absolute;
-            top: -8px;
-            right: 15px;
-            color: rgba(139,0,0,0.3);
-            font-size: 20px;
+            top: -6px;
+            right: 14px;
+            font-size: 18px;
+            color: rgba(139,0,0,0.25);
             font-style: normal;
         }
         
+        /* دکمه‌های انتخاب */
         .choices {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: auto;
         }
         
         .choice-btn {
-            background: linear-gradient(135deg, #0f0f0f 0%, #080808 100%);
-            color: #a0a0a0;
-            border: 1px solid #1a1a1a;
-            padding: 16px 22px;
-            cursor: pointer;
-            font-family: 'Crimson Text', 'Mirza', serif;
-            font-size: 16px;
+            width: 100%;
             text-align: right;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border-radius: 2px;
+            background: var(--surface2);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 15px 20px;
+            font-family: var(--font-main);
+            font-size: 15px;
+            cursor: pointer;
+            transition: all var(--transition);
+            border-radius: 3px;
             position: relative;
-            letter-spacing: 0.5px;
+            overflow: hidden;
         }
         
         .choice-btn::before {
             content: '';
             position: absolute;
-            right: 0;
-            top: 0;
+            right: 0; top: 0;
             width: 0;
             height: 100%;
-            background: linear-gradient(90deg, rgba(139,0,0,0.15), transparent);
+            background: linear-gradient(90deg, rgba(139,0,0,0.12), transparent);
             transition: width 0.4s ease;
         }
         
         .choice-btn:hover {
-            background: linear-gradient(135deg, #1a1515 0%, #100c0c 100%);
-            border-color: #8b0000;
-            color: #d0d0d0;
-            transform: translateX(-6px);
-            box-shadow: 0 6px 25px rgba(139,0,0,0.15);
-            letter-spacing: 1px;
+            border-color: var(--accent);
+            color: #ffffff;
+            transform: translateX(-4px);
+            box-shadow: 0 6px 20px rgba(139,0,0,0.12);
         }
         
         .choice-btn:hover::before {
@@ -198,80 +304,94 @@
         }
         
         .choice-btn:active {
-            transform: translateX(0);
-            transition: 0.05s;
+            transform: scale(0.985);
+            transition: 0.08s;
         }
         
-        .choice-number {
-            color: #8b0000;
-            margin-left: 8px;
-            font-weight: 700;
-            font-size: 14px;
+        /* فوتر */
+        .game-footer {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            opacity: 0.5;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
+        /* انیمیشن */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .evidence-tag {
-            display: inline-block;
-            background: rgba(139,0,0,0.1);
-            border: 1px solid rgba(139,0,0,0.3);
-            padding: 2px 10px;
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: #8b0000;
-            margin: 2px;
-        }
-        
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #1a0a0a;
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: #4a3030;
-            opacity: 0.7;
-        }
-        
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .status-dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #5a1010;
-        }
-        
-        .status-dot.active {
-            background: #8b0000;
-            box-shadow: 0 0 6px #8b0000;
+        /* رسپانسیو */
+        @media (max-width: 600px) {
+            .game-container {
+                padding: 25px 20px;
+            }
+            .game-title {
+                font-size: 18px;
+                letter-spacing: 3px;
+            }
+            .scene-text {
+                font-size: 14px;
+            }
+            .choice-btn {
+                font-size: 13px;
+                padding: 12px 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="game-wrapper">
-        <div class="game-container">
-            <div class="game-title">آخرین صلیب</div>
-            <div class="status-bar">
-                <span class="status-item"><span class="status-dot active"></span> پروندهٔ فعال</span>
-                <span class="status-item" id="clueCount">سرنخ: ۰</span>
-                <span class="status-item" id="timeDisplay">روز: ۱</span>
+    <div class="app-wrapper">
+        <!-- نوار بالا -->
+        <div class="top-bar">
+            <span class="badge">پروندهٔ فعال</span>
+            <div class="theme-toggle">
+                <span class="theme-dot dark active" onclick="setTheme('dark')" title="تم تاریک"></span>
+                <span class="theme-dot light" onclick="setTheme('light')" title="تم روشن"></span>
             </div>
-            <div class="location" id="location"></div>
+        </div>
+        
+        <!-- کارت بازی -->
+        <div class="game-container">
+            <div class="game-header">
+                <div class="game-title">آخرین صلیب</div>
+                <div class="status-pills">
+                    <span class="status-pill"><span class="status-dot live"></span> <span id="clueCount">سرنخ: ۰</span></span>
+                    <span class="status-pill"><span class="status-dot"></span> <span id="timeDisplay">روز: ۱</span></span>
+                </div>
+            </div>
+            
+            <div class="location">
+                <span class="location-icon"></span>
+                <span id="location"></span>
+            </div>
+            
             <div class="scene-text" id="sceneText"></div>
-            <div class="dialogue-box" id="dialogue"></div>
+            <div class="dialogue-box" id="dialogue" style="display:none;"></div>
             <div class="choices" id="choices"></div>
+            
+            <div class="game-footer">
+                <span>نورثبروک، اورگن</span>
+                <span id="stressMeter"></span>
+            </div>
         </div>
     </div>
     
+    <script>
+        function setTheme(theme) {
+            document.body.className = theme === 'light' ? 'theme-light' : '';
+            document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
+            document.querySelector('.theme-dot.' + theme).classList.add('active');
+        }
+    </script>
+    
+    <!-- ⬇⬇⬇ فایل داستان ⬇⬇⬇ -->
     <script src="story.js"></script>
 </body>
 </html>
