@@ -3,516 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>هیولای فلورانس – نسخه نهایی</title>
+    <title>پرونده‌های جنایی | قاتلان سریالی</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-dark: #0a1428;
-            --card-bg: #0f1a2a;
-            --orange: #e07a3a;
-            --cyan: #2ad4c0;
-            --bone: #f0e6d0;
-        }
         body {
-            background: radial-gradient(circle at 20% 30%, var(--bg-dark), #01050f);
-            font-family: 'Segoe UI', 'Courier New', monospace;
-            color: var(--bone);
+            background: #0a0505;
+            font-family: 'Courier New', monospace;
+            color: #e0d0bc;
             padding: 16px;
-            min-height: 100vh;
-        }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(42,212,192,0.08), transparent);
-            background-size: 200% 100%;
-            animation: policeLight 10s infinite linear;
-            pointer-events: none;
-            z-index: 0;
-        }
-        @keyframes policeLight {
-            0% { background-position: -100% 0; }
-            100% { background-position: 200% 0; }
         }
         .container {
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: rgba(10,22,40,0.9);
-            backdrop-filter: blur(5px);
-            border-radius: 40px;
-            border: 1px solid var(--cyan);
-            position: relative;
-            z-index: 2;
+            background: #0f0b0b;
+            border-radius: 32px;
+            border: 1px solid #6b2e2e;
             overflow: hidden;
         }
         .header {
-            background: rgba(0,0,0,0.6);
+            background: #1a0b0b;
             padding: 20px;
             text-align: center;
-            border-bottom: 2px solid var(--orange);
+            border-bottom: 2px solid #a03a2a;
+        }
+        .header h1 { color: #dc8a62; font-family: 'Times New Roman', serif; }
+        .case-selector {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 15px;
+            background: #0a0505;
         }
-        .header h1 { font-family: 'Times New Roman', serif; color: var(--cyan); }
-        .clock {
-            font-family: 'Courier New', monospace;
-            font-size: 1.2rem;
-            background: #00000066;
-            padding: 4px 12px;
-            border-radius: 40px;
-            color: var(--cyan);
-            border: 1px solid var(--orange);
-        }
-        .sound-controls button, .share-btn, .fullscreen-btn {
-            background: #1a2a40;
-            border: none;
-            color: var(--orange);
-            padding: 6px 12px;
+        .case-btn {
+            background: #1e1212;
+            border: 1px solid #8b3c2c;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
             border-radius: 30px;
-            cursor: pointer;
-            margin-left: 5px;
+            color: #e6c8a3;
         }
-        .progress-bar { height: 6px; background: #1a2a40; }
-        .progress-fill { width: 0%; height: 100%; background: var(--orange); transition: width 0.3s; }
-        .game-main { display: flex; flex-wrap: wrap; }
+        .case-btn.active { background: #6b1a1a; border-color: #c97e5a; color: white; }
+        .game-area { padding: 20px; display: flex; flex-wrap: wrap; gap: 20px; }
         .evidence-panel {
-            flex: 1.2;
-            background: rgba(0,0,0,0.5);
-            padding: 20px;
-            border-left: 1px solid var(--cyan);
-            max-height: 70vh;
-            overflow-y: auto;
+            flex: 1;
+            background: #0e0808;
+            padding: 15px;
+            border-radius: 24px;
+            border: 1px solid #3a2626;
         }
-        .evidence-title { color: var(--orange); border-bottom: 2px solid var(--cyan); margin-bottom: 15px; }
+        .evidence-title { color: #dc8a62; border-bottom: 1px solid #6b2e2e; margin-bottom: 15px; }
         .evidence-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            margin-bottom: 15px;
-            padding: 12px;
-            cursor: pointer;
-            border: 1px solid #2a4a6a;
-            transition: 0.2s;
-        }
-        .evidence-card:hover { transform: translateX(-5px); border-color: var(--orange); }
-        .evidence-img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
+            background: #160c0c;
+            margin-bottom: 12px;
+            padding: 10px;
             border-radius: 16px;
-            margin-bottom: 8px;
-            cursor: zoom-in;
-            background: #1a2a40;
+            cursor: pointer;
+            border: 1px solid #5a3737;
         }
-        .evidence-detail { display: none; font-size: 0.8rem; margin-top: 10px; border-top: 1px dashed #2a6a8a; padding-top: 6px; }
-        .interrogation-panel { flex: 2.5; padding: 24px; }
+        .evidence-card:hover { background: #251515; }
+        .evidence-icon { font-size: 2rem; margin-left: 10px; vertical-align: middle; }
+        .evidence-detail { display: none; margin-top: 8px; font-size: 0.85rem; color: #bcab8a; border-top: 1px dotted #5a3636; padding-top: 6px; }
+        .interrogation-panel {
+            flex: 2;
+            background: #0e0808;
+            padding: 15px;
+            border-radius: 24px;
+            border: 1px solid #3a2626;
+        }
         .narrative {
-            background: rgba(0,0,0,0.5);
-            padding: 20px;
-            border-radius: 28px;
-            border-right: 6px solid var(--orange);
-            margin-bottom: 25px;
+            background: #040101;
+            padding: 18px;
+            border-radius: 24px;
+            border-right: 4px solid #a0432c;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
-        .choices-area button, .submit-btn {
+        .options-area button {
             display: block;
             width: 100%;
             text-align: right;
-            background: #1a2a3a;
-            border: 1px solid var(--cyan);
+            background: #1f1515;
+            border: 1px solid #734242;
             padding: 12px;
             margin-bottom: 12px;
-            color: var(--bone);
+            color: #f6ebd4;
             border-radius: 20px;
             cursor: pointer;
         }
-        .choices-area button:hover, .submit-btn:hover { background: #2a4a6a; transform: translateX(-5px); }
-        .feedback { background: #0a121c; padding: 12px; margin-top: 20px; border-radius: 20px; border-right: 4px solid var(--cyan); }
-        .notebook { background: #0a121c; padding: 12px; margin-top: 15px; border-radius: 20px; }
+        .options-area button:hover { background: #412b2b; }
+        .feedback {
+            background: #1a1010;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border-right: 3px solid #b85a3a;
+        }
+        .notebook {
+            background: #0a0505;
+            padding: 12px;
+            margin-top: 15px;
+            border-radius: 16px;
+        }
         .notebook textarea {
             width: 100%;
-            background: #1a2a3a;
-            border: 1px solid var(--cyan);
-            color: var(--bone);
+            background: #1a1010;
+            border: 1px solid #6b2e2e;
+            color: #e0d0bc;
             padding: 8px;
-            border-radius: 16px;
+            border-radius: 12px;
             font-family: monospace;
             resize: vertical;
         }
-        .reset-btn { background: none; border: 1px solid var(--orange); padding: 8px 20px; margin-top: 20px; border-radius: 40px; cursor: pointer; }
-        .ending-box { background: #0a1018; padding: 20px; margin-top: 20px; border: 2px solid var(--orange); border-radius: 28px; display: none; }
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: var(--orange);
-            animation: spin 0.8s linear infinite;
-            margin-right: 8px;
+        .reset-btn {
+            background: none;
+            border: 1px solid #8b3636;
+            padding: 8px 20px;
+            margin-top: 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #d1966e;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        @media (max-width: 800px) {
-            .game-main { flex-direction: column; }
-            .evidence-panel { border-left: none; border-top: 1px solid var(--cyan); max-height: 40vh; }
+        .ending-box {
+            background: #180e0e;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #c06a48;
+            border-radius: 28px;
+            display: none;
+            text-align: center;
         }
-        footer { text-align: center; padding: 16px; font-size: 0.7rem; border-top: 1px solid #2a4a6a; }
+        @media (max-width: 700px) {
+            .game-area { flex-direction: column; }
+        }
+        footer {
+            text-align: center;
+            font-size: 0.7rem;
+            padding: 16px;
+            color: #5c4232;
+            border-top: 1px solid #3a1e1e;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <h1>🕵️‍♂️ هیولای فلورانس</h1>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <div class="clock" id="liveClock">--:--</div>
-            <div class="sound-controls">
-                <button id="musicToggle">🎵 موزیک</button>
-                <button id="sfxToggle">🔊 افکت</button>
-                <button id="fullscreenBtn">⛶</button>
-                <button id="shareEndingBtn" style="display:none;">📤 اشتراک</button>
-            </div>
-        </div>
+        <h1>🕵️‍♂️ آرشیو قاتلان سریالی</h1>
+        <p>پرونده‌های واقعی | بازجویی تعاملی</p>
     </div>
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    <div class="game-main">
+    <div class="case-selector" id="caseSelector">
+        <button class="case-btn" data-case="samuel">🔪 ساموئل لیتل (۹۳ قتل)</button>
+        <button class="case-btn" data-case="chikatilo">🩸 آندری چیکاتیلو (۵۳ قتل)</button>
+    </div>
+    <div class="game-area">
         <div class="evidence-panel" id="evidencePanel">
-            <div class="evidence-title">📁 مدارک (کلیک کنید)</div>
+            <div class="evidence-title">📂 مدارک پرونده (کلیک کنید)</div>
             <div id="evidenceList"></div>
         </div>
         <div class="interrogation-panel">
-            <div class="narrative" id="narrativeBox"></div>
-            <div id="dynamicContent"></div>
+            <div class="narrative" id="narrativeBox">یک پرونده را انتخاب کنید و مدارک را بخوانید، سپس بازجویی را شروع کنید.</div>
+            <div id="optionsArea"></div>
             <div class="notebook">
-                <label>📓 دفترچه یادداشت کارآگاه (ذخیره خودکار)</label>
-                <textarea id="notebookInput" rows="2" placeholder="نکته‌ها، فرضیات، هر چیزی که مهم است..."></textarea>
+                <label>📓 دفترچه کارآگاه (ذخیره خودکار)</label>
+                <textarea id="notebook" rows="2" placeholder="نکته‌ها، شواهد مهم، فرضیات..."></textarea>
             </div>
             <div id="feedbackMsg" class="feedback"></div>
-            <button id="resetGame" class="reset-btn">🗑️ بازنشانی کامل</button>
+            <button id="resetBtn" class="reset-btn">🗑️ بازنشانی پرونده</button>
             <div id="endingBox" class="ending-box"></div>
         </div>
     </div>
-    <footer>تصاویر از چند منبع با fallback | صداهای Web Audio | ذخیره خودکار</footer>
+    <footer>بر اساس پرونده‌های واقعی FBI | تصاویر نمادین داخلی</footer>
 </div>
 
 <script>
     // ============================================================
-    // 1. تصاویر چندمنبعی با اسپینر و fallback
+    // 1. داده‌های دو قاتل (مدارک کامل، بازجویی مرحله‌ای)
     // ============================================================
-    const evidenceItems = [
-        { title: "🔪 چاقوی جراحی", imgUrls: [
-            "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1581595220893-b0739db3b8a6?w=400&h=300&fit=crop",
-            "https://cdn.pixabay.com/photo/2017/02/09/20/23/surgery-2053262_640.jpg?w=400&h=300&fit=crop"
-        ], desc: "برش‌های دقیق – پزشکی قانونی: جراح حرفه‌ای." },
-        { title: "🔫 گلوله کالیبر ۲۲", imgUrls: [
-            "https://images.pexels.com/photos/1747697/pexels-photo-1747697.jpeg?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=400&h=300&fit=crop",
-            "https://cdn.pixabay.com/photo/2016/03/09/09/22/bullet-1245883_640.jpg?w=400&h=300&fit=crop"
-        ], desc: "همان اسلحه در ۸ قتل، خش متفاوت در دو قتل آخر." },
-        { title: "💊 روهیپنول", imgUrls: [
-            "https://images.pexels.com/photos/4041397/pexels-photo-4041397.jpeg?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1584308666744-00d3f3c9f7f8?w=400&h=300&fit=crop",
-            "https://cdn.pixabay.com/photo/2016/03/05/19/03/pills-1238578_640.jpg?w=400&h=300&fit=crop"
-        ], desc: "داروی نیازمند نسخه – در معده قربانیان." },
-        { title: "🗺️ نقشه فلورانس", imgUrls: [
-            "https://images.pexels.com/photos/4752812/pexels-photo-4752812.jpeg?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1524660988542-c440de9c0fde?w=400&h=300&fit=crop",
-            "https://cdn.pixabay.com/photo/2017/02/21/15/10/map-2085116_640.jpg?w=400&h=300&fit=crop"
-        ], desc: "در خانه متوفی پیدا شد – هفت نقطه قتل." },
-        { title: "🩸 گروه خونی AB", imgUrls: [
-            "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?w=400&h=300&fit=crop",
-            "https://images.unsplash.com/photo-1615461066844-6116e610d08c?w=400&h=300&fit=crop",
-            "https://cdn.pixabay.com/photo/2020/05/30/11/13/blood-5241245_640.jpg?w=400&h=300&fit=crop"
-        ], desc: "بافت زیر ناخن – گروه نادر ۲٪ جمعیت." }
-    ];
-
-    function setImageWithFallback(imgElement, urls, index = 0) {
-        if (index >= urls.length) {
-            imgElement.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%232a4a6a'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='18'%3Eتصویر در دسترس نیست%3C/text%3E%3C/svg%3E";
-            imgElement.parentElement?.querySelector('.spinner')?.remove();
-            return;
+    const killers = {
+        samuel: {
+            name: "ساموئل لیتل",
+            fullName: "Samuel Little",
+            victims: 93,
+            evidence: [
+                { icon: "🎨", title: "نقاشی‌های قربانیان", desc: "لیتل در زندان بیش از ۳۰ نقاشی از قربانیانش کشید. اف‌بی‌آی از این نقاشی‌ها برای شناسایی قربانیان ناشناس استفاده کرد." },
+                { icon: "🧬", title: "DNA روی لباس قربانیان", desc: "پروژه تگزاس رنجرز DNA لیتل را با بیش از ۳۰ قتل قدیمی تطبیق داد. قربانیان خفه شده بودند و سلول‌های اپیتلیال زیر ناخن‌ها باقی مانده بود." },
+                { icon: "🚗", title: "خودروهای کرایه‌ای متعدد", desc: "اسناد کرایه خودرو با اسم مستعار. او ماشین را هر چند هفته عوض می‌کرد تا ردیابی نشود." },
+                { icon: "🥊", title: "سابقه بوکس", desc: "لیتل یک بوکسور آماتور بود. قدرت بدنی بالایی داشت و قربانیان را با مشت بیهوش می‌کرد." },
+                { icon: "🛣️", title: "رها کردن اجساد در بزرگراه‌ها", desc: "بیشتر اجساد در کنار جاده‌های بین ایالتی رها شده بودند. پلیس ارتباط بین قتل‌ها را نمی‌دید چون لیتل بین ایالت‌ها جابه‌جا می‌شد." }
+            ],
+            interrogation: [
+                {
+                    text: "بازجو: لیتل، ما مدارک DNA و نقاشی‌های تو را داریم. چرا زنان بی‌خانمان و روسپی را هدف می‌گرفتی؟ (مدارک را بخوانید)",
+                    options: [
+                        { text: "«اونها هیچکس براشون مهم نبود. کسی دنبالشون نمی‌گشت.»", correct: true, next: 1, feedback: "✅ درست. خودش گفت جامعه آن‌ها را فراموش کرده بود." },
+                        { text: "«از اونا متنفر بودم چون شبیه مادرم بودن.»", correct: false, next: 1, feedback: "❌ نادرست. مدارک نشان می‌دهد نفرت نبود، بلکه فرصت‌طلبی بود." },
+                        { text: "«به راحتی سوار ماشین من می‌شدن.»", correct: true, next: 1, feedback: "✅ بله، آسیب‌پذیری و اعتماد ساده هدفش بود." }
+                    ]
+                },
+                {
+                    text: "بازجو: چطور موفق می‌شدی بدون به جا گذاشتن اثر، اجساد را رها کنی؟",
+                    options: [
+                        { text: "«خودرو کرایه می‌کردم با اسم جعلی و هر بار شهر عوض می‌کردم.»", correct: true, next: 2, feedback: "✅ مدارک کرایه خودرو تایید می‌کند. او ۷۰ خودرو مختلف داشته." },
+                        { text: "«جسدها رو توی چاه می‌انداختم.»", correct: false, next: 2, feedback: "❌ بیشتر اجساد در کنار جاده پیدا شدند." },
+                        { text: "«با قطار سفر می‌کردم و جسد رو ول می‌کردم.»", correct: false, next: 2, feedback: "❌ او از خودرو استفاده می‌کرد چون خودش راننده بود." }
+                    ]
+                },
+                {
+                    text: "بازجو: آیا از کشتن لذت می‌بردی؟ نقاشی‌هایت چه معنایی دارند؟",
+                    options: [
+                        { text: "«نقاشی کشیدن مثل مالک شدن دوباره اونها بود. لذت‌آور بود.»", correct: true, next: 3, feedback: "✅ در اعترافاتش گفت: 'چشماشون که خالی می‌شد، مال من می‌شدن.'" },
+                        { text: "«نقاشی برای فراموشی گناهم بود.»", correct: false, next: 3, feedback: "❌ او هیچ پشیمانی نداشت. نقاشی‌ها بخشی از فتیش یادبود بود." },
+                        { text: "«می‌خواستم پلیس رو مسخره کنم.»", correct: false, next: 3, feedback: "❌ او نقاشی‌ها را پنهان می‌کرد تا سال‌ها." }
+                    ]
+                },
+                {
+                    text: "بازجو: شما سابقه بوکس دارید. چرا از زور فیزیکی استفاده می‌کردید نه اسلحه؟",
+                    options: [
+                        { text: "«با مشتم می‌تونستم سریع بیهوششون کنم، بی‌صدا.»", correct: true, next: 4, feedback: "✅ قدرت بدنی بالا و روش بی‌صدا." },
+                        { text: "«از خون متنفر بودم.»", correct: false, next: 4, feedback: "❌ او با خفگی کاری به خون نداشت." },
+                        { text: "«اسلحه پیدا نمی‌کردم.»", correct: false, next: 4, feedback: "❌ عمداً روش خاموش را انتخاب می‌کرد." }
+                    ]
+                },
+                {
+                    text: "بازجو: حالا که محکوم شدی، حرف آخر؟ آیا قربانیان ناشناس دیگری هم هستند؟",
+                    options: [
+                        { text: "«هشتاد و چند نفر رو یادم هست. بقیه رو فراموش کردم. نقاشی‌ها رو نگاه کنید.»", correct: true, next: -1, feedback: "✅ اف‌بی‌آی ۹۳ قتل را تأیید کرد. نقاشی‌ها کلید شناسایی بودند." },
+                        { text: "«فقط همونی که اعتراف کردم.»", correct: false, next: -1, feedback: "❌ لیتل به بیش از ۹۰ قتل اعتراف کرد." },
+                        { text: "«هیچی دیگه.»", correct: false, next: -1, feedback: "❌ او بعداً نقاشی‌های بیشتری کشید." }
+                    ]
+                }
+            ]
+        },
+        chikatilo: {
+            name: "آندری چیکاتیلو",
+            fullName: "Andrei Chikatilo",
+            victims: 53,
+            evidence: [
+                { icon: "🔪", title: "چاقوی قتل", desc: "چاقویی با تیغه ۱۵ سانتی‌متر که اثر دندانه روی دسته داشت. روی چندین جسد اثر برش مشابه پیدا شد." },
+                { icon: "🚉", title: "ایستگاه قطار روستوف", desc: "چیکاتیلو قربانیان را در ایستگاه‌های قطار شکار می‌کرد. شاهدان گفتند مردی میانسال با چمدان کوچک به کودکان نزدیک می‌شد." },
+                { icon: "🧥", title: "اثر خون روی کت کار", desc: "کت قهوه‌ای که در خانه چیکاتیلو یافت شد. لکه‌های خون گروه خونی A (مربوط به قربانیان) – گروه خونی خود او O بود." },
+                { icon: "📝", title: "دفترچه یادداشت با رمز", desc: "پلیس دفترچه‌ای با اعداد و ارقام پیدا کرد که بعداً مشخص شد تاریخ و تعداد دفعات قتل را نشان می‌دهد. او ۵۶ بار علامت زده بود." },
+                { icon: "🦷", title: "گاز گرفتگی", desc: "پزشکی قانونی آثار گاز گرفتگی روی شانه یک قربانی ثبت کرد که با مدل دندان چیکاتیلو تطابق داشت." }
+            ],
+            interrogation: [
+                {
+                    text: "بازجو: چیکاتیلو، ما چاقوی قتل و لکه‌های خون روی کتت را داریم. چرا کودکان و زنان جوان؟",
+                    options: [
+                        { text: "«تنها وقتی چاقو می‌زدم، ارضا می‌شدم. بچه‌ها راحت‌تر اعتماد می‌کردن.»", correct: true, next: 1, feedback: "✅ اعترافات روانپزشکی: ناتوانی جنسی مگر با خشونت مرگبار." },
+                        { text: "«از بچگی از همه متنفر بودم.»", correct: false, next: 1, feedback: "❌ علت اختلال شدید سادیسم جنسی بود نه نفرت عمومی." },
+                        { text: "«برای پول این کارو می‌کردم.»", correct: false, next: 1, feedback: "❌ هیچ مدرکی از سرقت نیست." }
+                    ]
+                },
+                {
+                    text: "بازجو: شاهدان گفتند تو را نزدیک ایستگاه قطار با چمدان دیده‌اند. چی توی چمدانت بود؟",
+                    options: [
+                        { text: "«چاقو، طناب و یک پارچه برای تمیز کردن دستم.»", correct: true, next: 2, feedback: "✅ کارآگاهان چاقو و پارچه آغشته به خون پیدا کردند." },
+                        { text: "«لباس عادی و کتاب.»", correct: false, next: 2, feedback: "❌ او ابزار قتل را حمل می‌کرد." },
+                        { text: "«مواد غذایی برای قربانیان.»", correct: false, next: 2, feedback: "❌ کاملاً غلط." }
+                    ]
+                },
+                {
+                    text: "بازجو: چرا اجساد را مثله می‌کردی؟",
+                    options: [
+                        { text: "«با مثله کردن، اونا رو برای همیشه مال خودم می‌کردم. چشمهاشون... منو می‌دیدند.»", correct: true, next: 3, feedback: "✅ روانشناسان: فتیش چشمان قربانی." },
+                        { text: "«برای ترساندن پلیس.»", correct: false, next: 3, feedback: "❌ هدف ارضای نیازهای بیمارگونه بود." },
+                        { text: "«احساس می‌کردم هیولا هستم.»", correct: false, next: 3, feedback: "❌ او در بازجویی گفت: 'من از خودم متنفرم اما لذت می‌برم.'" }
+                    ]
+                },
+                {
+                    text: "بازجو: مدرک گاز گرفتگی روی شانه یک پسر با دندان‌هایت تطابق دارد. اعتراف می‌کنی؟",
+                    options: [
+                        { text: "«بله… گاز می‌گرفتم تا صداشون دربیاد. اوج لذت همون موقع بود.»", correct: true, next: 4, feedback: "✅ پزشکی قانونی تطابق قطعی دندان را گزارش کرد." },
+                        { text: "«نه، این یک اشتباه بود.»", correct: false, next: 4, feedback: "❌ با وجود تطابق DNA و دندان، انکار فایده ندارد." },
+                        { text: "«اون پسر زنده مونده بود؟»", correct: false, next: 4, feedback: "❌ همه قربانیان کشته شدند." }
+                    ]
+                },
+                {
+                    text: "بازجو: ۵۳ قتل ثابت شده. حرف آخرت؟",
+                    options: [
+                        { text: "«من یک هیولا هستم. اما بدون من شما کارآگاها بیکار بودین.»", correct: true, next: -1, feedback: "✅ دقیقاً این جمله را در دادگاه گفت." },
+                        { text: "«توبه می‌کنم.»", correct: false, next: -1, feedback: "❌ او هیچ‌وقت توبه نکرد." },
+                        { text: "«بیگناهم.»", correct: false, next: -1, feedback: "❌ مدارک غیرقابل انکار است." }
+                    ]
+                }
+            ]
         }
-        const spinner = document.createElement('span');
-        spinner.className = 'spinner';
-        imgElement.parentElement?.appendChild(spinner);
-        const img = new Image();
-        img.onload = () => {
-            imgElement.src = urls[index];
-            spinner.remove();
-        };
-        img.onerror = () => {
-            spinner.remove();
-            setImageWithFallback(imgElement, urls, index + 1);
-        };
-        img.src = urls[index];
-    }
+    };
 
-    function loadEvidence() {
+    let currentKiller = 'samuel';
+    let currentStage = 0;
+    let totalScore = 0;
+    let gameCompleted = false;
+    let interrogationData = null;
+
+    function loadEvidence(killerId) {
+        const killer = killers[killerId];
         const container = document.getElementById('evidenceList');
         container.innerHTML = '';
-        evidenceItems.forEach((ev, idx) => {
+        killer.evidence.forEach((ev, idx) => {
             const card = document.createElement('div');
             card.className = 'evidence-card';
-            const img = document.createElement('img');
-            img.className = 'evidence-img';
-            setImageWithFallback(img, ev.imgUrls);
-            card.appendChild(img);
-            const titleDiv = document.createElement('div');
-            titleDiv.innerHTML = `<strong>${ev.title}</strong>`;
-            card.appendChild(titleDiv);
-            const detailDiv = document.createElement('div');
-            detailDiv.className = 'evidence-detail';
-            detailDiv.id = `evDet-${idx}`;
-            detailDiv.innerText = ev.desc;
-            card.appendChild(detailDiv);
+            card.innerHTML = `<div><span class="evidence-icon">${ev.icon}</span> <strong>${ev.title}</strong></div><div class="evidence-detail" id="evDet-${idx}">${ev.desc}</div>`;
             card.addEventListener('click', () => {
                 const det = document.getElementById(`evDet-${idx}`);
                 det.style.display = (det.style.display === 'none' || !det.style.display) ? 'block' : 'none';
-            });
-            img.addEventListener('click', (e) => {
-                e.stopPropagation();
-                zoomImage(ev.imgUrls[0]);
             });
             container.appendChild(card);
         });
     }
 
-    // Lightbox
-    const lightbox = document.createElement('div');
-    lightbox.id = 'customLightbox';
-    lightbox.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999;';
-    lightbox.innerHTML = '<img id="lbImg" style="max-width:90%; max-height:90%; border-radius:20px;"><button id="closeLb" style="position:absolute; top:20px; right:20px; background:red; border:none; padding:10px; border-radius:50%; color:white;">✖</button>';
-    document.body.appendChild(lightbox);
-    document.getElementById('closeLb')?.addEventListener('click', () => lightbox.style.display = 'none');
-    function zoomImage(src) { document.getElementById('lbImg').src = src; lightbox.style.display = 'flex'; }
-
-    // ============================================================
-    // 2. موتور صدا (Web Audio)
-    // ============================================================
-    let audioCtx = null, musicGain = null, sfxGain = null;
-    let musicEnabled = true, sfxEnabled = true;
-    function initAudio() {
-        if (audioCtx) return;
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        musicGain = audioCtx.createGain();
-        sfxGain = audioCtx.createGain();
-        musicGain.gain.value = 0.15;
-        sfxGain.gain.value = 0.3;
-        musicGain.connect(audioCtx.destination);
-        sfxGain.connect(audioCtx.destination);
-        const bufferSize = 4096;
-        const noiseNode = audioCtx.createScriptProcessor(bufferSize, 1, 1);
-        noiseNode.onaudioprocess = (e) => {
-            const output = e.outputBuffer.getChannelData(0);
-            for (let i = 0; i < bufferSize; i++) output[i] = (Math.random() * 2 - 1) * 0.03;
-        };
-        noiseNode.connect(musicGain);
-        window.playFootstep = () => { if(sfxEnabled){ const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(sfxGain); osc.frequency.value=100; gain.gain.value=0.1; osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.3); osc.stop(audioCtx.currentTime+0.3); } };
-        window.playHeartbeat = () => { if(sfxEnabled){ for(let i=0;i<3;i++){ const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(sfxGain); osc.frequency.value=80; gain.gain.value=0.2; osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.5); osc.stop(audioCtx.currentTime+0.5); } } };
-        window.playShock = () => { if(sfxEnabled){ const osc = audioCtx.createOscillator(); const gain = audioCtx.createGain(); osc.connect(gain); gain.connect(sfxGain); osc.frequency.value=880; gain.gain.value=0.15; osc.start(); gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.8); osc.stop(audioCtx.currentTime+0.8); } };
-        audioCtx.resume();
+    function initInterrogation(killerId) {
+        const killer = killers[killerId];
+        interrogationData = JSON.parse(JSON.stringify(killer.interrogation));
+        currentStage = 0;
+        totalScore = 0;
+        gameCompleted = false;
+        document.getElementById('endingBox').style.display = 'none';
+        document.getElementById('feedbackMsg').innerHTML = '';
+        document.getElementById('narrativeBox').innerHTML = `📁 پرونده ${killer.name} (${killer.victims} قربانی). مدارک را بخوانید، سپس بازجویی را شروع کنید.`;
+        document.getElementById('optionsArea').innerHTML = '';
     }
-    document.getElementById('musicToggle').onclick = () => { if(!audioCtx) initAudio(); musicEnabled=!musicEnabled; musicGain.gain.value=musicEnabled?0.15:0; document.getElementById('musicToggle').innerText=musicEnabled?"🎵 موزیک":"🔇 بی صدا"; };
-    document.getElementById('sfxToggle').onclick = () => { sfxEnabled=!sfxEnabled; document.getElementById('sfxToggle').innerText=sfxEnabled?"🔊 افکت":"🔇 افکت خاموش"; };
-    document.getElementById('fullscreenBtn').onclick = () => { if(document.documentElement.requestFullscreen) document.documentElement.requestFullscreen(); };
 
-    // ============================================================
-    // 3. بازی اصلی (فصل‌ها، انتخاب‌ها، پایان)
-    // ============================================================
-    let currentChap = 0, gameCompleted = false, totalScore = 0;
-    let gameFlags = { trustPolice:0, evidenceKnown:0, victimEmpathy:0, secretClue:false };
-    let userChoices = [];
-    const chapters = [
-        { id:0, narrative:"🕯️ فصل ۱: اولین خون (۱۹۶۸). دو جسد در فیات ۱۲۷، شش ضربه چاقو. قاتل چه ویژگی دارد؟", type:"choice", options:[
-            {text:"یک فرد عادی عصبانی", effects:{score:0, trustPolice:-1}, next:1, flagEffect:null},
-            {text:"یک جراح حرفه‌ای (چاقوی جراحی)", effects:{score:20, evidenceKnown:2}, next:1, flagEffect:{evidenceKnown:2}},
-            {text:"یک قاتل بی‌تجربه", effects:{score:5, trustPolice:1}, next:1}
-        ]},
-        { id:1, narrative:"💊 فصل ۲: روهیپنول در معده قربانیان – فقط با نسخه. دسترسی چه کسی؟", type:"choice", options:[
-            {text:"هر فرد عادی", effects:{score:-10, trustPolice:-2}, next:2},
-            {text:"پزشک یا داروساز", effects:{score:20, evidenceKnown:3}, next:2, flagEffect:{evidenceKnown:3}},
-            {text:"خود قربانیان", effects:{score:-5, victimEmpathy:-1}, next:2}
-        ]},
-        { id:2, narrative:"👣 فصل ۳: تناقض سایز کفش (۴۳ و ۴۱). یعنی چه؟", type:"minigame", paradox:true },
-        { id:3, narrative:"🗺️ فصل ۴: نقشه با ضربدر در خانه متوفی. آیا او قاتل است؟", type:"choice", options:[
-            {text:"بله، پرونده مختومه", effects:{score:-10, trustPolice:-3}, next:4},
-            {text:"نه، نقشه جاسازی شده – قاتل دیگر", effects:{score:20, evidenceKnown:4}, next:4, flagEffect:{evidenceKnown:4}},
-            {text:"قاتل اصلی مرده، بقیه کپی", effects:{score:10, secretClue:true}, next:4, flagEffect:{secretClue:true}}
-        ]},
-        { id:4, narrative:"📞 فصل ۵: تماس تلفنی «سه نفریم». نظریه تو؟", type:"choice", options:[
-            {text:"یک قاتل تنها", effects:{score:-10, trustPolice:-2}, next:5},
-            {text:"دست کم دو یا سه قاتل", effects:{score:25, evidenceKnown:5}, next:5},
-            {text:"کلاهبرداری", effects:{score:0, trustPolice:1}, next:5}
-        ]},
-        { id:5, narrative:"🩸 فصل ۶: گروه خونی AB (۲٪ جمعیت). این چه کمکی می‌کند؟", type:"choice", options:[
-            {text:"هیچ کمکی", effects:{score:0}, next:6},
-            {text:"قاتل احتمالاً این گروه خونی را دارد", effects:{score:25, evidenceKnown:6, secretClue:true}, next:6},
-            {text:"ربطی ندارد", effects:{score:-15, trustPolice:-2}, next:6}
-        ]},
-        { id:6, narrative:"⚖️ فصل ۷: تصمیم نهایی. چه کسی مسئول است؟", type:"choice", options:[
-            {text:"پیترو پاچیانی", effects:{score:-20, trustPolice:-4}, next:7},
-            {text:"برادران وینچی", effects:{score:10, victimEmpathy:2}, next:7},
-            {text:"گروه سه نفره شامل پزشک با گروه خونی AB", effects:{score:35, secretClue:true, evidenceKnown:8}, next:7, flagEffect:{secretClue:true, evidenceKnown:8}}
-        ]},
-        { id:7, narrative:"🔚 فصل پایانی: پرونده برای همیشه بسته می‌شود... یا نه؟", type:"ending" }
-    ];
-
-    function showParadoxGame() {
-        const dynamic = document.getElementById('dynamicContent');
-        dynamic.innerHTML = `<div class="choices-area"><p>کدام دو مدرک با هم تناقض دارند؟</p>
-            <button data-paradox="shoes">رد کفش سایز ۴۳ و ۴۱</button>
-            <button data-paradox="bullets">گلوله‌های برنو و چاقوی جراحی</button>
-            <button data-paradox="drug">روهیپنول و گروه خونی</button></div>`;
-        document.querySelectorAll('.choices-area button').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                if(btn.dataset.paradox === 'shoes') {
-                    totalScore += 25;
-                    gameFlags.evidenceKnown += 2;
-                    document.getElementById('feedbackMsg').innerHTML = "✅ درست! تناقض سایز کفش نشانه دو قاتل است. +۲۵ امتیاز";
-                    playFootstep();
+    function renderInterrogation() {
+        if (gameCompleted) return;
+        if (!interrogationData || currentStage >= interrogationData.length) {
+            finalizeGame();
+            return;
+        }
+        const stage = interrogationData[currentStage];
+        document.getElementById('narrativeBox').innerHTML = `🔍 مرحله ${currentStage+1} از ${interrogationData.length}<br>${stage.text}`;
+        const optionsDiv = document.getElementById('optionsArea');
+        optionsDiv.innerHTML = '';
+        stage.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.innerText = opt.text;
+            btn.addEventListener('click', () => {
+                if (opt.correct) {
+                    totalScore += 20;
+                    document.getElementById('feedbackMsg').innerHTML = opt.feedback + ` +۲۰ امتیاز`;
                 } else {
-                    totalScore -= 10;
-                    document.getElementById('feedbackMsg').innerHTML = "❌ اشتباه. تناقض اصلی در سایز کفش‌هاست.";
-                    playShock();
+                    document.getElementById('feedbackMsg').innerHTML = opt.feedback + ` امتیازی دریافت نشد.`;
                 }
-                currentChap++;
+                if (opt.next === -1) {
+                    gameCompleted = true;
+                    finalizeGame();
+                } else {
+                    currentStage = opt.next !== undefined ? opt.next : currentStage + 1;
+                    renderInterrogation();
+                }
                 saveGame();
-                renderChapter();
             });
+            optionsDiv.appendChild(btn);
         });
     }
 
-    function renderChapter() {
-        if(gameCompleted) return;
-        const chap = chapters[currentChap];
-        if(!chap || chap.type === 'ending') { determineEnding(); return; }
-        document.getElementById('narrativeBox').innerHTML = chap.narrative;
-        const dynamic = document.getElementById('dynamicContent');
-        dynamic.innerHTML = '';
-        if(chap.type === 'choice') {
-            let html = '<div class="choices-area">';
-            chap.options.forEach(opt => {
-                html += `<button data-score="${opt.effects.score || 0}" data-next="${opt.next}" data-secret="${opt.flagEffect ? 'true' : 'false'}">${opt.text}</button>`;
-            });
-            html += '</div>';
-            dynamic.innerHTML = html;
-            document.querySelectorAll('.choices-area button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    let scoreAdd = parseInt(btn.dataset.score);
-                    totalScore += scoreAdd;
-                    let opt = chap.options.find(o => o.text === btn.innerText);
-                    if(opt && opt.flagEffect) {
-                        for(let [k,v] of Object.entries(opt.flagEffect)) if(gameFlags.hasOwnProperty(k)) gameFlags[k] += v;
-                    }
-                    userChoices.push({chap:currentChap, choice:btn.innerText, score:scoreAdd});
-                    let next = parseInt(btn.dataset.next);
-                    currentChap = next;
-                    saveGame();
-                    updateProgress();
-                    renderChapter();
-                    playFootstep();
-                });
-            });
-        } else if(chap.type === 'minigame') {
-            showParadoxGame();
-        }
-        updateProgress();
+    function finalizeGame() {
+        let finalScore = totalScore;
+        let message = '';
+        if (finalScore >= 80) message = '🕵️‍♂️ کارآگاه نخبه! مدارک را دقیق خواندی و بازجویی عالی بود.';
+        else if (finalScore >= 50) message = '📋 کارآگاه قابل قبول، اما برخی سرنخ‌ها را از دست دادی. دوباره مدارک را بررسی کن.';
+        else message = '⚠️ امتیاز پایین. حتماً مدارک را ندیده‌ای. روی شواهد تمرکز کن.';
+        document.getElementById('endingBox').innerHTML = `<h3>📄 پایان بازجویی</h3><p>امتیاز نهایی: ${finalScore} از ۱۰۰</p><p>${message}</p><button id="restartCaseBtn" style="background:#2c1a1a; border:1px solid #ab6743; padding:8px 16px; margin-top:12px;">🔄 بازجویی مجدد</button>`;
+        document.getElementById('endingBox').style.display = 'block';
+        document.getElementById('optionsArea').innerHTML = '';
+        document.getElementById('restartCaseBtn')?.addEventListener('click', () => {
+            initInterrogation(currentKiller);
+            renderInterrogation();
+        });
+        saveGame();
     }
 
-    function determineEnding() {
-        gameCompleted = true;
-        let evidence = gameFlags.evidenceKnown || 0;
-        let secrecy = gameFlags.secretClue ? 15 : 0;
-        let finalIndex = Math.min(100, totalScore + evidence*5 + secrecy);
-        let endingTitle, endingText;
-        if(finalIndex > 80) {
-            endingTitle = "🔚 پایان مخفی: عدالت پنهان";
-            endingText = "تو موفق شدی هویت واقعی قاتلان را اثبات کنی: یک جراح با گروه خونی AB و دو همدستش. آنها دستگیر شدند. پرونده بسته شد و تو به عنوان کارآگاه افسانه‌ای تاریخ شدی.";
-        } else if(finalIndex > 60) {
-            endingTitle = "🔚 پایان سوم: حقیقت ناقص";
-            endingText = "پرونده هرگز حل نشد، اما تو به گروه سه نفره مشکوک شدی. آرشیو مخفی خودت را داری.";
-        } else if(finalIndex > 30) {
-            endingTitle = "🔚 پایان دوم: سایه اشراف";
-            endingText = "برادران وینچی متهم شدند اما تبرئه شدند. تو از کار برکنار شدی.";
-        } else {
-            endingTitle = "🔚 پایان اول: عدالت کور";
-            endingText = "پیترو پاچیانی به اشتباه محکوم شد. سال‌ها بعد بی‌گناهی او ثابت شد.";
-        }
-        document.getElementById('endingBox').innerHTML = `<h2>${endingTitle}</h2><p>${endingText}</p><p>🎯 امتیاز نهایی: ${totalScore} از ۱۰۰</p><button id="restartBtn" style="background:#e07a3a;border:none;padding:8px 20px;border-radius:40px;">🔄 بازجویی دوباره</button>`;
-        document.getElementById('endingBox').style.display = 'block';
-        document.getElementById('dynamicContent').innerHTML = '';
-        document.getElementById('shareEndingBtn').style.display = 'inline-block';
-        document.getElementById('shareEndingBtn').onclick = () => {
-            if(navigator.share) navigator.share({title: 'نتیجه بازی هیولای فلورانس', text: `${endingTitle}\n${endingText}\nامتیاز: ${totalScore}`});
-            else alert("مرورگر از اشتراک‌گذاری پشتیبانی نمی‌کند. متن پایان:\n"+endingTitle+"\n"+endingText);
-        };
-        document.getElementById('restartBtn').addEventListener('click', resetGame);
+    function switchKiller(killerId) {
+        currentKiller = killerId;
+        loadEvidence(currentKiller);
+        initInterrogation(currentKiller);
+        renderInterrogation();
+        document.querySelectorAll('.case-btn').forEach(btn => {
+            if (btn.dataset.case === killerId) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
         saveGame();
-        playHeartbeat();
     }
 
     function saveGame() {
-        let save = { currentChap, totalScore, gameFlags, userChoices, gameCompleted, notebook: document.getElementById('notebookInput').value };
-        localStorage.setItem('FlorenceGamePro', JSON.stringify(save));
-        let fb = document.getElementById('feedbackMsg');
-        let notif = document.createElement('div');
-        notif.innerText = "💾 ذخیره شد";
-        notif.style.fontSize = "0.7rem";
-        notif.style.color = "#2ad4c0";
-        fb.appendChild(notif);
-        setTimeout(() => notif.remove(), 1500);
+        const save = {
+            killer: currentKiller,
+            stage: currentStage,
+            score: totalScore,
+            completed: gameCompleted,
+            notebook: document.getElementById('notebook').value
+        };
+        localStorage.setItem('SerialKillerGame', JSON.stringify(save));
     }
+
     function loadGame() {
-        let raw = localStorage.getItem('FlorenceGamePro');
-        if(!raw) return false;
-        let data = JSON.parse(raw);
-        currentChap = data.currentChap;
-        totalScore = data.totalScore;
-        gameFlags = data.gameFlags;
-        userChoices = data.userChoices;
-        gameCompleted = data.gameCompleted;
-        if(data.notebook) document.getElementById('notebookInput').value = data.notebook;
-        return true;
+        const raw = localStorage.getItem('SerialKillerGame');
+        if (!raw) return false;
+        try {
+            const data = JSON.parse(raw);
+            currentKiller = data.killer;
+            currentStage = data.stage;
+            totalScore = data.score;
+            gameCompleted = data.completed;
+            document.getElementById('notebook').value = data.notebook || '';
+            return true;
+        } catch(e) { return false; }
     }
+
     function resetGame() {
-        currentChap = 0; totalScore = 0; gameFlags = { trustPolice:0, evidenceKnown:0, victimEmpathy:0, secretClue:false };
-        userChoices = []; gameCompleted = false;
-        document.getElementById('endingBox').style.display = 'none';
-        document.getElementById('feedbackMsg').innerHTML = '';
-        document.getElementById('shareEndingBtn').style.display = 'none';
-        localStorage.removeItem('FlorenceGamePro');
-        renderChapter();
-        updateProgress();
-        document.getElementById('notebookInput').value = '';
-        saveGame();
+        switchKiller(currentKiller);
     }
-    function updateProgress() {
-        let percent = (currentChap / chapters.length) * 100;
-        document.getElementById('progressFill').style.width = percent + '%';
-    }
-    document.getElementById('notebookInput').addEventListener('input', () => saveGame());
-    function updateClock() { document.getElementById('liveClock').innerText = new Date().toLocaleTimeString('fa-IR'); }
-    setInterval(updateClock, 1000); updateClock();
-    document.addEventListener('keydown', (e) => {
-        if(gameCompleted) return;
-        let btns = document.querySelectorAll('.choices-area button');
-        if(e.key === '1' && btns[0]) btns[0].click();
-        if(e.key === '2' && btns[1]) btns[1].click();
-        if(e.key === '3' && btns[2]) btns[2].click();
+
+    // رویدادها
+    document.getElementById('resetBtn').addEventListener('click', resetGame);
+    document.getElementById('notebook').addEventListener('input', () => saveGame());
+    document.querySelectorAll('.case-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchKiller(btn.dataset.case));
     });
-    loadEvidence();
-    if(!loadGame() || gameCompleted) resetGame();
-    else renderChapter();
-    document.getElementById('resetGame').addEventListener('click', resetGame);
-    initAudio();
-    // راهنمای اولیه
-    if(!localStorage.getItem('tutorialShown')) {
-        alert("🔍 راهنمای سریع:\n- مدارک را کلیک کنید تا جزئیات باز شود.\n- روی تصاویر کلیک کنید تا بزرگ شوند.\n- از دفترچه یادداشت برای ثبت فرضیات استفاده کنید.\n- کلیدهای 1،2،3 روی صفحه کلید برای انتخاب گزینه‌ها.\n- پیشرفت خودکار ذخیره می‌شود.");
-        localStorage.setItem('tutorialShown', 'true');
+
+    if (!loadGame()) {
+        switchKiller('samuel');
+    } else {
+        loadEvidence(currentKiller);
+        initInterrogation(currentKiller);
+        renderInterrogation();
+        document.querySelectorAll('.case-btn').forEach(btn => {
+            if (btn.dataset.case === currentKiller) btn.classList.add('active');
+        });
     }
 </script>
 </body>
