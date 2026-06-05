@@ -536,11 +536,11 @@ const story = {
     scene15_family: {
         location: 'کلانتری — اتاق انتظار — شب',
         text: 'مادرش گریه می‌کنه. پدرش عصبانیه.',
-        dialogue: 'پدر: «یک ماه و نیمه هیچ کاری نکردین! خودم قاتلو پیدا می‌کنم. می‌کشمش.» فرداش رسانه‌ها علیه پلیس می‌شن. مردم خشمگین.',
+        dialogue: 'پدر: «یک ماه و نیمه هیچ کاری نکردین! خودم قاتلو پیدا می‌کنم. می‌کشمش.» فرداش رسانه‌ها علیه پلیس می‌شن.',
         choices: [
             {
                 label: 'ادامه...',
-                next: 'scene16_decision'
+                next: 'scene16_emily_found'
             }
         ],
         onLoad: function() {
@@ -552,12 +552,12 @@ const story = {
     // ─── صحنه ۱۵: مسیر ───
     scene15_route: {
         location: 'مسیر کتابخونه تا خونهٔ کارتر — شب',
-        text: 'مسیر رو با الن بررسی می‌کنی. هیچی نیست. فقط یه دوربین مداربستهٔ خراب روی یه تیر برق.',
-        dialogue: 'نگهبان مغازه: «۳ ماهه کار نمی‌کنه.» وقت تلف کردی.',
+        text: 'مسیر رو بررسی می‌کنی. هیچی نیست. فقط یه دوربین مداربستهٔ خراب.',
+        dialogue: 'نگهبان: «۳ ماهه کار نمی‌کنه.» وقت تلف کردی.',
         choices: [
             {
                 label: 'ادامه...',
-                next: 'scene16_decision'
+                next: 'scene16_emily_found'
             }
         ],
         onLoad: function() {
@@ -577,8 +577,8 @@ const story = {
                 next: 'scene16_chase'
             },
             {
-                label: '۲. «کیسی فقط یه پسر فراریه. ربطی به قتل‌ها نداره. وقت تلف نکنیم.»',
-                next: 'scene16_decision'
+                label: '۲. «کیسی فقط یه پسر فراریه. وقت تلف نکنیم.»',
+                next: 'scene16_emily_found'
             }
         ]
     },
@@ -586,12 +586,12 @@ const story = {
     // ─── صحنه ۱۶: دنبال کیسی ───
     scene16_chase: {
         location: 'نورثبروک و اطراف — هفته‌های بعد',
-        text: 'همه نیرو می‌ره دنبال کیسی مارلو. جنگل. خونه‌های متروکه. پناهگاه‌های قدیمی.',
-        dialogue: 'هیچی پیدا نمی‌شه. هفته‌ها می‌گذره. نیروها خسته. پدر اِمیلی عصبانی‌تر. شهر در آستانهٔ انفجاره.',
+        text: 'همه نیرو می‌ره دنبال کیسی مارلو. جنگل. خونه‌های متروکه.',
+        dialogue: 'هیچی پیدا نمی‌شه. هفته‌ها می‌گذره. شهر در آستانهٔ انفجاره.',
         choices: [
             {
                 label: 'ادامه...',
-                next: 'scene17_continue'
+                next: 'scene16_emily_found'
             }
         ],
         onLoad: function() {
@@ -601,33 +601,200 @@ const story = {
         }
     },
 
-    // ─── صحنه ۱۶: تصمیم بعد از خانواده یا مسیر ───
-    scene16_decision: {
-        location: 'کلانتری — شب',
-        text: 'پدر اِمیلی رسانه‌ها رو خبر کرده. شهر آتیشه.',
-        dialogue: 'الن: «باید یه کاری کنیم جیمی.»',
+    // ─── صحنه ۱۶: پیدا شدن امیلی ───
+    scene16_emily_found: {
+        location: 'جنگل لارچ هالو — صبح — مه',
+        text: 'سه روز گذشته. بیسیم: «جسد پیدا شده. جنگل لارچ هالو. دختر ۱۴ ساله...»',
+        dialogue: 'می‌رسی. اِمیلی. ولی این بار فرق می‌کنه. طناب نیست. ۱۳ ضربه چاقو. سینه. شکم. صورتش سالم مونده. بدون صلیب. الن: «این فرق می‌کنه جیمی... طناب نیست. این ۱۳ ضربه چاقوئه. این شخصیه.»',
         choices: [
             {
-                label: 'ادامه...',
-                next: 'scene17_continue'
+                label: '۱. «این قطعاً کار قاتل سریالی نیست. قبلیا با طناب بودن. این یکی شخصیه.»',
+                next: 'scene17_knife_theory'
+            },
+            {
+                label: '۲. «شاید عمداً روشش رو عوض کرده. می‌خواد ما رو گیج کنه.»',
+                next: 'scene17_knife_theory'
+            },
+            {
+                label: '۳. «نمی‌دونم. ولی ۱۳ ضربه... این نفرته. قاتل ازش متنفر بوده یا می‌شناخته‌ش.»',
+                next: 'scene17_knife_theory'
             }
         ]
     },
 
+    // ─── صحنه ۱۷: نظریه چاقو ───
+    scene17_knife_theory: {
+        location: 'جنگل لارچ هالو — صبح',
+        text: '',
+        dialogue: '',
+        choices: [],
+        onLoad: function() {
+            let theoryText = '';
+            let theoryDialogue = '';
+            let choiceLabel = '';
+            
+            if (gameState.currentScene === 'scene16_emily_found') {
+                // اینجا نمی‌تونیم بدونیم کدوم انتخاب شده، پس یه مسیر پیش‌فرض می‌ذاریم
+                theoryText = 'نمی‌دونی چی فکر کنی. این جنازه با همه فرق داره.';
+                theoryDialogue = 'الن: «هرچی هست، این یکی مارو به قاتل نزدیک‌تر می‌کنه. حسش می‌کنم.»';
+            }
+            
+            document.getElementById('location').innerHTML = 'جنگل لارچ هالو — صبح';
+            document.getElementById('sceneText').innerHTML = theoryText;
+            document.getElementById('dialogue').innerHTML = theoryDialogue;
+            document.getElementById('choices').innerHTML = '<button class="choice-btn" onclick="loadScene(\'scene17_doctor\')">ادامه...</button>';
+        }
+    },
+
+    // ─── صحنه ۱۷: پزشک قانونی ───
+    scene17_doctor: {
+        location: 'پزشک قانونی — عصر',
+        text: 'پزشک قانونی معاینه رو تموم می‌کنه.',
+        dialogue: 'پزشک: «زیر ناخن‌هاش پارچه هست. پنبه. ارزون. تی‌شرت کار. مارک والمارت. از اونایی که تو والمارت می‌فروشن. کلی کارگر و راننده ازش می‌خرن.»',
+        choices: [
+            {
+                label: '۱. می‌رم والمارت. لیست خریداران رو می‌خوام.',
+                next: 'scene18_walmart1'
+            },
+            {
+                label: '۲. از الن می‌خوام بره والمارت. خودم می‌رم پایانه.',
+                next: 'scene18_terminal'
+            },
+            {
+                label: '۳. این سرنخ رو بی‌صدا دنبال می‌کنم.',
+                next: 'scene18_quiet'
+            }
+        ]
+    },
+
+    // ─── صحنه ۱۸: والمارت (خودت می‌ری) ───
+    scene18_walmart1: {
+        location: 'والمارت نورثبروک — صبح',
+        text: 'می‌ری والمارت. فروشنده پیرمرده.',
+        dialogue: 'فروشنده: «این تی‌شرت‌ها رو خیلی‌ها می‌خرن. نمی‌تونم لیست بدم. حریم خصوصیه. حکم می‌خواد.» باید حکم بگیری. وقت می‌بره.',
+        choices: [
+            {
+                label: 'ادامه...',
+                next: 'scene19_night_talk'
+            }
+        ],
+        onLoad: function() {
+            gameState.time += 2;
+        }
+    },
+
+    // ─── صحنه ۱۸: الن می‌ره والمارت، تو پایانه ───
+    scene18_terminal: {
+        location: 'پایانهٔ کامیون‌ها — عصر',
+        text: 'الن می‌ره والمارت. تو می‌ری پایانه. وین نیست. مایکل نیست.',
+        dialogue: 'توماس کامیونش رو می‌شوره. تی‌شرتش سفیده. ساده. مارک والمارت. نگاهت می‌کنه. سر تکون می‌ده. به شستن ادامه می‌ده.',
+        choices: [
+            {
+                label: 'ادامه...',
+                next: 'scene19_night_talk'
+            }
+        ],
+        onLoad: function() {
+            gameState.clues.push('توماس — تی‌شرت والمارت');
+        }
+    },
+
+    // ─── صحنه ۱۸: بی‌صدا ───
+    scene18_quiet: {
+        location: 'کلانتری — شب',
+        text: 'بی‌صدا تحقیق می‌کنی. کسی خبردار نمی‌شه.',
+        dialogue: 'ولی تحقیق کندتر پیش می‌ره. زمان از دست می‌دی.',
+        choices: [
+            {
+                label: 'ادامه...',
+                next: 'scene19_night_talk'
+            }
+        ],
+        onLoad: function() {
+            gameState.time += 1;
+        }
+    },
+
+    // ─── صحنه ۱۹: گفتگو با الن ───
+    scene19_night_talk: {
+        location: 'کلانتری — شب — بارون',
+        text: 'شب. کلانتری خلوت. الن یه لیوان قهوه سرد دستشه.',
+        dialogue: 'الن: «۴ تا جنازه جیمی. ۴ تا. ما هیچ‌کاری نکردیم. من... خسته شدم.»',
+        choices: [
+            {
+                label: '۱. «منم خسته شدم. ولی نمی‌تونیم ولش کنیم.»',
+                trust: 1,
+                next: 'scene20_father'
+            },
+            {
+                label: '۲. «شاید باید کمک بخوایم. از FBI.»',
+                stress: -1,
+                guilt: 1,
+                next: 'scene20_father'
+            },
+            {
+                label: '۳. «قسم خوردم به پدرش. می‌گیرمش.»',
+                trust: 2,
+                next: 'scene20_father'
+            }
+        ]
+    },
+
+    // ─── صحنه ۲۰: پدر امیلی ───
+    scene20_father: {
+        location: 'کلانتری — جلوی در — شب',
+        text: 'پدر امیلی می‌رسه. داد می‌زنه. گریه می‌کنه. می‌افته رو زمین.',
+        dialogue: 'پدر: «گفتم پیداش می‌کنم... تو قول دادی...»',
+        choices: [
+            {
+                label: '۱. «متأسفم.»',
+                next: 'scene21_continue'
+            },
+            {
+                label: '۲. سکوت می‌کنم.',
+                next: 'scene21_continue'
+            },
+            {
+                label: '۳. «هنوز تموم نشده. قول می‌دم قاتلو بگیرم.»',
+                next: 'scene21_continue'
+            }
+        ],
+        onLoad: function() {
+            // مقادیر توی choose آپدیت می‌شن
+        }
+    },
+
     // ─── پایان موقت ───
-    scene17_continue: {
+    scene21_continue: {
         location: 'نورثبروک — شب — بارون',
-        text: 'پرونده ادامه داره. اِمیلی هنوز پیدا نشده. شهر در آستانهٔ فروپاشی. قاتل آزاده.',
+        text: 'پرونده ادامه داره. ۴ جنازه. یه قاتل آزاد. یه شهر در آستانهٔ فروپاشی.',
         dialogue: '',
         choices: [
             {
                 label: 'ادامه در پارت بعدی...',
-                next: 'scene17_continue'
+                next: 'scene21_continue'
             }
         ]
     }
 
 };
+
+// ─── تابع choose اصلاح شده ───
+function choose(index) {
+    const scene = story[gameState.currentScene];
+    const choice = scene.choices[index];
+    
+    if (choice.clue) gameState.clues.push(choice.clue);
+    if (choice.trust) gameState.trust += choice.trust;
+    if (choice.time) gameState.time += choice.time;
+    if (choice.stress) gameState.stress += choice.stress;
+    if (choice.guilt) gameState.guilt += choice.guilt;
+    if (choice.redHerrings) gameState.redHerrings = (gameState.redHerrings || 0) + choice.redHerrings;
+    if (choice.magnusFree !== undefined) gameState.magnusFree = choice.magnusFree;
+    if (choice.lockArrest) gameState.lockArrest = true;
+    
+    loadScene(choice.next);
+}
 
 // ─── لود اولیه ───
 window.onload = function() {
