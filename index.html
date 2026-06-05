@@ -5,81 +5,271 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آخرین صلیب</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Mirza:wght@400;500;600;700&display=swap');
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            background: #0a0a0a;
-            color: #c0c0c0;
-            font-family: 'Courier New', monospace;
+            background: #050505;
+            color: #b0b0b0;
+            font-family: 'Crimson Text', 'Mirza', serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background-image: 
+                radial-gradient(ellipse at center, rgba(30,0,0,0.6) 0%, rgba(0,0,0,0) 70%),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(20,0,0,0.1) 2px, rgba(20,0,0,0.1) 4px);
+            cursor: default;
         }
-        .game-container {
-            max-width: 650px;
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .game-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
             width: 100%;
-            background: #111111;
-            border: 1px solid #2a2a2a;
-            padding: 35px;
-            border-radius: 4px;
         }
+        
+        .game-container {
+            width: 100%;
+            background: linear-gradient(180deg, #0c0a0a 0%, #0f0d0d 50%, #0a0808 100%);
+            border: 1px solid #2a1a1a;
+            padding: 45px;
+            border-radius: 2px;
+            box-shadow: 
+                0 0 100px rgba(139,0,0,0.1),
+                0 20px 60px rgba(0,0,0,0.8),
+                inset 0 1px 0 rgba(255,255,255,0.01);
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139,0,0,0.3), transparent);
+        }
+        
+        .game-container::after {
+            content: '◈';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(139,0,0,0.2);
+            font-size: 10px;
+        }
+        
         .game-title {
             text-align: center;
-            color: #8b0000;
-            font-size: 22px;
-            letter-spacing: 4px;
+            color: #6b0000;
+            font-size: 24px;
+            letter-spacing: 8px;
             margin-bottom: 30px;
+            margin-top: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(139,0,0,0.3), 0 2px 4px rgba(0,0,0,0.8);
+            border-bottom: 1px solid #1a0a0a;
+            padding-bottom: 25px;
+            font-family: 'Crimson Text', serif;
         }
+        
         .location {
-            color: #8b0000;
-            font-size: 13px;
-            margin-bottom: 20px;
-            opacity: 0.7;
+            color: #5a1010;
+            font-size: 12px;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            opacity: 0.9;
         }
+        
+        .location::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #8b0000;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; box-shadow: 0 0 5px #8b0000; }
+            50% { opacity: 1; box-shadow: 0 0 15px #8b0000; }
+        }
+        
         .scene-text {
-            line-height: 2;
-            font-size: 15px;
-            margin-bottom: 20px;
+            line-height: 2.2;
+            font-size: 17px;
+            margin-bottom: 25px;
+            color: #c8c0b8;
+            animation: fadeIn 0.6s ease;
+            letter-spacing: 0.3px;
         }
-        .dialogue {
-            color: #b0b0b0;
-            margin-bottom: 20px;
-            padding-right: 12px;
-            border-right: 2px solid #3a1a1a;
-            line-height: 2;
+        
+        .dialogue-box {
+            margin-bottom: 30px;
+            padding: 18px 22px;
+            border-right: 3px solid #8b0000;
+            background: linear-gradient(90deg, rgba(139,0,0,0.06) 0%, rgba(0,0,0,0) 100%);
+            line-height: 2.1;
+            border-radius: 0 3px 3px 0;
+            animation: fadeIn 0.8s ease;
+            position: relative;
+            font-style: italic;
+            color: #a89080;
+            font-size: 16px;
         }
+        
+        .dialogue-box::before {
+            content: '❝';
+            position: absolute;
+            top: -8px;
+            right: 15px;
+            color: rgba(139,0,0,0.3);
+            font-size: 20px;
+            font-style: normal;
+        }
+        
         .choices {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 25px;
+            margin-top: auto;
         }
+        
         .choice-btn {
-            background: #1a1a1a;
-            color: #c0c0c0;
-            border: 1px solid #333;
-            padding: 12px 16px;
+            background: linear-gradient(135deg, #0f0f0f 0%, #080808 100%);
+            color: #a0a0a0;
+            border: 1px solid #1a1a1a;
+            padding: 16px 22px;
             cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
+            font-family: 'Crimson Text', 'Mirza', serif;
+            font-size: 16px;
             text-align: right;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 2px;
+            position: relative;
+            letter-spacing: 0.5px;
         }
+        
+        .choice-btn::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(139,0,0,0.15), transparent);
+            transition: width 0.4s ease;
+        }
+        
         .choice-btn:hover {
-            background: #222;
+            background: linear-gradient(135deg, #1a1515 0%, #100c0c 100%);
             border-color: #8b0000;
-            color: #fff;
+            color: #d0d0d0;
+            transform: translateX(-6px);
+            box-shadow: 0 6px 25px rgba(139,0,0,0.15);
+            letter-spacing: 1px;
+        }
+        
+        .choice-btn:hover::before {
+            width: 100%;
+        }
+        
+        .choice-btn:active {
+            transform: translateX(0);
+            transition: 0.05s;
+        }
+        
+        .choice-number {
+            color: #8b0000;
+            margin-left: 8px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .evidence-tag {
+            display: inline-block;
+            background: rgba(139,0,0,0.1);
+            border: 1px solid rgba(139,0,0,0.3);
+            padding: 2px 10px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: #8b0000;
+            margin: 2px;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #1a0a0a;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #4a3030;
+            opacity: 0.7;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #5a1010;
+        }
+        
+        .status-dot.active {
+            background: #8b0000;
+            box-shadow: 0 0 6px #8b0000;
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <div class="game-title">آخرین صلیب</div>
-        <div class="location" id="location"></div>
-        <div class="scene-text" id="sceneText"></div>
-        <div class="dialogue" id="dialogue"></div>
-        <div class="choices" id="choices"></div>
+    <div class="game-wrapper">
+        <div class="game-container">
+            <div class="game-title">آخرین صلیب</div>
+            <div class="status-bar">
+                <span class="status-item"><span class="status-dot active"></span> پروندهٔ فعال</span>
+                <span class="status-item" id="clueCount">سرنخ: ۰</span>
+                <span class="status-item" id="timeDisplay">روز: ۱</span>
+            </div>
+            <div class="location" id="location"></div>
+            <div class="scene-text" id="sceneText"></div>
+            <div class="dialogue-box" id="dialogue"></div>
+            <div class="choices" id="choices"></div>
+        </div>
     </div>
     
     <script src="story.js"></script>
