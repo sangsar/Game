@@ -83,43 +83,5 @@
     </div>
     
     <script src="story.js"></script>
-    <script>
-        let gameState = {
-            time: 0,
-            trust: 5,
-            clues: [],
-            stress: 0,
-            currentScene: 'scene1'
-        };
-        
-        function loadScene(sceneId) {
-            const scene = story[sceneId];
-            document.getElementById('location').innerHTML = scene.location;
-            document.getElementById('sceneText').innerHTML = scene.text;
-            document.getElementById('dialogue').innerHTML = scene.dialogue;
-            
-            let html = '';
-            for (let i = 0; i < scene.choices.length; i++) {
-                html += `<button class="choice-btn" onclick="choose(${i})">${scene.choices[i].label}</button>`;
-            }
-            document.getElementById('choices').innerHTML = html;
-            
-            gameState.currentScene = sceneId;
-        }
-        
-        function choose(index) {
-            const scene = story[gameState.currentScene];
-            const choice = scene.choices[index];
-            
-            if (choice.clue) gameState.clues.push(choice.clue);
-            if (choice.trust) gameState.trust += choice.trust;
-            if (choice.time) gameState.time += choice.time;
-            if (choice.stress) gameState.stress += choice.stress;
-            
-            loadScene(choice.next);
-        }
-        
-        loadScene('scene1');
-    </script>
 </body>
 </html>
