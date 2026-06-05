@@ -1137,4 +1137,373 @@ scene41_continue: {
             next: 'scene41_continue'
         }
     ]
+}// ─── صحنه ۴۱: ادامه ───
+scene41_continue: {
+    location: 'نورثبروک — شب',
+    text: 'بعد از پیدا شدن ۲۰ جسد، همه چی تغییر کرده. شهر دیگه امن نیست. مردم می‌رن.',
+    dialogue: 'الن: «حالا ۲۹ تا جنازه داریم. باید یه فکری کنیم.»',
+    choices: [
+        {
+            label: 'ادامه...',
+            next: 'scene42_kicy_surrender'
+        }
+    ]
+},
+
+// ─── صحنه ۴۲: کیسی خودش رو تحویل میده ───
+scene42_kicy_surrender: {
+    location: 'کلانتری — صبح',
+    text: 'یه پسر جوون میاد جلوی کلانتری. وایمیسته. دستاش رو می‌ذاره رو سرش. تسلیم.',
+    dialogue: 'کیسی مارلو: «من قاتل نیستم. ولی می‌دونم همه فکر می‌کنن منم. من فقط خونه رو ترک کردم.»',
+    choices: [
+        {
+            label: '۱. «مدرکی داری که قاتل نیستی؟»',
+            next: 'scene43_kicy_talk'
+        },
+        {
+            label: '۲. «چرا حالا اومدی؟ بعد این همه وقت؟»',
+            next: 'scene43_kicy_talk'
+        }
+    ]
+},
+
+// ─── صحنه ۴۳: حرف‌های کیسی ───
+scene43_kicy_talk: {
+    location: 'کلانتری — اتاق بازجویی',
+    text: 'کیسی می‌گه: «پدر و مادرم از بچگی شکنجم می‌دادن. کتک. گرسنگی. حبس تو زیرزمین. اون شب دیگه نتونستم تحمل کنم. چاقو رو برداشتم و زدمشون. ولی نکشتمشون.»',
+    dialogue: 'کیسی ادامه میده: «یه شب چند ماه پیش تو کلبهٔ قدیمی نزدیک جلگه بودم. کسی اونجا نمیاد. یه مرد با یه بیل تو منطقه می‌گشت. لاغر بود. مو مشکی. سر به زیر.»',
+    choices: [
+        {
+            label: 'ادامه...',
+            next: 'scene44_plan'
+        }
+    ],
+    onLoad: function() {
+        gameState.clues.push('کیسی — قاتل رو دیده — لاغر مو مشکی');
+    }
+},
+
+// ─── صحنه ۴۴: نقشه ───
+scene44_plan: {
+    location: 'کلانتری — شب',
+    text: 'کیسی رو دارین ولی قاتل نیست. ولی می‌دونین قاتل لاغره، مو مشکی، سر به زیر.',
+    dialogue: 'الن: «هیچ مظنونی نداریم. ولی می‌دونیم چی شکلیه. حالا چی؟»',
+    choices: [
+        {
+            label: '۱. «یه مأمور زن با لباس فاحشه می‌فرستیم تو جاده. از دور مراقبشیم.»',
+            next: 'scene45_undercover'
+        },
+        {
+            label: '۲. «اطراف جلگه رو تحت نظر می‌گیریم. قاتل به اونجا عادت کرده.»',
+            next: 'scene45_valley_watch'
+        },
+        {
+            label: '۳. «هر دو رو همزمان اجرا می‌کنیم.»',
+            next: 'scene45_both'
+        }
+    ]
+},
+
+// ─── صحنه ۴۵: مامور فاحشه ───
+scene45_undercover: {
+    location: 'جاده — شب — تاریک',
+    text: 'مأمور زن داوطلب می‌شه. لباس فاحشه می‌پوشه. می‌ره کنار جاده. شما از دور مراقبید.',
+    dialogue: 'چند ساعت می‌گذره. یه کامیون قرمز وایمیسته. مرد پشت فرمون: مو مشکی. لاغر. سر به زیر. مأمورا از تاریکی می‌زنن بیرون. دستگیر می‌شه.',
+    choices: [
+        {
+            label: 'ادامه...',
+            next: 'scene46_caught'
+        }
+    ],
+    onLoad: function() {
+        gameState.stress -= 1;
+    }
+},
+
+// ─── صحنه ۴۵: تحت نظر گرفتن جلگه ───
+scene45_valley_watch: {
+    location: 'جلگه — هفته‌ها بعد',
+    text: 'هفته‌ها می‌گذره. هیچی. قاتل نمیاد. اخبار رو شنیده و دیگه برنمی‌گرده.',
+    dialogue: 'وقت تلف کردی. بهت یه شانس داده می‌شه: می‌خوای برگردی و مسیر دیگه رو انتخاب کنی؟',
+    choices: [
+        {
+            label: '۱. «آره. برمی‌گردم و مأمور فاحشه رو می‌فرستم.»',
+            next: 'scene45_undercover'
+        },
+        {
+            label: '۲. «نه. به راه خودم ادامه می‌دم.»',
+            next: 'scene46_failed'
+        }
+    ],
+    onLoad: function() {
+        gameState.time += 3;
+        gameState.stress += 2;
+    }
+},
+
+// ─── صحنه ۴۵: هر دو ───
+scene45_both: {
+    location: 'نورثبروک — همزمان',
+    text: 'منابع رو نصف می‌کنی. یه تیم می‌ره جلگه، یه تیم می‌ره جاده. جلگه هیچی. جاده جواب می‌ده.',
+    dialogue: 'کامیون قرمز. مرد مو مشکی لاغر. دستگیر می‌شه.',
+    choices: [
+        {
+            label: 'ادامه...',
+            next: 'scene46_caught'
+        }
+    ],
+    onLoad: function() {
+        gameState.stress += 1;
+    }
+},
+
+// ─── صحنه ۴۶: دستگیری ───
+scene46_caught: {
+    location: 'کلانتری — بازداشتگاه — شب',
+    text: 'قاتل روبروت نشسته. همون آرامش لعنتی. همون نگاه سر به زیر.',
+    dialogue: 'متهم: «من حرفی ندارم. وکیل می‌خوام. تا وکیلم نیاد، چیزی نمی‌گم.»',
+    choices: [
+        {
+            label: 'ادامه...',
+            next: 'scene47_lawyer'
+        }
+    ]
+},
+
+// ─── صحنه ۴۶: شکست ───
+scene46_failed: {
+    location: 'نورثبروک — شب',
+    text: 'هیچی. قاتل فراری. پرونده همچنان باز.',
+    dialogue: 'پایان مسیر اشتباه.',
+    choices: [
+        {
+            label: 'پایان.',
+            next: 'scene46_failed'
+        }
+    ]
+},
+
+// ─── صحنه ۴۷: وکیل میاد ───
+scene47_lawyer: {
+    location: 'کلانتری — اتاق بازجویی — روز بعد',
+    text: 'وکیلش میاد. زن میانسالی با چشمای تیز.',
+    dialogue: 'متهم: «من شب‌ها خونه بودم. همیشه. زنم شاهده. ازش بپرسین.»',
+    choices: [
+        {
+            label: 'می‌رم پیش زنش.',
+            next: 'scene48_wife'
+        }
+    ]
+},
+
+// ─── صحنه ۴۸: پیش زنش ───
+scene48_wife: {
+    location: 'خانهٔ متهم — عصر',
+    text: 'می‌ری خونه‌ش. همون زنی که قبلاً دیده بودی.',
+    dialogue: 'زنش: «بله. شوهرم شب‌ها خونه بوده. یکی داره براش پاپوش می‌دوزه. حتماً شوهرم می‌خواسته به اون زن کمک کنه. آدم خوبیه.»',
+    choices: [
+        {
+            label: 'برمی‌گردم کلانتری. یه ایده دارم.',
+            next: 'scene49_gps_idea'
+        }
+    ]
+},
+
+// ─── صحنه ۴۹: ایده جی‌پی‌اس ───
+scene49_gps_idea: {
+    location: 'کلانتری — شب',
+    text: 'الن: «حرف زنش کافی نیست. مدرک می‌خوایم.» یهو یه ایده به ذهنت می‌رسه.',
+    dialogue: 'تو: «جی‌پی‌اس کامیونش رو چک می‌کنیم.»',
+    choices: [
+        {
+            label: 'جی‌پی‌اس رو چک می‌کنم.',
+            next: 'scene50_gps_result'
+        }
+    ]
+},
+
+// ─── صحنه ۵۰: نتیجه جی‌پی‌اس ───
+scene50_gps_result: {
+    location: 'کلانتری — صبح',
+    text: 'جی‌پی‌اس کامیونش رو چک می‌کنی. تمام مکان‌های قتل. تمام شب‌های ناپدید شدن. اون همه جا بوده. و یه نقطه از همه بیشتر: جلگه. ۴۰ بار تو یه سال.',
+    dialogue: 'الن: «این مدرکه. نمی‌تونه انکار کنه.»',
+    choices: [
+        {
+            label: 'می‌رم تو اتاق بازجویی.',
+            next: 'scene51_second_inter'
+        }
+    ]
+},
+
+// ─── صحنه ۵۱: بازجویی دوم ───
+scene51_second_inter: {
+    location: 'اتاق بازجویی — صبح',
+    text: 'نقشه رو می‌ذاری جلوش.',
+    dialogue: 'متهم: «ماشینمو تازه خریدم. همه می‌دونن. شاید قبلیه اینجاها رفته. مگه جرمه آدم بره جلگه؟»',
+    choices: [
+        {
+            label: 'ماشین رو می‌گردیم.',
+            next: 'scene52_dna'
+        }
+    ]
+},
+
+// ─── صحنه ۵۲: DNA ───
+scene52_dna: {
+    location: 'پایانه — روز',
+    text: 'ماشین رو می‌گردین. زیر کف کامیون. لکه‌های خشک شده. می‌فرستی آزمایشگاه.',
+    dialogue: 'جواب: DNA متعلق به ۳ تا از قربانیان.',
+    choices: [
+        {
+            label: 'کیسی رو میارم برای شهادت.',
+            next: 'scene53_kicy_testify'
+        }
+    ]
+},
+
+// ─── صحنه ۵۳: شهادت کیسی ───
+scene53_kicy_testify: {
+    location: 'اتاق بازجویی — عصر',
+    text: 'کیسی رو میاری. متهم نگاهش می‌کنه.',
+    dialogue: 'متهم: «اون؟ اون چاقوکشه. خودش اعتراف کرده والدینش رو زده. خودش می‌گه تو جلگه بوده. چطور تو تاریکی چهرهٔ من رو دیده؟ شاید خودش قاتله! شما احمقین؟ من چرا گناهکارم؟ چون کارم اینه که کل شهر رو بچرخم؟»',
+    choices: [
+        {
+            label: '۱. متهم دروغ می‌گه. اون قاتله.',
+            next: 'scene54_win'
+        },
+        {
+            label: '۲. کیسی قاتله.',
+            next: 'scene54_lose'
+        },
+        {
+            label: '۳. یه نفر دیگه‌ست.',
+            next: 'scene54_lose'
+        }
+    ]
+},
+
+// ─── صحنه ۵۴: پیروزی ───
+scene54_win: {
+    location: 'کلانتری — شب',
+    text: 'درست حدس زدی. تمام مدارک بهش اشاره داره. جی‌پی‌اس. DNA. قاتل دستگیر شد.',
+    dialogue: 'الن: «تموم شد جیمی. تموم شد.»',
+    choices: [
+        {
+            label: 'ادامه...',
+            next: 'scene55_biography'
+        }
+    ],
+    onLoad: function() {
+        gameState.guilt -= 2;
+        gameState.stress -= 3;
+    }
+},
+
+// ─── صحنه ۵۴: شکست ───
+scene54_lose: {
+    location: 'کلانتری — شب',
+    text: 'متأسفانه قاتل اصلی رو ول کردی. یه آدم بی‌گناه رو قربانی گرفتی.',
+    dialogue: 'الن: «اشتباه کردیم جیمی... اشتباه کردیم.»',
+    choices: [
+        {
+            label: 'مشاهده بیوگرافی قاتل واقعی',
+            next: 'scene55_biography'
+        }
+    ],
+    onLoad: function() {
+        gameState.guilt += 5;
+        gameState.stress += 5;
+    }
+},
+
+// ─── صحنه ۵۵: بیوگرافی قاتل ───
+scene55_biography: {
+    location: '',
+    text: '',
+    dialogue: '',
+    choices: [
+        {
+            label: 'امتیاز من',
+            next: 'scene56_score'
+        }
+    ],
+    onLoad: function() {
+        document.getElementById('location').innerHTML = 'پروندهٔ محرمانه — قاتل صلیبی';
+        document.getElementById('sceneText').innerHTML = `
+            <strong>نام:</strong> توماس هیل<br>
+            <strong>سن:</strong> ۳۰ سال<br>
+            <strong>شغل:</strong> راننده کامیون<br>
+            <strong>وضعیت تأهل:</strong> متأهل، دو فرزند<br><br>
+            <strong>تعداد قربانیان تأییدشده:</strong> ۲۹ نفر<br>
+            <strong>بازهٔ زمانی قتل‌ها:</strong> ۸ سال<br>
+            <strong>روش قتل:</strong> خفه‌کردن با طناب ۸ میلی‌متری<br>
+            <strong>امضا:</strong> صلیب چوبی در دهان (دو مورد)<br><br>
+            <strong>قربانیان:</strong><br>
+            • ۲۲ فاحشه از شهرهای مختلف<br>
+            • ۹ دختر فراری<br>
+            • ۶ قربانی ناشناس (صورت مثله شده)<br>
+            • ۱ دختر ۱۴ ساله (اِمیلی کارتر) — ۱۳ ضربه چاقو<br><br>
+            <strong>سابقه کیفری:</strong> اتهام تجاوز در ۲۲ سالگی — شاکی پس گرفت<br><br>
+            <strong>پروفایل روانشناختی:</strong><br>
+            خانوادهٔ مذهبی سرد. پدر بی‌اعتنا. مادر با افسردگی شدید. بزرگ‌شده در حومهٔ شهر. از بچگی کارهای خانه را خودش انجام می‌داد. شخصیت آرام، سر به زیر، بی‌اعتماد به نفس. همسایه‌ها: «پسر خوبی بود.»
+        `;
+        document.getElementById('dialogue').innerHTML = '';
+    }
+},
+
+// ─── صحنه ۵۶: امتیاز ───
+scene56_score: {
+    location: '',
+    text: '',
+    dialogue: '',
+    choices: [
+        {
+            label: 'پایان بازی',
+            next: 'scene56_score'
+        }
+    ],
+    onLoad: function() {
+        let score = 100;
+        let deductions = [];
+        
+        if (gameState.time > 10) {
+            let penalty = (gameState.time - 10) * 2;
+            score -= penalty;
+            deductions.push('اتلاف وقت: -' + penalty);
+        }
+        if (gameState.stress > 5) {
+            let penalty = (gameState.stress - 5) * 3;
+            score -= penalty;
+            deductions.push('فشار روانی بالا: -' + penalty);
+        }
+        if (gameState.guilt > 3) {
+            let penalty = gameState.guilt * 4;
+            score -= penalty;
+            deductions.push('احساس گناه: -' + penalty);
+        }
+        if (gameState.redHerrings && gameState.redHerrings > 0) {
+            let penalty = gameState.redHerrings * 5;
+            score -= penalty;
+            deductions.push('سرنخ‌های اشتباه: -' + penalty);
+        }
+        if (gameState.lockArrest) {
+            score -= 10;
+            deductions.push('بازداشت بی‌مدرک وین: -10');
+        }
+        if (gameState.magnusFree === false && gameState.currentScene === 'scene56_score' && !document.getElementById('sceneText').innerHTML.includes('ول کردی')) {
+            score -= 15;
+            deductions.push('حبس بی‌گناه (مگنوس): -15');
+        }
+        if (gameState.currentScene === 'scene56_score' && document.getElementById('sceneText').innerHTML === '') {
+            // هیچی
+        }
+        
+        if (score < 0) score = 0;
+        
+        let dedText = deductions.length > 0 ? '<br><br><strong>کسر امتیاز:</strong><br>' + deductions.join('<br>') : '';
+        
+        document.getElementById('location').innerHTML = 'امتیاز نهایی';
+        document.getElementById('sceneText').innerHTML = '<strong>امتیاز شما: ' + score + ' از ۱۰۰</strong>' + dedText;
+        document.getElementById('dialogue').innerHTML = score >= 70 ? 'عملکرد خوبی داشتی کارآگاه.' : score >= 40 ? 'یه کارآگاه متوسط. جا برای پیشرفت هست.' : 'می‌تونستی بهتر عمل کنی.';
+    }
 }
