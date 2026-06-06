@@ -43,12 +43,9 @@
             --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
             --dialogue-bg: rgba(139,58,58,0.06);
             --header-border: #333;
-            --scanlines: none;
-            --paper-lines: none;
-            --blood-drips: block;
-            --weapon-opacity: 0.08;
-            --mist-opacity: 0.3;
-            --transition-speed: 0.4s;
+            --crt-scanlines: none;
+            --crt-flicker: none;
+            --btn-keyboard: false;
         }
 
         /* ========== ۱. تم کلاسیک جنایی ========== */
@@ -62,23 +59,37 @@
             --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a); --btn-border: #5a3a2a;
             --btn-text: #d0c0a0; --btn-hover-border: #8b0000; --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
             --dialogue-bg: rgba(139,58,58,0.06); --header-border: #333;
-            --scanlines: none; --paper-lines: none;
-            --blood-drips: block; --weapon-opacity: 0.08; --mist-opacity: 0.3;
+            --crt-scanlines: none; --crt-flicker: none; --btn-keyboard: false;
         }
 
-        /* ========== ۲. ترمینال آنالوگ قدیمی (کامپیوتر CRT) ========== */
+        /* ========== ۲. ترمینال آنالوگ (فقط باکس بازی) ========== */
         body.theme-crt {
-            --bg: #1a1a0a; --surface: #0a1208; --surface2: #0c160a; --border: #1a3a1a;
-            --text: #33ff33; --text-light: #22cc22; --accent: #00ff00; --accent-glow: #00ff00;
-            --font-main: 'VT323', monospace; --font-serif: 'VT323', monospace;
-            --font-mono: 'VT323', monospace; --font-cinema: 'VT323', monospace;
-            --location-size: 18px; --card-bg: #0a1208; --card-border: #1a3a1a;
-            --card-shadow: 0 0 30px rgba(0,255,0,0.15), inset 0 0 80px rgba(0,0,0,0.5);
-            --btn-bg: #0a1a0a; --btn-border: #33ff33; --btn-text: #33ff33;
-            --btn-hover-border: #00ff00; --btn-hover-shadow: 0 0 20px rgba(0,255,0,0.5);
-            --dialogue-bg: rgba(0,255,0,0.04); --header-border: #1a3a1a;
-            --scanlines: block; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+            --bg: #111;
+            --surface: #000;
+            --surface2: #000;
+            --border: #1a1a1a;
+            --text: #33ff33;
+            --text-light: #22cc22;
+            --accent: #00ff00;
+            --accent-glow: #00ff00;
+            --font-main: 'VT323', monospace; 
+            --font-serif: 'VT323', monospace;
+            --font-mono: 'VT323', monospace;
+            --font-cinema: 'VT323', monospace;
+            --location-size: 18px;
+            --card-bg: #0a0f0a;
+            --card-border: #1a3a1a;
+            --card-shadow: 0 0 20px rgba(0,255,0,0.2), inset 0 0 60px rgba(0,0,0,0.5);
+            --btn-bg: #0a1a0a;
+            --btn-border: #33ff33;
+            --btn-text: #33ff33;
+            --btn-hover-border: #00ff00;
+            --btn-hover-shadow: 0 0 15px rgba(0,255,0,0.6);
+            --dialogue-bg: rgba(0,255,0,0.05);
+            --header-border: #1a3a1a;
+            --crt-scanlines: block;
+            --crt-flicker: block;
+            --btn-keyboard: true;
         }
 
         /* ========== ۳. روزنامهٔ قدیمی ========== */
@@ -92,8 +103,7 @@
             --btn-bg: #ddd0b0; --btn-border: #b4a580; --btn-text: #3a2a1a;
             --btn-hover-border: #8b1a1a; --btn-hover-shadow: 0 4px 12px rgba(139,26,26,0.3);
             --dialogue-bg: rgba(0,0,0,0.03); --header-border: #c4b590;
-            --scanlines: none; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+            --crt-scanlines: none; --crt-flicker: none; --btn-keyboard: false;
         }
 
         /* ========== ۴. سردخانه (مشرح پزشکی قانونی) ========== */
@@ -107,8 +117,7 @@
             --btn-bg: #f0f4f8; --btn-border: #a0b0c0; --btn-text: #2a3a4a;
             --btn-hover-border: #3a6a8a; --btn-hover-shadow: 0 4px 15px rgba(58,106,138,0.2);
             --dialogue-bg: rgba(0,0,0,0.02); --header-border: #c0c8d0;
-            --scanlines: none; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+            --crt-scanlines: none; --crt-flicker: none; --btn-keyboard: false;
         }
 
         /* ========== استایل کلی ========== */
@@ -126,11 +135,15 @@
             -webkit-tap-highlight-color: transparent; user-select: none;
         }
 
-        /* اسکن‌لاین CRT */
-        .crt-scanlines {
-            display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none; z-index: 100;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
+        /* اسکن‌لاین مختص باکس بازی در تم CRT */
+        .game-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 10;
+            display: var(--crt-scanlines);
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
             animation: scanMove 0.3s linear infinite;
         }
         @keyframes scanMove { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
@@ -203,6 +216,15 @@
         .choice-btn:hover { border-color: var(--btn-hover-border); color: #fff; box-shadow: var(--btn-hover-shadow); }
         .choice-btn:hover::before { opacity: 1; }
 
+        /* دکمه‌های کیبوردی برای تم CRT */
+        body.theme-crt .choice-btn {
+            border-radius: 2px; background: #111; border: 1px solid #33ff33;
+            box-shadow: 2px 2px 0 #0a0a0a, inset -1px -1px 0 #000;
+            font-family: 'VT323', monospace; letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        body.theme-crt .choice-btn:active { transform: translate(1px, 1px); box-shadow: none; }
+
         .game-footer { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 9px; letter-spacing: 2px; color: var(--text-light); opacity: 0.5; font-family: var(--font-mono); text-align: center; }
 
         .tutorial-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 200; display: flex; justify-content: center; align-items: center; padding: 20px; }
@@ -229,8 +251,6 @@
     </style>
 </head>
 <body class="theme-classic">
-
-    <div class="crt-scanlines"></div>
 
     <div class="app-wrapper" id="mainWrapper">
         <div class="top-bar">
