@@ -14,13 +14,11 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/lalezar@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/samim@v4.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/tanha@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/gandom@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/parastoo@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/nahid@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Walter+Turncoat&family=Creepster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Walter+Turncoat&family=Creepster&family=Fredericka+the+Great&display=swap" rel="stylesheet">
 
     <style>
-        /* ========== متغیرهای پایه (تم پیش‌فرض: سلاخ‌خونه) ========== */
+        /* ══════════════ ۱. متغیرهای پایه (تم پیش‌فرض: سلاخ‌خونه) ══════════════ */
         :root {
             --bg: #0a0202;
             --surface: #1a0505;
@@ -37,7 +35,7 @@
             --location-size: 20px;
             --card-bg: linear-gradient(180deg, #1a0505 0%, #0a0202 100%);
             --card-border: #4a1010;
-            --card-shadow: 0 20px 60px rgba(139,0,0,0.5);
+            --card-shadow: 0 20px 60px rgba(139,0,0,0.5), inset 0 0 30px rgba(255,0,0,0.05);
             --btn-bg: linear-gradient(135deg, #3a0a0a, #1a0000);
             --btn-border: #8b0000;
             --btn-text: #ffaaaa;
@@ -51,26 +49,27 @@
             --blood-drips: block;
             --weapon-opacity: 0.35;
             --mist-opacity: 0.6;
-            --transition-speed: 0.4s;
-            --particle-count: 50;
+            --glitch-text: none;
+            --crt-flicker: none;
+            --blood-stains: block;
         }
 
-        /* ========== ۱. سلاخ‌خونه کثیف (+۱۸) - پیش‌فرض ========== */
+        /* ══════════════ ۲. تم‌های اختصاصی ══════════════ */
         body.theme-slaughterhouse {
             --bg: #0a0202; --surface: #1a0505; --surface2: #220808; --border: #4a1010;
             --text: #d0a0a0; --text-light: #b08080; --accent: #cc0000; --accent-glow: #ff2020;
             --font-main: 'Creepster', cursive; --font-serif: 'Crimson Text', serif;
             --font-mono: 'Special Elite', monospace; --font-cinema: 'IM Fell English SC', serif;
             --location-size: 20px; --card-bg: linear-gradient(180deg, #1a0505 0%, #0a0202 100%);
-            --card-border: #4a1010; --card-shadow: 0 20px 60px rgba(139,0,0,0.5);
+            --card-border: #4a1010; --card-shadow: 0 20px 60px rgba(139,0,0,0.5), inset 0 0 30px rgba(255,0,0,0.05);
             --btn-bg: linear-gradient(135deg, #3a0a0a, #1a0000); --btn-border: #8b0000;
             --btn-text: #ffaaaa; --btn-hover-border: #ff0000; --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.7);
             --dialogue-bg: rgba(139,0,0,0.15); --header-border: #4a1010;
             --scanlines: none; --screen-curve: 0px; --paper-lines: none;
             --blood-drips: block; --weapon-opacity: 0.35; --mist-opacity: 0.6;
+            --glitch-text: none; --crt-flicker: none; --blood-stains: block;
         }
 
-        /* ========== ۲. ترمینال CRT قدیمی ========== */
         body.theme-crt {
             --bg: #1a1a0a; --surface: #0a1208; --surface2: #0c160a; --border: #1a3a1a;
             --text: #33ff33; --text-light: #22cc22; --accent: #00ff00; --accent-glow: #00ff00;
@@ -83,99 +82,40 @@
             --dialogue-bg: rgba(0,255,0,0.04); --header-border: #1a3a1a;
             --scanlines: block; --screen-curve: 20px; --paper-lines: none;
             --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+            --glitch-text: block; --crt-flicker: block; --blood-stains: none;
         }
 
-        /* ========== ۳. روزنامه قدیمی ========== */
-        body.theme-newspaper {
-            --bg: #d4c5a0; --surface: #e8dcc0; --surface2: #ddd0b0; --border: #c4b590;
-            --text: #2a1a0a; --text-light: #5a4a3a; --accent: #8b1a1a; --accent-glow: #a02020;
-            --font-main: 'Parastoo', serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'IM Fell English SC', serif; --font-cinema: 'Playfair Display', serif;
-            --location-size: 18px; --card-bg: #e8dcc0; --card-border: #c4b590;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --btn-bg: #ddd0b0; --btn-border: #b4a580; --btn-text: #3a2a1a;
-            --btn-hover-border: #8b1a1a; --btn-hover-shadow: 0 4px 12px rgba(139,26,26,0.3);
-            --dialogue-bg: rgba(0,0,0,0.03); --header-border: #c4b590;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۴. دفترچه یادداشت ========== */
         body.theme-notebook {
             --bg: #c4b595; --surface: #faf5e8; --surface2: #f0e8d0; --border: #d4c5a0;
             --text: #2a1a0a; --text-light: #5a4a3a; --accent: #8b4513; --accent-glow: #a0522d;
             --font-main: 'Walter Turncoat', cursive; --font-serif: 'Crimson Text', serif;
             --font-mono: 'Special Elite', monospace; --font-cinema: 'Playfair Display', serif;
             --location-size: 16px; --card-bg: #faf5e8; --card-border: #d4c5a0;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(139,69,19,0.1);
             --btn-bg: #f0e8d0; --btn-border: #c4b590; --btn-text: #3a2a1a;
             --btn-hover-border: #8b4513; --btn-hover-shadow: 0 4px 12px rgba(139,69,19,0.3);
             --dialogue-bg: rgba(0,0,0,0.02); --header-border: #d4c5a0;
             --scanlines: none; --screen-curve: 0px; --paper-lines: block;
             --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+            --glitch-text: none; --crt-flicker: none; --blood-stains: none;
         }
 
-        /* ========== ۵. اتاق بازجویی ========== */
         body.theme-interrogation {
             --bg: #1a1c1e; --surface: #25282a; --surface2: #2c3033; --border: #3a3e41;
             --text: #b0b4b8; --text-light: #888c90; --accent: #5a6a7a; --accent-glow: #6a7a8a;
             --font-main: 'Samim', sans-serif; --font-serif: 'Crimson Text', serif;
             --font-mono: 'Courier Prime', monospace; --font-cinema: 'IM Fell English SC', serif;
             --location-size: 14px; --card-bg: linear-gradient(180deg, #25282a 0%, #1c1e20 100%);
-            --card-border: #3a3e41; --card-shadow: 0 20px 60px rgba(0,0,0,0.7);
+            --card-border: #3a3e41; --card-shadow: 0 20px 60px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.03);
             --btn-bg: #2c3033; --btn-border: #4a4e51; --btn-text: #b0b4b8;
             --btn-hover-border: #6a7a8a; --btn-hover-shadow: 0 4px 15px rgba(90,106,122,0.3);
             --dialogue-bg: rgba(0,0,0,0.2); --header-border: #3a3e41;
             --scanlines: none; --screen-curve: 0px; --paper-lines: none;
             --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+            --glitch-text: none; --crt-flicker: none; --blood-stains: none;
         }
 
-        /* ========== ۶. مشروح پزشکی قانونی ========== */
-        body.theme-morgue {
-            --bg: #d0d5da; --surface: #ffffff; --surface2: #f0f4f8; --border: #c0c8d0;
-            --text: #2a3a4a; --text-light: #5a6a7a; --accent: #3a6a8a; --accent-glow: #4a7a9a;
-            --font-main: 'Nahid', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 15px; --card-bg: #ffffff; --card-border: #c0c8d0;
-            --card-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            --btn-bg: #f0f4f8; --btn-border: #a0b0c0; --btn-text: #2a3a4a;
-            --btn-hover-border: #3a6a8a; --btn-hover-shadow: 0 4px 15px rgba(58,106,138,0.2);
-            --dialogue-bg: rgba(0,0,0,0.02); --header-border: #c0c8d0;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۷. کلاسیک جنایی ========== */
-        body.theme-classic {
-            --bg: #0d0d0d; --surface: #1a1a1a; --surface2: #222; --border: #333;
-            --text: #c8c0b8; --text-light: #a09890; --accent: #8b3a3a; --accent-glow: #a04040;
-            --font-main: 'Vazirmatn', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 15px; --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
-            --card-border: #333; --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a); --btn-border: #5a3a2a;
-            --btn-text: #d0c0a0; --btn-hover-border: #8b0000; --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
-            --dialogue-bg: rgba(139,58,58,0.06); --header-border: #333;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: block; --weapon-opacity: 0.08; --mist-opacity: 0.3;
-        }
-
-        /* ========== ۸. نئون-نوآر ========== */
-        body.theme-neonoir {
-            --bg: #050510; --surface: #0e0e1e; --surface2: #121225; --border: #2a2a4a;
-            --text: #b0b8e0; --text-light: #8090c0; --accent: #6a4ac0; --accent-glow: #8a6ae0;
-            --font-main: 'Vazirmatn', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 16px; --card-bg: linear-gradient(180deg, #0e0e1e 0%, #08081a 100%);
-            --card-border: #2a2a4a; --card-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(106,74,192,0.1);
-            --btn-bg: linear-gradient(135deg, #1a1a30, #0a0a1a); --btn-border: #4a3a6a;
-            --btn-text: #b0b8e0; --btn-hover-border: #6a4ac0; --btn-hover-shadow: 0 6px 20px rgba(106,74,192,0.4);
-            --dialogue-bg: rgba(106,74,192,0.06); --header-border: #2a2a4a;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0.5;
-        }
-
-        /* ========== استایل کلی ========== */
+        /* ══════════════ ۳. استایل‌های بنیادی ══════════════ */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { height: 100%; overflow: hidden; }
         body {
@@ -184,603 +124,567 @@
             font-family: var(--font-main);
             height: 100vh; height: 100dvh;
             display: flex; justify-content: center; align-items: center;
-            padding: 12px; transition: background var(--transition-speed), color var(--transition-speed);
+            padding: 12px; transition: background 0.6s, color 0.6s;
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             overflow: hidden; line-height: 1.6;
             -webkit-tap-highlight-color: transparent; user-select: none;
-            perspective: 1000px;
+            perspective: 1200px;
         }
 
-        /* ========== اسکن‌لاین CRT ========== */
-        .crt-scanlines { display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); animation: scanMove 0.3s linear infinite; }
-        @keyframes scanMove { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
-        .crt-curve { display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 99; border-radius: var(--screen-curve); box-shadow: inset 0 0 80px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.3); }
-        .paper-lines { display: var(--paper-lines); position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(transparent, transparent 31px, #d4c5a0 31px, #d4c5a0 32px); background-size: 100% 32px; }
-        .paper-red-line { display: var(--paper-lines); position: absolute; top: 0; left: 50px; width: 2px; height: 100%; pointer-events: none; z-index: 0; background: rgba(255,0,0,0.15); }
+        /* ══════════════ ۴. لکه‌های خون واقع‌گرایانه در گوشه‌ها ══════════════ */
+        .blood-stains {
+            display: var(--blood-stains);
+            position: fixed; pointer-events: none; z-index: 0;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .blood-stain {
+            position: absolute;
+            background: radial-gradient(circle at 30% 40%, rgba(80,0,0,0.7) 0%, rgba(30,0,0,0.4) 60%, transparent 80%);
+            border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+            filter: blur(2px);
+            opacity: 0.8;
+            animation: stainPulse 8s ease-in-out infinite;
+        }
+        .blood-stain:nth-child(1) { top: -5%; left: -3%; width: 180px; height: 140px; transform: rotate(15deg); }
+        .blood-stain:nth-child(2) { bottom: -8%; right: -5%; width: 200px; height: 160px; transform: rotate(-20deg); animation-delay: -4s; }
+        .blood-stain:nth-child(3) { top: 40%; right: -2%; width: 120px; height: 100px; transform: rotate(45deg); animation-delay: -2s; }
+        .blood-stain:nth-child(4) { bottom: 20%; left: -4%; width: 150px; height: 120px; transform: rotate(-10deg); animation-delay: -6s; }
+        @keyframes stainPulse {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
 
-        /* ========== Canvas ذرات خون ========== */
+        /* ══════════════ ۵. اسکن‌لاین و افکت‌های CRT ══════════════ */
+        .crt-scanlines {
+            display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 100;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px);
+            animation: scanMove 0.3s linear infinite;
+        }
+        @keyframes scanMove { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
+        .crt-curve {
+            display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 99; border-radius: var(--screen-curve);
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.3);
+        }
+        .crt-flicker {
+            display: var(--crt-flicker); position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 98; background: rgba(255,255,255,0.02);
+            animation: flicker 0.15s infinite alternate;
+        }
+        @keyframes flicker { 0% { opacity: 0.1; } 100% { opacity: 0; } }
+        .paper-lines {
+            display: var(--paper-lines); position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; z-index: 0;
+            background-image: repeating-linear-gradient(transparent, transparent 31px, #d4c5a0 31px, #d4c5a0 32px);
+            background-size: 100% 32px;
+        }
+        .paper-red-line {
+            display: var(--paper-lines); position: absolute; top: 0; left: 50px; width: 2px; height: 100%;
+            pointer-events: none; z-index: 0; background: rgba(255,0,0,0.15);
+        }
+        .glitch-text { display: var(--glitch-text); }
+
+        /* ══════════════ ۶. Canvas ذرات خون ══════════════ */
         #particleCanvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 90; display: var(--blood-drips);
         }
 
-        /* ========== قاب CRT ========== */
-        .crt-frame { display: none; position: relative; background: #1a1a0a; border: 10px solid #111; border-radius: 18px; padding: 18px; box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8); }
+        /* ══════════════ ۷. قاب CRT ══════════════ */
+        .crt-frame {
+            display: none; position: relative; background: #1a1a0a; border: 10px solid #111;
+            border-radius: 18px; padding: 18px;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8);
+        }
         body.theme-crt .crt-frame { display: block; }
 
-        /* ========== wrapper ========== */
-        .app-wrapper { position: relative; z-index: 2; width: 100%; max-width: 800px; height: 100%; display: flex; flex-direction: column; }
-        .top-bar { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 10px; padding: 0 5px; flex-shrink: 0; }
-        .mini-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); color: var(--text-light); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-        .mini-btn:active { transform: scale(0.92); }
-        .mini-btn.playing { border-color: var(--accent); animation: musicPulse 1.5s infinite; }
-        @keyframes musicPulse { 0%,100%{box-shadow:0 0 5px var(--accent-glow)}50%{box-shadow:0 0 20px var(--accent-glow)} }
-
-        .game-container { flex: 1; width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); padding: 24px 20px; border-radius: 6px; box-shadow: var(--card-shadow); overflow-y: auto; transition: all var(--transition-speed); scroll-behavior: smooth; position: relative; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--accent) var(--surface); }
-        .game-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); z-index: 5; }
-
-        .game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--header-border); position: sticky; top: 0; background: var(--surface); z-index: 5; padding-top: 4px; }
-        .game-title { font-family: var(--font-cinema); color: var(--accent); font-size: clamp(18px, 5vw, 24px); letter-spacing: 4px; text-shadow: 0 0 15px var(--accent-glow); }
-        .status-pills { display: flex; gap: 12px; font-size: 9px; letter-spacing: 2px; color: var(--text-light); font-family: var(--font-mono); white-space: nowrap; }
-
-        .location { font-family: var(--font-cinema); font-size: var(--location-size); letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0.9; font-weight: 600; text-shadow: 0 0 10px var(--accent-glow); animation: fadeInUp 0.4s ease; }
-        .scene-text { font-size: clamp(14px, 3.8vw, 16px); line-height: 2.5; color: var(--text); margin-bottom: 20px; font-family: var(--font-serif); animation: fadeInUp 0.5s ease; }
-        .dialogue-box { padding: 14px 18px; margin-bottom: 22px; border-right: 3px solid var(--accent); background: linear-gradient(90deg, var(--dialogue-bg) 0%, transparent 100%); font-style: italic; color: var(--text-light); line-height: 2.3; border-radius: 0 4px 4px 0; font-family: var(--font-serif); animation: fadeInUp 0.6s ease; word-break: break-word; }
-
-        .choices { display: flex; flex-direction: column; gap: 10px; position: sticky; bottom: 0; background: var(--surface); padding-top: 14px; border-top: 1px solid var(--border); z-index: 5; }
-        .choice-btn { width: 100%; text-align: right; background: var(--btn-bg); color: var(--btn-text); border: 1px solid var(--btn-border); padding: 14px 18px; font-family: var(--font-main); font-size: clamp(13px, 3.5vw, 15px); cursor: pointer; transition: all 0.25s; border-radius: 4px; letter-spacing: 0.4px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; touch-action: manipulation; min-height: 48px; display: flex; align-items: center; }
-        .choice-btn::before { content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; transition: opacity 0.3s; }
-        .choice-btn:active { transform: scale(0.97); }
-        .choice-btn:hover { border-color: var(--btn-hover-border); color: #fff; box-shadow: var(--btn-hover-shadow); }
-        .choice-btn:hover::before { opacity: 1; }
-
-        .game-footer { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 9px; letter-spacing: 2px; color: var(--text-light); opacity: 0.5; font-family: var(--font-mono); text-align: center; }
-
-        .tutorial-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 200; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .tutorial-box { background: var(--surface); border: 1px solid var(--border); padding: 30px 22px; max-width: 500px; width: 100%; border-radius: 6px; text-align: center; font-family: var(--font-main); }
-        .tutorial-box h2 { font-family: var(--font-cinema); color: var(--accent); letter-spacing: 5px; margin-bottom: 20px; font-size: clamp(20px, 6vw, 26px); }
-        .tutorial-box p { line-height: 2.2; margin-bottom: 10px; color: var(--text-light); font-size: clamp(13px, 3.5vw, 15px); }
-        .tutorial-box .start-btn { background: var(--accent); color: #fff; border: none; padding: 14px 36px; font-family: var(--font-cinema); font-size: clamp(14px, 4vw, 16px); cursor: pointer; letter-spacing: 3px; margin-top: 16px; transition: all 0.3s; border-radius: 4px; min-height: 48px; }
-        .tutorial-box .start-btn:active { transform: scale(0.95); }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes weaponFloat { 0%, 100% { transform: rotate(-3deg) translateY(0); } 25% { transform: rotate(6deg) translateY(-14px); } 50% { transform: rotate(-4deg) translateY(-6px); } 75% { transform: rotate(5deg) translateY(-18px); } }
-        @keyframes mistDrift { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
-
-        .weapon-real { position: fixed; pointer-events: none; z-index: 0; opacity: var(--weapon-opacity); filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6)); animation: weaponFloat 12s ease-in-out infinite; }
-        .weapon-real.axe1 { top: 6%; left: 4%; width: 70px; height: 70px; }
-        .weapon-real.axe2 { top: 72%; right: 3%; width: 55px; height: 55px; animation-delay: -4s; }
-        .weapon-real.gun1 { bottom: 12%; left: 10%; width: 80px; height: 50px; animation-delay: -7s; }
-        .weapon-real.gun2 { top: 38%; right: 6%; width: 65px; height: 40px; animation-delay: -2s; }
-        .weapon-real.knife1 { top: 28%; left: 85%; width: 40px; height: 60px; animation-delay: -9s; }
-
-        .mist-overlay { position: fixed; pointer-events: none; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 50% 50%, rgba(100,80,60,0.04) 0%, transparent 70%); animation: mistDrift 15s ease-in-out infinite; }
-
-        @media (max-width: 600px) {
-            body { padding: 8px; }
-            .game-container { padding: 16px 14px; border-radius: 4px; }
-            .game-header { margin-bottom: 14px; padding-bottom: 10px; }
-            .location { margin-bottom: 14px; }
-            .scene-text { margin-bottom: 14px; }
-            .dialogue-box { margin-bottom: 16px; padding: 12px 14px; }
-            .choice-btn { padding: 12px 14px; min-height: 44px; }
-            .choices { gap: 8px; padding-top: 8px; }
-            .top-bar { margin-bottom: 6px; }
-            .mini-btn { width: 34px; height: 34px; font-size: 14px; }
-        }
+        /* ادامه در پارت ۲... */
     </style>
 </head>
 <body class="theme-slaughterhouse">
-
-    <div class="crt-scanlines"></div>
-    <div class="crt-curve"></div>
-    <div class="crt-frame" id="crtFrame"><div class="app-wrapper"></div></div>
-
-    <div class="weapon-real axe1"><svg viewBox="0 0 100 100"><rect x="35" y="8" width="8" height="82" rx="2" fill="#4a2a1a"/><path d="M22 14 L56 4 L60 26 L26 36 Z" fill="url(#metalGrad)"/><defs><linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#999"/><stop offset="100%" stop-color="#333"/></linearGradient></defs></svg></div>
-    <div class="weapon-real axe2"><svg viewBox="0 0 100 100"><rect x="36" y="6" width="7" height="84" rx="2" fill="#3a1a0a"/><path d="M18 12 L58 2 L62 28 L22 38 Z" fill="url(#metalGrad2)"/><defs><linearGradient id="metalGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#aaa"/><stop offset="100%" stop-color="#444"/></linearGradient></defs></svg></div>
-    <div class="weapon-real gun1"><svg viewBox="0 0 120 80"><rect x="8" y="24" width="92" height="16" rx="3" fill="#444"/><rect x="100" y="18" width="14" height="8" rx="2" fill="#333"/><rect x="14" y="40" width="22" height="10" rx="2" fill="#2a1a0a"/><circle cx="12" cy="32" r="4" fill="#222"/></svg></div>
-    <div class="weapon-real gun2"><svg viewBox="0 0 100 70"><rect x="5" y="18" width="82" height="14" rx="3" fill="#555"/><rect x="87" y="16" width="11" height="6" rx="2" fill="#333"/></svg></div>
-    <div class="weapon-real knife1"><svg viewBox="0 0 50 80"><rect x="22" y="5" width="6" height="38" rx="2" fill="#3a2a1a"/><path d="M14 43 L36 43 L30 72 L20 72 Z" fill="url(#knifeGrad)"/><defs><linearGradient id="knifeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ccc"/><stop offset="100%" stop-color="#555"/></linearGradient></defs></svg></div>
-
-    <div class="mist-overlay"></div>
-    <canvas id="particleCanvas"></canvas>
-
-    <audio id="bgMusic1" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%201%20(2019)/320/11.%20Gott%20Gib%20Mir%20Gelassenheit.mp3" preload="auto"></audio>
-    <audio id="bgMusic2" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%202%20(2019)/320/01.%20Schwarze%20Materie.mp3" preload="auto"></audio>
-
-    <div class="app-wrapper" id="mainWrapper">
-        <div class="top-bar">
-            <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" aria-label="موسیقی">🎵</button>
-            <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" aria-label="تغییر تم">🎨</button>
-        </div>
-
-        <main class="game-container" id="gameContainer">
-            <div class="paper-lines"></div>
-            <div class="paper-red-line"></div>
-            <header class="game-header">
-                <h1 class="game-title">آخرین صلیب</h1>
-                <div class="status-pills"><span id="clueCount">سرنخ: ۰</span><span id="timeDisplay">روز: ۱</span></div>
-            </header>
-            <div class="location" id="location"></div>
-            <div class="scene-text" id="sceneText"></div>
-            <div class="dialogue-box" id="dialogue"></div>
-            <nav class="choices" id="choices"></nav>
-            <footer class="game-footer">نورثبروک، اورگن</footer>
-        </main>
+    <!-- لکه‌های خون -->
+    <div class="blood-stains">
+        <div class="blood-stain"></div>
+        <div class="blood-stain"></div>
+        <div class="blood-stain"></div>
+        <div class="blood-stain"></div>
+    </div>
+    <!-- ══════════════ ۸. wrapper اصلی ══════════════ -->
+<div class="app-wrapper" id="mainWrapper">
+    <div class="top-bar">
+        <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" aria-label="موسیقی">🎵</button>
+        <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" aria-label="تغییر تم">🎨</button>
     </div>
 
-    <div class="tutorial-overlay" id="tutorial">
-        <div class="tutorial-box">
-            <h2>✞ آخرین صلیب ✞</h2>
-            <p>نورثبروک، اورگن. شهر کوچیکی که همه همدیگه رو می‌شناسن.</p>
-            <p>تو کارآگاه جیمی مورو هستی. قاتل سریالی رو پیدا کن.</p>
-            <p>هر انتخاب تو عواقبی داره.</p>
-            <p style="color:var(--accent);">بارون نمی‌ایسته. قاتل هنوز آزاده.</p>
-            <button class="start-btn" onclick="startGame()">شروع پرونده</button>
-        </div>
+    <main class="game-container" id="gameContainer">
+        <div class="paper-lines"></div>
+        <div class="paper-red-line"></div>
+        <header class="game-header">
+            <h1 class="game-title">آخرین صلیب</h1>
+            <div class="status-pills">
+                <span id="clueCount">سرنخ: ۰</span>
+                <span id="timeDisplay">روز: ۱</span>
+            </div>
+        </header>
+        <div class="location" id="location"></div>
+        <div class="scene-text" id="sceneText"></div>
+        <div class="dialogue-box" id="dialogue"></div>
+        <nav class="choices" id="choices"></nav>
+        <footer class="game-footer">نورثبروک، اورگن</footer>
+    </main>
+</div>
+
+<!-- ══════════════ ۹. صفحه آموزش ══════════════ -->
+<div class="tutorial-overlay" id="tutorial">
+    <div class="tutorial-box">
+        <h2>✞ آخرین صلیب ✞</h2>
+        <p>نورثبروک، اورگن. شهر کوچیکی که همه همدیگه رو می‌شناسن.</p>
+        <p>تو کارآگاه جیمی مورو هستی. قاتل سریالی رو پیدا کن.</p>
+        <p>هر انتخاب تو عواقبی داره.</p>
+        <p style="color:var(--accent);">بارون نمی‌ایسته. قاتل هنوز آزاده.</p>
+        <button class="start-btn" id="startButton" onclick="startGame()">شروع پرونده</button>
     </div>
+</div>
 
-    <!-- ★★★ پایان پارت ۱ — پارت ۲ را از اینجا کپی کن ★★★ -->    <!-- ========== اسکریپت‌های اصلی ========== -->
-    <script>
-        // ========== سیستم تم ==========
-        const themes = ['theme-slaughterhouse', 'theme-crt', 'theme-newspaper', 'theme-notebook', 'theme-interrogation', 'theme-morgue', 'theme-classic', 'theme-neonoir'];
-        const themeNames = ['سلاخ‌خونه', 'ترمینال CRT', 'روزنامه', 'دفترچه یادداشت', 'اتاق بازجویی', 'پزشکی قانونی', 'کلاسیک جنایی', 'نئون-نوآر'];
-        let currentTheme = 0;
+<!-- ══════════════ ۱۰. المان‌های صوتی ══════════════ -->
+<audio id="bgMusic1" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%201%20(2019)/320/11.%20Gott%20Gib%20Mir%20Gelassenheit.mp3" preload="auto"></audio>
+<audio id="bgMusic2" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%202%20(2019)/320/01.%20Schwarze%20Materie.mp3" preload="auto"></audio>
 
-        function cycleTheme() {
-            currentTheme = (currentTheme + 1) % themes.length;
-            document.body.className = themes[currentTheme];
-            localStorage.setItem('lastCrossTheme', themes[currentTheme]);
-            
-            // نمایش نام تم به صورت موقت
-            showThemeToast(themeNames[currentTheme]);
-            
-            // مدیریت قاب CRT
-            const crtFrame = document.getElementById('crtFrame');
-            const mainWrapper = document.getElementById('mainWrapper');
-            if (themes[currentTheme] === 'theme-crt') {
-                if (!crtFrame.contains(mainWrapper)) crtFrame.querySelector('.app-wrapper').appendChild(mainWrapper);
-            } else {
-                if (crtFrame.contains(mainWrapper)) document.body.insertBefore(mainWrapper, crtFrame);
+<!-- ══════════════ ۱۱. اسکریپت‌های اصلی ══════════════ -->
+<script>
+    // ---------- سیستم تم ----------
+    const themes = ['theme-slaughterhouse', 'theme-crt', 'theme-notebook', 'theme-interrogation'];
+    const themeNames = ['سلاخ‌خونه', 'ترمینال CRT', 'دفترچه یادداشت', 'اتاق بازجویی'];
+    let currentTheme = 0;
+
+    function cycleTheme() {
+        currentTheme = (currentTheme + 1) % themes.length;
+        document.body.className = themes[currentTheme];
+        localStorage.setItem('lastCrossTheme', themes[currentTheme]);
+        showThemeToast(themeNames[currentTheme]);
+
+        const crtFrame = document.getElementById('crtFrame');
+        const mainWrapper = document.getElementById('mainWrapper');
+        if (themes[currentTheme] === 'theme-crt') {
+            if (!crtFrame.contains(mainWrapper)) crtFrame.querySelector('.app-wrapper').appendChild(mainWrapper);
+        } else {
+            if (crtFrame.contains(mainWrapper)) document.body.insertBefore(mainWrapper, crtFrame);
+        }
+    }
+
+    function showThemeToast(name) {
+        let toast = document.getElementById('themeToast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'themeToast';
+            toast.style.cssText = `
+                position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                background: var(--surface2); color: var(--accent); padding: 10px 24px;
+                border-radius: 20px; font-family: var(--font-main); font-size: 13px;
+                z-index: 300; pointer-events: none; transition: all 0.4s;
+                border: 1px solid var(--accent); box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+                opacity: 0;
+            `;
+            document.body.appendChild(toast);
+        }
+        toast.textContent = `🎨 ${name}`;
+        toast.style.opacity = '1';
+        toast.style.top = '30px';
+        clearTimeout(toast._timeout);
+        toast._timeout = setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.top = '20px';
+        }, 1500);
+    }
+
+    // ---------- سیستم موسیقی ----------
+    const bgMusic1 = document.getElementById('bgMusic1');
+    const bgMusic2 = document.getElementById('bgMusic2');
+    const musicBtn = document.getElementById('musicBtn');
+    let musicPlaying = false, currentTrack = 1;
+
+    bgMusic1.addEventListener('ended', () => { currentTrack = 2; bgMusic2.play().catch(()=>{}); });
+    bgMusic2.addEventListener('ended', () => { currentTrack = 1; bgMusic1.play().catch(()=>{}); });
+
+    function toggleMusic() {
+        if (musicPlaying) {
+            bgMusic1.pause(); bgMusic2.pause();
+            musicBtn.classList.remove('playing'); musicBtn.innerHTML='🔇';
+        } else {
+            (currentTrack===1?bgMusic1:bgMusic2).play().catch(()=>{});
+            musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵';
+        }
+        musicPlaying = !musicPlaying;
+        localStorage.setItem('lastCrossMusic', musicPlaying);
+    }
+
+    document.addEventListener('click', function initAudio() {
+        if (!musicPlaying) {
+            bgMusic1.play().then(()=>{
+                musicPlaying=true; musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵';
+            }).catch(()=>{});
+        }
+    }, {once:true});
+
+    // ---------- ذرات خون Canvas ----------
+    const particleCanvas = document.getElementById('particleCanvas');
+    const pctx = particleCanvas.getContext('2d');
+    let particles = [];
+    let pWidth, pHeight;
+
+    function resizeParticleCanvas() {
+        pWidth = particleCanvas.width = window.innerWidth;
+        pHeight = particleCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeParticleCanvas);
+    resizeParticleCanvas();
+
+    function createParticles() {
+        particles = [];
+        for (let i = 0; i < 45; i++) {
+            particles.push({
+                x: Math.random() * pWidth,
+                y: Math.random() * pHeight * 0.3,
+                speed: 0.3 + Math.random() * 2.0,
+                size: 0.8 + Math.random() * 4.5,
+                opacity: 0.1 + Math.random() * 0.6,
+                wobble: Math.random() * 2 - 1,
+                life: Math.random() * 300
+            });
+        }
+    }
+    createParticles();
+
+    function drawParticles() {
+        pctx.clearRect(0, 0, pWidth, pHeight);
+        for (let p of particles) {
+            p.y += p.speed;
+            p.x += Math.sin(p.life * 0.02) * p.wobble * 0.3;
+            p.life++;
+            if (p.y > pHeight + 15) {
+                p.y = -15;
+                p.x = Math.random() * pWidth;
+                p.life = Math.random() * 300;
             }
+            const gradient = pctx.createLinearGradient(p.x, p.y, p.x, p.y + p.size * 5);
+            gradient.addColorStop(0, `rgba(180, 10, 10, ${p.opacity})`);
+            gradient.addColorStop(0.4, `rgba(120, 0, 0, ${p.opacity * 0.8})`);
+            gradient.addColorStop(1, `rgba(60, 0, 0, 0)`);
+            pctx.beginPath();
+            pctx.ellipse(p.x, p.y, p.size * 0.6, p.size * 2.8, 0, 0, Math.PI * 2);
+            pctx.fillStyle = gradient;
+            pctx.fill();
+            pctx.beginPath();
+            pctx.ellipse(p.x - p.size * 0.2, p.y - p.size * 0.5, p.size * 0.15, p.size * 0.4, 0, 0, Math.PI * 2);
+            pctx.fillStyle = `rgba(255, 200, 200, ${p.opacity * 0.4})`;
+            pctx.fill();
+        }
+        requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // ---------- شروع بازی ----------
+    function startGame() {
+        document.getElementById('tutorial').style.display='none';
+        if(typeof loadScene==='function') loadScene('scene0_flashback');
+    }
+
+    // ---------- تنظیمات اولیه ----------
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('lastCrossTheme');
+        if (savedTheme && themes.includes(savedTheme)) {
+            document.body.className = savedTheme;
+            currentTheme = themes.indexOf(savedTheme);
+        }
+        const savedMusic = localStorage.getItem('lastCrossMusic');
+        if (savedMusic==='true') {
+            bgMusic1.play().then(()=>{
+                musicPlaying=true; musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵';
+            }).catch(()=>{});
+        }
+        if (savedTheme === 'theme-crt') {
+            const crt=document.getElementById('crtFrame');
+            const mw=document.getElementById('mainWrapper');
+            if(!crt.contains(mw)) crt.querySelector('.app-wrapper').appendChild(mw);
+        }
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    });
+
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.choice-btn') || e.target.closest('.mini-btn')) {
+            if (navigator.vibrate) navigator.vibrate(10);
+        }
+    });
+
+    function spawnClickParticles(x, y) {
+        for (let i = 0; i < 6; i++) {
+            particles.push({
+                x: x, y: y,
+                speed: -1.5 + Math.random() * 3,
+                size: 1 + Math.random() * 2.5,
+                opacity: 0.4 + Math.random() * 0.6,
+                wobble: Math.random() * 3 - 1.5,
+                life: 0
+            });
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.choice-btn')) {
+            const rect = e.target.getBoundingClientRect();
+            spawnClickParticles(rect.left + Math.random() * rect.width, rect.top + Math.random() * rect.height);
+        }
+    });
+</script>
+<script src="story.js"></script>
+        /* ══════════════ ۱۲. wrapper و نوار بالا ══════════════ */
+        .app-wrapper {
+            position: relative; z-index: 2; width: 100%; max-width: 800px;
+            height: 100%; display: flex; flex-direction: column;
+        }
+        .top-bar {
+            display: flex; justify-content: flex-end; align-items: center;
+            gap: 10px; margin-bottom: 10px; padding: 0 5px; flex-shrink: 0;
+        }
+        .mini-btn {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--surface2); border: 1px solid var(--border);
+            color: var(--text-light); cursor: pointer; font-size: 16px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation; position: relative; overflow: hidden;
+        }
+        .mini-btn::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .mini-btn:hover::after { opacity: 0.15; }
+        .mini-btn:active { transform: scale(0.92); }
+        .mini-btn.playing {
+            border-color: var(--accent);
+            animation: musicPulse 1.5s infinite;
+        }
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 0 5px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent-glow); }
         }
 
-        // نمایش نام تم
-        function showThemeToast(name) {
-            let toast = document.getElementById('themeToast');
-            if (!toast) {
-                toast = document.createElement('div');
-                toast.id = 'themeToast';
-                toast.style.cssText = `
-                    position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-                    background: var(--surface2); color: var(--accent); padding: 10px 24px;
-                    border-radius: 20px; font-family: var(--font-main); font-size: 13px;
-                    z-index: 300; pointer-events: none; transition: all 0.4s;
-                    border: 1px solid var(--accent); box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-                    opacity: 0;
-                `;
-                document.body.appendChild(toast);
-            }
-            toast.textContent = `🎨 ${name}`;
-            toast.style.opacity = '1';
-            toast.style.top = '30px';
-            clearTimeout(toast._timeout);
-            toast._timeout = setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.top = '20px';
-            }, 1500);
+        /* ══════════════ ۱۳. کارت اصلی بازی ══════════════ */
+        .game-container {
+            flex: 1; width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 24px 20px; border-radius: 6px;
+            box-shadow: var(--card-shadow);
+            overflow-y: auto; transition: all 0.5s;
+            scroll-behavior: smooth; position: relative;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin; scrollbar-color: var(--accent) var(--surface);
+            backdrop-filter: blur(10px);
+            animation: containerEntry 0.8s ease-out;
+        }
+        @keyframes containerEntry {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .game-container::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            z-index: 5;
+        }
+        .game-container::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(to top, var(--surface), transparent);
+            pointer-events: none; z-index: 4;
         }
 
-        // ========== سیستم موسیقی ==========
-        const bgMusic1 = document.getElementById('bgMusic1');
-        const bgMusic2 = document.getElementById('bgMusic2');
-        const musicBtn = document.getElementById('musicBtn');
-        let musicPlaying = false, currentTrack = 1;
-
-        bgMusic1.addEventListener('ended', () => { currentTrack = 2; bgMusic2.play().catch(()=>{}); });
-        bgMusic2.addEventListener('ended', () => { currentTrack = 1; bgMusic1.play().catch(()=>{}); });
-
-        function toggleMusic() {
-            if (musicPlaying) {
-                bgMusic1.pause(); bgMusic2.pause();
-                musicBtn.classList.remove('playing'); musicBtn.innerHTML='🔇';
-            } else {
-                (currentTrack===1?bgMusic1:bgMusic2).play().catch(()=>{});
-                musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵';
-            }
-            musicPlaying = !musicPlaying;
-            localStorage.setItem('lastCrossMusic', musicPlaying);
+        /* ══════════════ ۱۴. هدر بازی ══════════════ */
+        .game-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 14px;
+            border-bottom: 1px solid var(--header-border);
+            position: sticky; top: 0; background: var(--surface);
+            z-index: 5; padding-top: 4px;
+            backdrop-filter: blur(8px);
+        }
+        .game-title {
+            font-family: var(--font-cinema); color: var(--accent);
+            font-size: clamp(18px, 5vw, 24px); letter-spacing: 4px;
+            text-shadow: 0 0 15px var(--accent-glow), 0 0 30px var(--accent-glow);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 15px var(--accent-glow); }
+            to { text-shadow: 0 0 25px var(--accent-glow), 0 0 50px var(--accent); }
+        }
+        .status-pills {
+            display: flex; gap: 12px; font-size: 9px; letter-spacing: 2px;
+            color: var(--text-light); font-family: var(--font-mono); white-space: nowrap;
+        }
+        .status-pills span {
+            padding: 4px 10px; border-radius: 12px;
+            background: rgba(139, 0, 0, 0.1); border: 1px solid var(--border);
         }
 
-        // فعال‌سازی خودکار موسیقی با اولین کلیک
-        document.addEventListener('click', function initAudio() {
-            if (!musicPlaying) {
-                bgMusic1.play().then(()=>{
-                    musicPlaying=true; musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵';
-                }).catch(()=>{});
-            }
-        }, {once:true});
-
-        // ========== سیستم ذرات خون (Canvas) ==========
-        const particleCanvas = document.getElementById('particleCanvas');
-        const pctx = particleCanvas.getContext('2d');
-        let particles = [];
-        let pWidth, pHeight;
-
-        function resizeParticleCanvas() {
-            pWidth = particleCanvas.width = window.innerWidth;
-            pHeight = particleCanvas.height = window.innerHeight;
+        /* ══════════════ ۱۵. محتوای داستان ══════════════ */
+        .location {
+            font-family: var(--font-cinema); font-size: var(--location-size);
+            letter-spacing: 4px; text-transform: uppercase; color: var(--accent);
+            margin-bottom: 20px; opacity: 0.9; font-weight: 600;
+            text-shadow: 0 0 10px var(--accent-glow);
+            animation: fadeInUp 0.4s ease;
+            display: flex; align-items: center; gap: 8px;
         }
-        window.addEventListener('resize', resizeParticleCanvas);
-        resizeParticleCanvas();
-
-        // ایجاد ذرات خون
-        function createParticles() {
-            particles = [];
-            const count = 45; // تعداد ذرات
-            for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: Math.random() * pWidth,
-                    y: Math.random() * pHeight * 0.3, // از بالای صفحه شروع می‌شن
-                    speed: 0.3 + Math.random() * 2.0,
-                    size: 0.8 + Math.random() * 4.5,
-                    opacity: 0.1 + Math.random() * 0.6,
-                    wobble: Math.random() * 2 - 1,
-                    life: Math.random() * 300
-                });
-            }
+        .location::before {
+            content: '📍'; font-size: calc(var(--location-size) * 0.8);
         }
-        createParticles();
-
-        function drawParticles() {
-            pctx.clearRect(0, 0, pWidth, pHeight);
-            
-            for (let p of particles) {
-                p.y += p.speed;
-                p.x += Math.sin(p.life * 0.02) * p.wobble * 0.3;
-                p.life++;
-                
-                if (p.y > pHeight + 15) {
-                    p.y = -15;
-                    p.x = Math.random() * pWidth;
-                    p.life = Math.random() * 300;
-                }
-                
-                // قطره خون با گرادیانت
-                const gradient = pctx.createLinearGradient(p.x, p.y, p.x, p.y + p.size * 5);
-                gradient.addColorStop(0, `rgba(180, 10, 10, ${p.opacity})`);
-                gradient.addColorStop(0.4, `rgba(120, 0, 0, ${p.opacity * 0.8})`);
-                gradient.addColorStop(1, `rgba(60, 0, 0, 0)`);
-                
-                pctx.beginPath();
-                pctx.ellipse(p.x, p.y, p.size * 0.6, p.size * 2.8, 0, 0, Math.PI * 2);
-                pctx.fillStyle = gradient;
-                pctx.fill();
-                
-                // هایلایت روی قطره
-                pctx.beginPath();
-                pctx.ellipse(p.x - p.size * 0.2, p.y - p.size * 0.5, p.size * 0.15, p.size * 0.4, 0, 0, Math.PI * 2);
-                pctx.fillStyle = `rgba(255, 200, 200, ${p.opacity * 0.4})`;
-                pctx.fill();
-            }
-            
-            requestAnimationFrame(drawParticles);
+        .scene-text {
+            font-size: clamp(14px, 3.8vw, 16px); line-height: 2.5;
+            color: var(--text); margin-bottom: 20px;
+            font-family: var(--font-serif); animation: fadeInUp 0.5s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
-        drawParticles();
-
-        // ========== شروع بازی ==========
-        function startGame() {
-            document.getElementById('tutorial').style.display='none';
-            if(typeof loadScene==='function') loadScene('scene0_flashback');
+        .dialogue-box {
+            padding: 14px 18px; margin-bottom: 22px;
+            border-right: 3px solid var(--accent);
+            background: linear-gradient(90deg, var(--dialogue-bg) 0%, transparent 100%);
+            font-style: italic; color: var(--text-light); line-height: 2.3;
+            border-radius: 0 4px 4px 0; font-family: var(--font-serif);
+            animation: fadeInUp 0.6s ease; word-break: break-word;
+            position: relative;
+        }
+        .dialogue-box::before {
+            content: '❝'; position: absolute; top: -10px; right: 15px;
+            font-size: 24px; color: var(--accent); opacity: 0.5;
+            font-style: normal;
         }
 
-        // ========== تنظیمات اولیه ==========
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('lastCrossTheme');
-            if (savedTheme && themes.includes(savedTheme)) {
-                document.body.className = savedTheme;
-                currentTheme = themes.indexOf(savedTheme);
-            }
-            const savedMusic = localStorage.getItem('lastCrossMusic');
-            if (savedMusic==='true') {
-                bgMusic1.play().then(()=>{
-                    musicPlaying=true; musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵';
-                }).catch(()=>{});
-            }
-            if (savedTheme === 'theme-crt') {
-                const crt=document.getElementById('crtFrame');
-                const mw=document.getElementById('mainWrapper');
-                if(!crt.contains(mw)) crt.querySelector('.app-wrapper').appendChild(mw);
-            }
-            
-            // افکت تایپ برای المان‌های خاص
-            document.addEventListener('touchstart', function() {}, {passive: true});
-        });
+        /* ══════════════ ۱۶. دکمه‌های انتخاب ══════════════ */
+        .choices {
+            display: flex; flex-direction: column; gap: 10px;
+            position: sticky; bottom: 0; background: var(--surface);
+            padding-top: 14px; border-top: 1px solid var(--border);
+            z-index: 5; backdrop-filter: blur(8px);
+        }
+        .choice-btn {
+            width: 100%; text-align: right;
+            background: var(--btn-bg); color: var(--btn-text);
+            border: 1px solid var(--btn-border);
+            padding: 14px 18px; font-family: var(--font-main);
+            font-size: clamp(13px, 3.5vw, 15px);
+            cursor: pointer; transition: all 0.25s; border-radius: 4px;
+            letter-spacing: 0.4px; position: relative; overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation; min-height: 48px;
+            display: flex; align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .choice-btn::before {
+            content: ''; position: absolute; left: 0; top: 0;
+            width: 3px; height: 100%; background: var(--accent);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .choice-btn::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .choice-btn:hover::after { opacity: 1; }
+        .choice-btn:active { transform: scale(0.97); }
+        .choice-btn:hover {
+            border-color: var(--btn-hover-border); color: #fff;
+            box-shadow: var(--btn-hover-shadow);
+        }
+        .choice-btn:hover::before { opacity: 1; }
 
-        // ========== لرزش دکمه‌ها هنگام لمس ==========
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.choice-btn') || e.target.closest('.mini-btn')) {
-                if (navigator.vibrate) navigator.vibrate(10);
-            }
-        });
-
-        // ========== ذرات اضافی هنگام کلیک روی دکمه‌ها ==========
-        function spawnClickParticles(x, y) {
-            for (let i = 0; i < 6; i++) {
-                particles.push({
-                    x: x,
-                    y: y,
-                    speed: -1.5 + Math.random() * 3,
-                    size: 1 + Math.random() * 2.5,
-                    opacity: 0.4 + Math.random() * 0.6,
-                    wobble: Math.random() * 3 - 1.5,
-                    life: 0
-                });
-            }
+        /* ══════════════ ۱۷. فوتر ══════════════ */
+        .game-footer {
+            margin-top: 20px; padding-top: 10px;
+            border-top: 1px solid var(--border);
+            font-size: 9px; letter-spacing: 2px;
+            color: var(--text-light); opacity: 0.5;
+            font-family: var(--font-mono); text-align: center;
         }
 
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.choice-btn')) {
-                const rect = e.target.getBoundingClientRect();
-                spawnClickParticles(rect.left + Math.random() * rect.width, rect.top + Math.random() * rect.height);
-            }
-        });
-    </script>
-    <script src="story.js"></script>
-    <!-- ★★★ پایان پارت ۲ — پارت ۳ را از اینجا کپی کن ★★★ --><!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>آخرین صلیب | The Last Cross</title>
-    <meta name="description" content="قاتل سریالی در نورثبروک آزادانه پرسه می‌زند. کارآگاه جیمی مورو باش.">
-    <meta name="theme-color" content="#0a0202">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- فونت‌ها -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/lalezar@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/samim@v4.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/tanha@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/gandom@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/parastoo@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/nahid@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Walter+Turncoat&family=Creepster&display=swap" rel="stylesheet">
-
-    <style>
-        /* ========== متغیرهای پایه (تم پیش‌فرض: سلاخ‌خونه) ========== */
-        :root {
-            --bg: #0a0202;
-            --surface: #1a0505;
-            --surface2: #220808;
-            --border: #4a1010;
-            --text: #d0a0a0;
-            --text-light: #b08080;
-            --accent: #cc0000;
-            --accent-glow: #ff2020;
-            --font-main: 'Creepster', cursive;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace;
-            --font-cinema: 'IM Fell English SC', serif;
-            --location-size: 20px;
-            --card-bg: linear-gradient(180deg, #1a0505 0%, #0a0202 100%);
-            --card-border: #4a1010;
-            --card-shadow: 0 20px 60px rgba(139,0,0,0.5);
-            --btn-bg: linear-gradient(135deg, #3a0a0a, #1a0000);
-            --btn-border: #8b0000;
-            --btn-text: #ffaaaa;
-            --btn-hover-border: #ff0000;
-            --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.7);
-            --dialogue-bg: rgba(139,0,0,0.15);
-            --header-border: #4a1010;
-            --scanlines: none;
-            --screen-curve: 0px;
-            --paper-lines: none;
-            --blood-drips: block;
-            --weapon-opacity: 0.35;
-            --mist-opacity: 0.6;
-            --transition-speed: 0.4s;
-        }
-
-        /* ========== ۱. سلاخ‌خونه کثیف (+۱۸) - پیش‌فرض ========== */
-        body.theme-slaughterhouse {
-            --bg: #0a0202; --surface: #1a0505; --surface2: #220808; --border: #4a1010;
-            --text: #d0a0a0; --text-light: #b08080; --accent: #cc0000; --accent-glow: #ff2020;
-            --font-main: 'Creepster', cursive; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace; --font-cinema: 'IM Fell English SC', serif;
-            --location-size: 20px; --card-bg: linear-gradient(180deg, #1a0505 0%, #0a0202 100%);
-            --card-border: #4a1010; --card-shadow: 0 20px 60px rgba(139,0,0,0.5);
-            --btn-bg: linear-gradient(135deg, #3a0a0a, #1a0000); --btn-border: #8b0000;
-            --btn-text: #ffaaaa; --btn-hover-border: #ff0000; --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.7);
-            --dialogue-bg: rgba(139,0,0,0.15); --header-border: #4a1010;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: block; --weapon-opacity: 0.35; --mist-opacity: 0.6;
-        }
-
-        /* ========== ۲. ترمینال CRT قدیمی ========== */
-        body.theme-crt {
-            --bg: #1a1a0a; --surface: #0a1208; --surface2: #0c160a; --border: #1a3a1a;
-            --text: #33ff33; --text-light: #22cc22; --accent: #00ff00; --accent-glow: #00ff00;
-            --font-main: 'VT323', monospace; --font-serif: 'VT323', monospace;
-            --font-mono: 'VT323', monospace; --font-cinema: 'VT323', monospace;
-            --location-size: 20px; --card-bg: #0a1208; --card-border: #1a3a1a;
-            --card-shadow: 0 0 30px rgba(0,255,0,0.15), inset 0 0 100px rgba(0,0,0,0.4);
-            --btn-bg: #0a1a0a; --btn-border: #33ff33; --btn-text: #33ff33;
-            --btn-hover-border: #00ff00; --btn-hover-shadow: 0 0 20px rgba(0,255,0,0.5);
-            --dialogue-bg: rgba(0,255,0,0.04); --header-border: #1a3a1a;
-            --scanlines: block; --screen-curve: 20px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۳. روزنامه قدیمی ========== */
-        body.theme-newspaper {
-            --bg: #d4c5a0; --surface: #e8dcc0; --surface2: #ddd0b0; --border: #c4b590;
-            --text: #2a1a0a; --text-light: #5a4a3a; --accent: #8b1a1a; --accent-glow: #a02020;
-            --font-main: 'Parastoo', serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'IM Fell English SC', serif; --font-cinema: 'Playfair Display', serif;
-            --location-size: 18px; --card-bg: #e8dcc0; --card-border: #c4b590;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --btn-bg: #ddd0b0; --btn-border: #b4a580; --btn-text: #3a2a1a;
-            --btn-hover-border: #8b1a1a; --btn-hover-shadow: 0 4px 12px rgba(139,26,26,0.3);
-            --dialogue-bg: rgba(0,0,0,0.03); --header-border: #c4b590;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۴. دفترچه یادداشت ========== */
-        body.theme-notebook {
-            --bg: #c4b595; --surface: #faf5e8; --surface2: #f0e8d0; --border: #d4c5a0;
-            --text: #2a1a0a; --text-light: #5a4a3a; --accent: #8b4513; --accent-glow: #a0522d;
-            --font-main: 'Walter Turncoat', cursive; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 16px; --card-bg: #faf5e8; --card-border: #d4c5a0;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --btn-bg: #f0e8d0; --btn-border: #c4b590; --btn-text: #3a2a1a;
-            --btn-hover-border: #8b4513; --btn-hover-shadow: 0 4px 12px rgba(139,69,19,0.3);
-            --dialogue-bg: rgba(0,0,0,0.02); --header-border: #d4c5a0;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: block;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۵. اتاق بازجویی ========== */
-        body.theme-interrogation {
-            --bg: #1a1c1e; --surface: #25282a; --surface2: #2c3033; --border: #3a3e41;
-            --text: #b0b4b8; --text-light: #888c90; --accent: #5a6a7a; --accent-glow: #6a7a8a;
-            --font-main: 'Samim', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace; --font-cinema: 'IM Fell English SC', serif;
-            --location-size: 14px; --card-bg: linear-gradient(180deg, #25282a 0%, #1c1e20 100%);
-            --card-border: #3a3e41; --card-shadow: 0 20px 60px rgba(0,0,0,0.7);
-            --btn-bg: #2c3033; --btn-border: #4a4e51; --btn-text: #b0b4b8;
-            --btn-hover-border: #6a7a8a; --btn-hover-shadow: 0 4px 15px rgba(90,106,122,0.3);
-            --dialogue-bg: rgba(0,0,0,0.2); --header-border: #3a3e41;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۶. مشروح پزشکی قانونی ========== */
-        body.theme-morgue {
-            --bg: #d0d5da; --surface: #ffffff; --surface2: #f0f4f8; --border: #c0c8d0;
-            --text: #2a3a4a; --text-light: #5a6a7a; --accent: #3a6a8a; --accent-glow: #4a7a9a;
-            --font-main: 'Nahid', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 15px; --card-bg: #ffffff; --card-border: #c0c8d0;
-            --card-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            --btn-bg: #f0f4f8; --btn-border: #a0b0c0; --btn-text: #2a3a4a;
-            --btn-hover-border: #3a6a8a; --btn-hover-shadow: 0 4px 15px rgba(58,106,138,0.2);
-            --dialogue-bg: rgba(0,0,0,0.02); --header-border: #c0c8d0;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
-        }
-
-        /* ========== ۷. کلاسیک جنایی ========== */
-        body.theme-classic {
-            --bg: #0d0d0d; --surface: #1a1a1a; --surface2: #222; --border: #333;
-            --text: #c8c0b8; --text-light: #a09890; --accent: #8b3a3a; --accent-glow: #a04040;
-            --font-main: 'Vazirmatn', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 15px; --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
-            --card-border: #333; --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a); --btn-border: #5a3a2a;
-            --btn-text: #d0c0a0; --btn-hover-border: #8b0000; --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
-            --dialogue-bg: rgba(139,58,58,0.06); --header-border: #333;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: block; --weapon-opacity: 0.08; --mist-opacity: 0.3;
-        }
-
-        /* ========== ۸. نئون-نوآر ========== */
-        body.theme-neonoir {
-            --bg: #050510; --surface: #0e0e1e; --surface2: #121225; --border: #2a2a4a;
-            --text: #b0b8e0; --text-light: #8090c0; --accent: #6a4ac0; --accent-glow: #8a6ae0;
-            --font-main: 'Vazirmatn', sans-serif; --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace; --font-cinema: 'Playfair Display', serif;
-            --location-size: 16px; --card-bg: linear-gradient(180deg, #0e0e1e 0%, #08081a 100%);
-            --card-border: #2a2a4a; --card-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(106,74,192,0.1);
-            --btn-bg: linear-gradient(135deg, #1a1a30, #0a0a1a); --btn-border: #4a3a6a;
-            --btn-text: #b0b8e0; --btn-hover-border: #6a4ac0; --btn-hover-shadow: 0 6px 20px rgba(106,74,192,0.4);
-            --dialogue-bg: rgba(106,74,192,0.06); --header-border: #2a2a4a;
-            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
-            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0.5;
-        }
-
-        /* ========== استایل کلی ========== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { height: 100%; overflow: hidden; }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--font-main);
-            height: 100vh; height: 100dvh;
-            display: flex; justify-content: center; align-items: center;
-            padding: 12px; transition: background var(--transition-speed), color var(--transition-speed);
+        /* ══════════════ ۱۸. صفحه آموزش ══════════════ */
+        .tutorial-overlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            overflow: hidden; line-height: 1.6;
-            -webkit-tap-highlight-color: transparent; user-select: none;
-            perspective: 1000px;
+            background: rgba(0,0,0,0.95); z-index: 200;
+            display: flex; justify-content: center; align-items: center; padding: 20px;
+            backdrop-filter: blur(10px);
         }
-
-        /* ========== اسکن‌لاین CRT ========== */
-        .crt-scanlines { display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); animation: scanMove 0.3s linear infinite; }
-        @keyframes scanMove { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
-        .crt-curve { display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 99; border-radius: var(--screen-curve); box-shadow: inset 0 0 80px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.3); }
-        .paper-lines { display: var(--paper-lines); position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(transparent, transparent 31px, #d4c5a0 31px, #d4c5a0 32px); background-size: 100% 32px; }
-        .paper-red-line { display: var(--paper-lines); position: absolute; top: 0; left: 50px; width: 2px; height: 100%; pointer-events: none; z-index: 0; background: rgba(255,0,0,0.15); }
-
-        /* ========== Canvas ذرات خون ========== */
-        #particleCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 90; display: var(--blood-drips); }
-
-        /* ========== قاب CRT ========== */
-        .crt-frame { display: none; position: relative; background: #1a1a0a; border: 10px solid #111; border-radius: 18px; padding: 18px; box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8); }
-        body.theme-crt .crt-frame { display: block; }
-
-        /* ========== wrapper ========== */
-        .app-wrapper { position: relative; z-index: 2; width: 100%; max-width: 800px; height: 100%; display: flex; flex-direction: column; }
-        .top-bar { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 10px; padding: 0 5px; flex-shrink: 0; }
-        .mini-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); color: var(--text-light); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-        .mini-btn:active { transform: scale(0.92); }
-        .mini-btn.playing { border-color: var(--accent); animation: musicPulse 1.5s infinite; }
-        @keyframes musicPulse { 0%,100%{box-shadow:0 0 5px var(--accent-glow)}50%{box-shadow:0 0 20px var(--accent-glow)} }
-
-        .game-container { flex: 1; width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); padding: 24px 20px; border-radius: 6px; box-shadow: var(--card-shadow); overflow-y: auto; transition: all var(--transition-speed); scroll-behavior: smooth; position: relative; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--accent) var(--surface); }
-        .game-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); z-index: 5; }
-
-        .game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--header-border); position: sticky; top: 0; background: var(--surface); z-index: 5; padding-top: 4px; }
-        .game-title { font-family: var(--font-cinema); color: var(--accent); font-size: clamp(18px, 5vw, 24px); letter-spacing: 4px; text-shadow: 0 0 15px var(--accent-glow); }
-        .status-pills { display: flex; gap: 12px; font-size: 9px; letter-spacing: 2px; color: var(--text-light); font-family: var(--font-mono); white-space: nowrap; }
-
-        .location { font-family: var(--font-cinema); font-size: var(--location-size); letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; opacity: 0.9; font-weight: 600; text-shadow: 0 0 10px var(--accent-glow); animation: fadeInUp 0.4s ease; }
-        .scene-text { font-size: clamp(14px, 3.8vw, 16px); line-height: 2.5; color: var(--text); margin-bottom: 20px; font-family: var(--font-serif); animation: fadeInUp 0.5s ease; }
-        .dialogue-box { padding: 14px 18px; margin-bottom: 22px; border-right: 3px solid var(--accent); background: linear-gradient(90deg, var(--dialogue-bg) 0%, transparent 100%); font-style: italic; color: var(--text-light); line-height: 2.3; border-radius: 0 4px 4px 0; font-family: var(--font-serif); animation: fadeInUp 0.6s ease; word-break: break-word; }
-
-        .choices { display: flex; flex-direction: column; gap: 10px; position: sticky; bottom: 0; background: var(--surface); padding-top: 14px; border-top: 1px solid var(--border); z-index: 5; }
-        .choice-btn { width: 100%; text-align: right; background: var(--btn-bg); color: var(--btn-text); border: 1px solid var(--btn-border); padding: 14px 18px; font-family: var(--font-main); font-size: clamp(13px, 3.5vw, 15px); cursor: pointer; transition: all 0.25s; border-radius: 4px; letter-spacing: 0.4px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; touch-action: manipulation; min-height: 48px; display: flex; align-items: center; }
-        .choice-btn::before { content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; transition: opacity 0.3s; }
-        .choice-btn:active { transform: scale(0.97); }
-        .choice-btn:hover { border-color: var(--btn-hover-border); color: #fff; box-shadow: var(--btn-hover-shadow); }
-        .choice-btn:hover::before { opacity: 1; }
-
-        .game-footer { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 9px; letter-spacing: 2px; color: var(--text-light); opacity: 0.5; font-family: var(--font-mono); text-align: center; }
-
-        .tutorial-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 200; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .tutorial-box { background: var(--surface); border: 1px solid var(--border); padding: 30px 22px; max-width: 500px; width: 100%; border-radius: 6px; text-align: center; font-family: var(--font-main); }
-        .tutorial-box h2 { font-family: var(--font-cinema); color: var(--accent); letter-spacing: 5px; margin-bottom: 20px; font-size: clamp(20px, 6vw, 26px); }
-        .tutorial-box p { line-height: 2.2; margin-bottom: 10px; color: var(--text-light); font-size: clamp(13px, 3.5vw, 15px); }
-        .tutorial-box .start-btn { background: var(--accent); color: #fff; border: none; padding: 14px 36px; font-family: var(--font-cinema); font-size: clamp(14px, 4vw, 16px); cursor: pointer; letter-spacing: 3px; margin-top: 16px; transition: all 0.3s; border-radius: 4px; min-height: 48px; }
+        .tutorial-box {
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 30px 22px; max-width: 500px; width: 100%;
+            border-radius: 6px; text-align: center; font-family: var(--font-main);
+            box-shadow: 0 0 40px rgba(139,0,0,0.3);
+        }
+        .tutorial-box h2 {
+            font-family: var(--font-cinema); color: var(--accent);
+            letter-spacing: 5px; margin-bottom: 20px;
+            font-size: clamp(20px, 6vw, 26px);
+        }
+        .tutorial-box p {
+            line-height: 2.2; margin-bottom: 10px;
+            color: var(--text-light); font-size: clamp(13px, 3.5vw, 15px);
+        }
+        .tutorial-box .start-btn {
+            background: var(--accent); color: #fff; border: none;
+            padding: 14px 36px; font-family: var(--font-cinema);
+            font-size: clamp(14px, 4vw, 16px); cursor: pointer;
+            letter-spacing: 3px; margin-top: 16px; transition: all 0.3s;
+            border-radius: 4px; min-height: 48px;
+            position: relative; overflow: hidden;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
         .tutorial-box .start-btn:active { transform: scale(0.95); }
+        .tutorial-box .start-btn::after {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .tutorial-box .start-btn:hover::after { opacity: 1; }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes weaponFloat { 0%, 100% { transform: rotate(-3deg) translateY(0); } 25% { transform: rotate(6deg) translateY(-14px); } 50% { transform: rotate(-4deg) translateY(-6px); } 75% { transform: rotate(5deg) translateY(-18px); } }
-        @keyframes mistDrift { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
-
-        .weapon-real { position: fixed; pointer-events: none; z-index: 0; opacity: var(--weapon-opacity); filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6)); animation: weaponFloat 12s ease-in-out infinite; }
+        /* ══════════════ ۱۹. سلاح‌های شناور ══════════════ */
+        .weapon-real {
+            position: fixed; pointer-events: none; z-index: 0;
+            opacity: var(--weapon-opacity);
+            filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));
+            animation: weaponFloat 12s ease-in-out infinite;
+        }
         .weapon-real.axe1 { top: 6%; left: 4%; width: 70px; height: 70px; }
         .weapon-real.axe2 { top: 72%; right: 3%; width: 55px; height: 55px; animation-delay: -4s; }
         .weapon-real.gun1 { bottom: 12%; left: 10%; width: 80px; height: 50px; animation-delay: -7s; }
         .weapon-real.gun2 { top: 38%; right: 6%; width: 65px; height: 40px; animation-delay: -2s; }
         .weapon-real.knife1 { top: 28%; left: 85%; width: 40px; height: 60px; animation-delay: -9s; }
 
-        .mist-overlay { position: fixed; pointer-events: none; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 50% 50%, rgba(100,80,60,0.04) 0%, transparent 70%); animation: mistDrift 15s ease-in-out infinite; }
+        /* ══════════════ ۲۰. مه و ذرات ══════════════ */
+        .mist-overlay {
+            position: fixed; pointer-events: none; z-index: 1;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(100,80,60,0.04) 0%, transparent 70%);
+            animation: mistDrift 15s ease-in-out infinite;
+        }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes weaponFloat {
+            0%, 100% { transform: rotate(-3deg) translateY(0); }
+            25% { transform: rotate(6deg) translateY(-14px); }
+            50% { transform: rotate(-4deg) translateY(-6px); }
+            75% { transform: rotate(5deg) translateY(-18px); }
+        }
+        @keyframes mistDrift {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+
+        /* ══════════════ ۲۱. رسپانسیو ══════════════ */
         @media (max-width: 600px) {
             body { padding: 8px; }
             .game-container { padding: 16px 14px; border-radius: 4px; }
@@ -792,63 +696,87 @@
             .choices { gap: 8px; padding-top: 8px; }
             .top-bar { margin-bottom: 6px; }
             .mini-btn { width: 34px; height: 34px; font-size: 14px; }
+            .weapon-real.axe1 { width: 50px; height: 50px; }
+            .weapon-real.axe2 { width: 40px; height: 40px; }
+            .blood-stain:nth-child(1) { width: 100px; height: 80px; }
+            .blood-stain:nth-child(2) { width: 120px; height: 100px; }
         }
     </style>
 </head>
 <body class="theme-slaughterhouse">
+    <!-- لکه‌های خون -->
+    <div class="blood-stains">
+        <div class="blood-stain"></div>
+        <div class="blood-stain"></div>
+        <div class="blood-stain"></div>
+        <div class="blood-stain"></div>
+    </div>
 
+    <!-- افکت‌های CRT -->
     <div class="crt-scanlines"></div>
     <div class="crt-curve"></div>
+    <div class="crt-flicker"></div>
     <div class="crt-frame" id="crtFrame"><div class="app-wrapper"></div></div>
 
+    <!-- سلاح‌ها -->
     <div class="weapon-real axe1"><svg viewBox="0 0 100 100"><rect x="35" y="8" width="8" height="82" rx="2" fill="#4a2a1a"/><path d="M22 14 L56 4 L60 26 L26 36 Z" fill="url(#metalGrad)"/><defs><linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#999"/><stop offset="100%" stop-color="#333"/></linearGradient></defs></svg></div>
     <div class="weapon-real axe2"><svg viewBox="0 0 100 100"><rect x="36" y="6" width="7" height="84" rx="2" fill="#3a1a0a"/><path d="M18 12 L58 2 L62 28 L22 38 Z" fill="url(#metalGrad2)"/><defs><linearGradient id="metalGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#aaa"/><stop offset="100%" stop-color="#444"/></linearGradient></defs></svg></div>
     <div class="weapon-real gun1"><svg viewBox="0 0 120 80"><rect x="8" y="24" width="92" height="16" rx="3" fill="#444"/><rect x="100" y="18" width="14" height="8" rx="2" fill="#333"/><rect x="14" y="40" width="22" height="10" rx="2" fill="#2a1a0a"/><circle cx="12" cy="32" r="4" fill="#222"/></svg></div>
     <div class="weapon-real gun2"><svg viewBox="0 0 100 70"><rect x="5" y="18" width="82" height="14" rx="3" fill="#555"/><rect x="87" y="16" width="11" height="6" rx="2" fill="#333"/></svg></div>
     <div class="weapon-real knife1"><svg viewBox="0 0 50 80"><rect x="22" y="5" width="6" height="38" rx="2" fill="#3a2a1a"/><path d="M14 43 L36 43 L30 72 L20 72 Z" fill="url(#knifeGrad)"/><defs><linearGradient id="knifeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ccc"/><stop offset="100%" stop-color="#555"/></linearGradient></defs></svg></div>
 
+    <!-- مه -->
     <div class="mist-overlay"></div>
+
+    <!-- Canvas خون -->
     <canvas id="particleCanvas"></canvas>
 
+    <!-- آهنگ‌ها -->
     <audio id="bgMusic1" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%201%20(2019)/320/11.%20Gott%20Gib%20Mir%20Gelassenheit.mp3" preload="auto"></audio>
     <audio id="bgMusic2" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%202%20(2019)/320/01.%20Schwarze%20Materie.mp3" preload="auto"></audio>
 
-    <div class="app-wrapper" id="mainWrapper">
-        <div class="top-bar">
-            <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" aria-label="موسیقی">🎵</button>
-            <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" aria-label="تغییر تم">🎨</button>
-        </div>
-
-        <main class="game-container" id="gameContainer">
-            <div class="paper-lines"></div>
-            <div class="paper-red-line"></div>
-            <header class="game-header">
-                <h1 class="game-title">آخرین صلیب</h1>
-                <div class="status-pills"><span id="clueCount">سرنخ: ۰</span><span id="timeDisplay">روز: ۱</span></div>
-            </header>
-            <div class="location" id="location"></div>
-            <div class="scene-text" id="sceneText"></div>
-            <div class="dialogue-box" id="dialogue"></div>
-            <nav class="choices" id="choices"></nav>
-            <footer class="game-footer">نورثبروک، اورگن</footer>
-        </main>
+    <!-- ══════════════ wrapper اصلی ══════════════ -->
+<div class="app-wrapper" id="mainWrapper">
+    <div class="top-bar">
+        <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" aria-label="موسیقی">🎵</button>
+        <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" aria-label="تغییر تم">🎨</button>
     </div>
 
-    <div class="tutorial-overlay" id="tutorial">
-        <div class="tutorial-box">
-            <h2>✞ آخرین صلیب ✞</h2>
-            <p>نورثبروک، اورگن. شهر کوچیکی که همه همدیگه رو می‌شناسن.</p>
-            <p>تو کارآگاه جیمی مورو هستی. قاتل سریالی رو پیدا کن.</p>
-            <p>هر انتخاب تو عواقبی داره.</p>
-            <p style="color:var(--accent);">بارون نمی‌ایسته. قاتل هنوز آزاده.</p>
-            <button class="start-btn" onclick="startGame()">شروع پرونده</button>
-        </div>
-    </div>
+    <main class="game-container" id="gameContainer">
+        <div class="paper-lines"></div>
+        <div class="paper-red-line"></div>
+        <header class="game-header">
+            <h1 class="game-title">آخرین صلیب</h1>
+            <div class="status-pills">
+                <span id="clueCount">سرنخ: ۰</span>
+                <span id="timeDisplay">روز: ۱</span>
+            </div>
+        </header>
+        <div class="location" id="location"></div>
+        <div class="scene-text" id="sceneText"></div>
+        <div class="dialogue-box" id="dialogue"></div>
+        <nav class="choices" id="choices"></nav>
+        <footer class="game-footer">نورثبروک، اورگن</footer>
+    </main>
+</div>
 
+<!-- ══════════════ صفحه آموزش ══════════════ -->
+<div class="tutorial-overlay" id="tutorial">
+    <div class="tutorial-box">
+        <h2>✞ آخرین صلیب ✞</h2>
+        <p>نورثبروک، اورگن. شهر کوچیکی که همه همدیگه رو می‌شناسن.</p>
+        <p>تو کارآگاه جیمی مورو هستی. قاتل سریالی رو پیدا کن.</p>
+        <p>هر انتخاب تو عواقبی داره.</p>
+        <p style="color:var(--accent);">بارون نمی‌ایسته. قاتل هنوز آزاده.</p>
+        <button class="start-btn" id="startButton" onclick="startGame()">شروع پرونده</button>
+    </div>
+</div>
+
+    <!-- ══════════════ اسکریپت‌های اصلی ══════════════ -->
     <script>
-        // ========== سیستم تم ==========
-        const themes = ['theme-slaughterhouse', 'theme-crt', 'theme-newspaper', 'theme-notebook', 'theme-interrogation', 'theme-morgue', 'theme-classic', 'theme-neonoir'];
-        const themeNames = ['سلاخ‌خونه', 'ترمینال CRT', 'روزنامه', 'دفترچه یادداشت', 'اتاق بازجویی', 'پزشکی قانونی', 'کلاسیک جنایی', 'نئون-نوآر'];
+        // ---------- سیستم تم ----------
+        const themes = ['theme-slaughterhouse', 'theme-crt', 'theme-notebook', 'theme-interrogation'];
+        const themeNames = ['سلاخ‌خونه', 'ترمینال CRT', 'دفترچه یادداشت', 'اتاق بازجویی'];
         let currentTheme = 0;
 
         function cycleTheme() {
@@ -891,7 +819,7 @@
             }, 1500);
         }
 
-        // ========== سیستم موسیقی ==========
+        // ---------- سیستم موسیقی ----------
         const bgMusic1 = document.getElementById('bgMusic1');
         const bgMusic2 = document.getElementById('bgMusic2');
         const musicBtn = document.getElementById('musicBtn');
@@ -920,7 +848,7 @@
             }
         }, {once:true});
 
-        // ========== سیستم ذرات خون (Canvas) ==========
+        // ---------- ذرات خون Canvas ----------
         const particleCanvas = document.getElementById('particleCanvas');
         const pctx = particleCanvas.getContext('2d');
         let particles = [];
@@ -977,12 +905,13 @@
         }
         drawParticles();
 
-        // ========== شروع بازی ==========
+        // ---------- شروع بازی ----------
         function startGame() {
             document.getElementById('tutorial').style.display='none';
             if(typeof loadScene==='function') loadScene('scene0_flashback');
         }
 
+        // ---------- تنظیمات اولیه ----------
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('lastCrossTheme');
             if (savedTheme && themes.includes(savedTheme)) {
@@ -1030,7 +959,6 @@
         });
     </script>
     <script src="story.js"></script>
-</body>
-</html>
+    <!-- ★★★ پایان پارت ۵ — فایل index.html کامل شد ★★★ -->
 </body>
 </html>
