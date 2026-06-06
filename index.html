@@ -2,14 +2,10 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>آخرین صلیب | The Last Cross</title>
     <meta name="description" content="در شهر بارانی نورثبروک، قاتلی سریالی با طناب قربانیانش را خفه می‌کند. کارآگاه جیمی مورو باش و در این داستان تعاملی جنایی-روان‌شناختی، قاتل را پیدا کن.">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="آخرین صلیب — بازی جنایی-روان‌شناختی تعاملی">
-    <meta property="og:description" content="قاتل سریالی در نورثبروک آزادانه پرسه می‌زند. کارآگاه جیمی مورو باش.">
-
-    <!-- فونت‌ها -->
+    <meta name="theme-color" content="#0d0d0d">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/lalezar@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/samim@v4.0.0/dist/font-face.css" rel="stylesheet">
@@ -18,9 +14,7 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/parastoo@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/nahid@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Walter+Turncoat&family=Creepster&display=swap" rel="stylesheet">
-
     <style>
-        /* ========== متغیرهای پایه (تم پیش‌فرض: کلاسیک جنایی) ========== */
         :root {
             --bg: #0d0d0d;
             --surface: #1a1a1a;
@@ -34,516 +28,251 @@
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Special Elite', monospace;
             --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.04;
-            --axe-opacity: 0.08;
-            --btn-size: 36px;
             --location-size: 15px;
             --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
             --card-border: #333;
             --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            --frame-bg: transparent;
-            --frame-border: none;
-            --frame-padding: 0;
             --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a);
             --btn-border: #5a3a2a;
             --btn-text: #d0c0a0;
             --btn-hover-border: #8b0000;
             --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
-            --blood-visibility: visible;
-            --weapon-visibility: visible;
+            --dialogue-bg: rgba(139,58,58,0.06);
+            --header-border: #333;
+            --scanlines: none;
+            --screen-curve: 0px;
+            --paper-lines: none;
+            --blood-drips: block;
+            --weapon-opacity: 0.08;
+            --mist-opacity: 0.3;
+            --transition-speed: 0.4s;
         }
 
-        /* ========== ۱. کامپیوتر سبز قدیمی (CRT) ========== */
-        body.theme-crt {
-            --bg: #1a1a0a;
-            --surface: #0a1208;
-            --surface2: #0c160a;
-            --border: #1a3a1a;
-            --text: #33ff33;
-            --text-light: #22cc22;
-            --accent: #00ff00;
-            --accent-glow: #00ff00;
-            --font-main: 'VT323', monospace;
-            --font-serif: 'VT323', monospace;
-            --font-mono: 'VT323', monospace;
-            --font-cinema: 'VT323', monospace;
-            --blood-opacity: 0;
-            --axe-opacity: 0;
-            --location-size: 18px;
-            --card-bg: #0a1208;
-            --card-border: #1a3a1a;
-            --card-shadow: 0 0 30px rgba(0,255,0,0.15), inset 0 0 100px rgba(0,0,0,0.4);
-            --frame-bg: #2a2a1a;
-            --frame-border: 12px solid #1a1a0a;
-            --frame-padding: 20px;
-            --btn-bg: #0a1a0a;
-            --btn-border: #33ff33;
-            --btn-text: #33ff33;
-            --btn-hover-border: #00ff00;
-            --btn-hover-shadow: 0 0 20px rgba(0,255,0,0.5);
-            --blood-visibility: hidden;
-            --weapon-visibility: hidden;
-        }
-        body.theme-crt .game-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 10;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
-            animation: scanlines 0.3s linear infinite;
-        }
-        @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
-
-        /* ========== ۲. روزنامه قدیمی ========== */
-        body.theme-newspaper {
-            --bg: #d4c5a0;
-            --surface: #e8dcc0;
-            --surface2: #ddd0b0;
-            --border: #c4b590;
-            --text: #2a1a0a;
-            --text-light: #5a4a3a;
-            --accent: #8b1a1a;
-            --accent-glow: #a02020;
-            --font-main: 'Parastoo', serif;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'IM Fell English SC', serif;
-            --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.02;
-            --axe-opacity: 0.04;
-            --location-size: 17px;
-            --card-bg: #e8dcc0;
-            --card-border: #c4b590;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --frame-bg: transparent;
-            --frame-border: none;
-            --frame-padding: 0;
-            --btn-bg: #ddd0b0;
-            --btn-border: #b4a580;
-            --btn-text: #3a2a1a;
-            --btn-hover-border: #8b1a1a;
-            --btn-hover-shadow: 0 4px 12px rgba(139,26,26,0.3);
-            --blood-visibility: hidden;
-            --weapon-visibility: hidden;
-        }
-        body.theme-newspaper .game-container {
-            column-count: 2;
-            column-gap: 30px;
-            column-rule: 1px solid #c4b590;
-        }
-        body.theme-newspaper .game-header { column-span: all; text-align: center; border-bottom: 3px double #2a1a0a; }
-        body.theme-newspaper .game-title { font-size: 32px; letter-spacing: 2px; text-transform: uppercase; }
-        body.theme-newspaper .location { column-span: all; text-align: center; border-top: 1px solid #2a1a0a; border-bottom: 1px solid #2a1a0a; padding: 8px 0; }
-        body.theme-newspaper .scene-text { text-align: justify; }
-        body.theme-newspaper .scene-text::first-letter { font-size: 3em; float: right; line-height: 0.8; margin-left: 8px; color: var(--accent); }
-
-        /* ========== ۳. دفترچه یادداشت کارآگاه ========== */
-        body.theme-notebook {
-            --bg: #c4b595;
-            --surface: #faf5e8;
-            --surface2: #f0e8d0;
-            --border: #d4c5a0;
-            --text: #2a1a0a;
-            --text-light: #5a4a3a;
-            --accent: #8b4513;
-            --accent-glow: #a0522d;
-            --font-main: 'Walter Turncoat', cursive;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace;
-            --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.01;
-            --axe-opacity: 0.03;
-            --location-size: 16px;
-            --card-bg: #faf5e8;
-            --card-border: #d4c5a0;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --frame-bg: #c4b595;
-            --frame-border: none;
-            --frame-padding: 25px;
-            --btn-bg: #f0e8d0;
-            --btn-border: #c4b590;
-            --btn-text: #3a2a1a;
-            --btn-hover-border: #8b4513;
-            --btn-hover-shadow: 0 4px 12px rgba(139,69,19,0.3);
-            --blood-visibility: hidden;
-            --weapon-visibility: hidden;
-        }
-        body.theme-notebook .game-container {
-            background-image: repeating-linear-gradient(transparent, transparent 31px, #d4c5a0 31px, #d4c5a0 32px);
-            background-size: 100% 32px;
-        }
-        body.theme-notebook .game-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50px;
-            width: 2px; height: 100%;
-            background: rgba(255,0,0,0.12);
-            z-index: 0;
-        }
-
-        /* ========== ۴. اتاق بازجویی ========== */
-        body.theme-interrogation {
-            --bg: #1a1c1e;
-            --surface: #25282a;
-            --surface2: #2c3033;
-            --border: #3a3e41;
-            --text: #b0b4b8;
-            --text-light: #888c90;
-            --accent: #5a6a7a;
-            --accent-glow: #6a7a8a;
-            --font-main: 'Samim', sans-serif;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace;
-            --font-cinema: 'IM Fell English SC', serif;
-            --blood-opacity: 0.01;
-            --axe-opacity: 0.02;
-            --location-size: 14px;
-            --card-bg: linear-gradient(180deg, #25282a 0%, #1c1e20 100%);
-            --card-border: #3a3e41;
-            --card-shadow: 0 20px 60px rgba(0,0,0,0.7);
-            --frame-bg: transparent;
-            --frame-border: 3px solid #4a4e51;
-            --frame-padding: 15px;
-            --btn-bg: #2c3033;
-            --btn-border: #4a4e51;
-            --btn-text: #b0b4b8;
-            --btn-hover-border: #6a7a8a;
-            --btn-hover-shadow: 0 4px 15px rgba(90,106,122,0.3);
-            --blood-visibility: hidden;
-            --weapon-visibility: hidden;
-        }
-
-        /* ========== ۵. مشروح پزشکی قانونی ========== */
-        body.theme-morgue {
-            --bg: #d0d5da;
-            --surface: #ffffff;
-            --surface2: #f0f4f8;
-            --border: #c0c8d0;
-            --text: #2a3a4a;
-            --text-light: #5a6a7a;
-            --accent: #3a6a8a;
-            --accent-glow: #4a7a9a;
-            --font-main: 'Nahid', sans-serif;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace;
-            --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0;
-            --axe-opacity: 0;
-            --location-size: 15px;
-            --card-bg: #ffffff;
-            --card-border: #c0c8d0;
-            --card-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            --frame-bg: #e0e5ea;
-            --frame-border: 6px solid #d0d5da;
-            --frame-padding: 25px;
-            --btn-bg: #f0f4f8;
-            --btn-border: #a0b0c0;
-            --btn-text: #2a3a4a;
-            --btn-hover-border: #3a6a8a;
-            --btn-hover-shadow: 0 4px 15px rgba(58,106,138,0.2);
-            --blood-visibility: hidden;
-            --weapon-visibility: hidden;
-        }
-        body.theme-morgue .game-container {
-            background-image: linear-gradient(90deg, #e0e8f0 0px, transparent 1px), linear-gradient(0deg, #e0e8f0 0px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* ========== ۶. سلاخ‌خانه کثیف (+۱۸) ========== */
-        body.theme-slaughterhouse {
-            --bg: #1a0a05;
-            --surface: #1c0c07;
-            --surface2: #220e09;
-            --border: #5a2a1a;
-            --text: #d0b8a8;
-            --text-light: #b09888;
-            --accent: #8b1a0a;
-            --accent-glow: #cc2200;
-            --font-main: 'Creepster', cursive;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace;
-            --font-cinema: 'Creepster', cursive;
-            --blood-opacity: 0.35;
-            --axe-opacity: 0.35;
-            --location-size: 18px;
-            --card-bg: linear-gradient(180deg, #1c0c07 0%, #140804 100%);
-            --card-border: #5a2a1a;
-            --card-shadow: 0 20px 60px rgba(139,0,0,0.5), 0 0 0 2px rgba(139,0,0,0.2);
-            --frame-bg: transparent;
-            --frame-border: 4px solid #3a1a0a;
-            --frame-padding: 20px;
-            --btn-bg: linear-gradient(135deg, #3a1a0a, #1a0505);
-            --btn-border: #6a2a1a;
-            --btn-text: #ffccaa;
-            --btn-hover-border: #ff2200;
-            --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.6);
-            --blood-visibility: visible;
-            --weapon-visibility: visible;
-        }
-
-        /* ========== ۷. باران شبانه نئون-نوآر ========== */
-        body.theme-neonoir {
-            --bg: #050510;
-            --surface: #0e0e1e;
-            --surface2: #121225;
-            --border: #2a2a4a;
-            --text: #b0b8e0;
-            --text-light: #8090c0;
-            --accent: #6a4ac0;
-            --accent-glow: #8a6ae0;
-            --font-main: 'Vazirmatn', sans-serif;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Courier Prime', monospace;
-            --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.02;
-            --axe-opacity: 0.04;
-            --location-size: 16px;
-            --card-bg: linear-gradient(180deg, #0e0e1e 0%, #08081a 100%);
-            --card-border: #2a2a4a;
-            --card-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(106,74,192,0.1);
-            --btn-bg: linear-gradient(135deg, #1a1a30, #0a0a1a);
-            --btn-border: #4a3a6a;
-            --btn-text: #b0b8e0;
-            --btn-hover-border: #6a4ac0;
-            --btn-hover-shadow: 0 6px 20px rgba(106,74,192,0.4);
-            --blood-visibility: visible;
-            --weapon-visibility: hidden;
-        }
-
-        /* ========== ۸. کلاسیک جنایی (چرم و چوب) ========== */
         body.theme-classic {
-            --bg: #0d0d0d;
-            --surface: #1a1a1a;
-            --surface2: #222;
-            --border: #333;
-            --text: #c8c0b8;
-            --text-light: #a09890;
-            --accent: #8b3a3a;
-            --accent-glow: #a04040;
-            --font-main: 'Vazirmatn', sans-serif;
-            --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', monospace;
-            --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.04;
-            --axe-opacity: 0.08;
-            --location-size: 15px;
-            --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
-            --card-border: #333;
-            --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a);
-            --btn-border: #5a3a2a;
-            --btn-text: #d0c0a0;
-            --btn-hover-border: #8b0000;
-            --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
-            --blood-visibility: visible;
-            --weapon-visibility: visible;
+            --bg: #0d0d0d; --surface: #1a1a1a; --surface2: #222; --border: #333;
+            --text: #c8c0b8; --text-light: #a09890; --accent: #8b3a3a; --accent-glow: #a04040;
+            --font-main: 'Vazirmatn', sans-serif; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Special Elite', monospace; --font-cinema: 'Playfair Display', serif;
+            --location-size: 15px; --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+            --card-border: #333; --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a); --btn-border: #5a3a2a;
+            --btn-text: #d0c0a0; --btn-hover-border: #8b0000; --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
+            --dialogue-bg: rgba(139,58,58,0.06); --header-border: #333;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
+            --blood-drips: block; --weapon-opacity: 0.08; --mist-opacity: 0.3;
         }
 
-        /* ========== استایل کلی ========== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body.theme-crt {
+            --bg: #1a1a0a; --surface: #0a1208; --surface2: #0c160a; --border: #1a3a1a;
+            --text: #33ff33; --text-light: #22cc22; --accent: #00ff00; --accent-glow: #00ff00;
+            --font-main: 'VT323', monospace; --font-serif: 'VT323', monospace;
+            --font-mono: 'VT323', monospace; --font-cinema: 'VT323', monospace;
+            --location-size: 20px; --card-bg: #0a1208; --card-border: #1a3a1a;
+            --card-shadow: 0 0 30px rgba(0,255,0,0.15), inset 0 0 100px rgba(0,0,0,0.4);
+            --btn-bg: #0a1a0a; --btn-border: #33ff33; --btn-text: #33ff33;
+            --btn-hover-border: #00ff00; --btn-hover-shadow: 0 0 20px rgba(0,255,0,0.5);
+            --dialogue-bg: rgba(0,255,0,0.04); --header-border: #1a3a1a;
+            --scanlines: block; --screen-curve: 20px; --paper-lines: none;
+            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+        }
 
+        body.theme-newspaper {
+            --bg: #d4c5a0; --surface: #e8dcc0; --surface2: #ddd0b0; --border: #c4b590;
+            --text: #2a1a0a; --text-light: #5a4a3a; --accent: #8b1a1a; --accent-glow: #a02020;
+            --font-main: 'Parastoo', serif; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'IM Fell English SC', serif; --font-cinema: 'Playfair Display', serif;
+            --location-size: 18px; --card-bg: #e8dcc0; --card-border: #c4b590;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            --btn-bg: #ddd0b0; --btn-border: #b4a580; --btn-text: #3a2a1a;
+            --btn-hover-border: #8b1a1a; --btn-hover-shadow: 0 4px 12px rgba(139,26,26,0.3);
+            --dialogue-bg: rgba(0,0,0,0.03); --header-border: #c4b590;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
+            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+        }
+
+        body.theme-notebook {
+            --bg: #c4b595; --surface: #faf5e8; --surface2: #f0e8d0; --border: #d4c5a0;
+            --text: #2a1a0a; --text-light: #5a4a3a; --accent: #8b4513; --accent-glow: #a0522d;
+            --font-main: 'Walter Turncoat', cursive; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Special Elite', monospace; --font-cinema: 'Playfair Display', serif;
+            --location-size: 16px; --card-bg: #faf5e8; --card-border: #d4c5a0;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            --btn-bg: #f0e8d0; --btn-border: #c4b590; --btn-text: #3a2a1a;
+            --btn-hover-border: #8b4513; --btn-hover-shadow: 0 4px 12px rgba(139,69,19,0.3);
+            --dialogue-bg: rgba(0,0,0,0.02); --header-border: #d4c5a0;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: block;
+            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+        }
+
+        body.theme-interrogation {
+            --bg: #1a1c1e; --surface: #25282a; --surface2: #2c3033; --border: #3a3e41;
+            --text: #b0b4b8; --text-light: #888c90; --accent: #5a6a7a; --accent-glow: #6a7a8a;
+            --font-main: 'Samim', sans-serif; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Courier Prime', monospace; --font-cinema: 'IM Fell English SC', serif;
+            --location-size: 14px; --card-bg: linear-gradient(180deg, #25282a 0%, #1c1e20 100%);
+            --card-border: #3a3e41; --card-shadow: 0 20px 60px rgba(0,0,0,0.7);
+            --btn-bg: #2c3033; --btn-border: #4a4e51; --btn-text: #b0b4b8;
+            --btn-hover-border: #6a7a8a; --btn-hover-shadow: 0 4px 15px rgba(90,106,122,0.3);
+            --dialogue-bg: rgba(0,0,0,0.2); --header-border: #3a3e41;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
+            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+        }
+
+        body.theme-morgue {
+            --bg: #d0d5da; --surface: #ffffff; --surface2: #f0f4f8; --border: #c0c8d0;
+            --text: #2a3a4a; --text-light: #5a6a7a; --accent: #3a6a8a; --accent-glow: #4a7a9a;
+            --font-main: 'Nahid', sans-serif; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Courier Prime', monospace; --font-cinema: 'Playfair Display', serif;
+            --location-size: 15px; --card-bg: #ffffff; --card-border: #c0c8d0;
+            --card-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --btn-bg: #f0f4f8; --btn-border: #a0b0c0; --btn-text: #2a3a4a;
+            --btn-hover-border: #3a6a8a; --btn-hover-shadow: 0 4px 15px rgba(58,106,138,0.2);
+            --dialogue-bg: rgba(0,0,0,0.02); --header-border: #c0c8d0;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
+            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0;
+        }
+
+        body.theme-slaughterhouse {
+            --bg: #1a0a05; --surface: #1c0c07; --surface2: #220e09; --border: #5a2a1a;
+            --text: #d0b8a8; --text-light: #b09888; --accent: #8b1a0a; --accent-glow: #cc2200;
+            --font-main: 'Creepster', cursive; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Special Elite', monospace; --font-cinema: 'Creepster', cursive;
+            --location-size: 20px; --card-bg: linear-gradient(180deg, #1c0c07 0%, #140804 100%);
+            --card-border: #5a2a1a; --card-shadow: 0 20px 60px rgba(139,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.5);
+            --btn-bg: linear-gradient(135deg, #3a1a0a, #1a0505); --btn-border: #6a2a1a;
+            --btn-text: #ffccaa; --btn-hover-border: #ff2200; --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.6);
+            --dialogue-bg: rgba(139,0,0,0.15); --header-border: #5a2a1a;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
+            --blood-drips: block; --weapon-opacity: 0.35; --mist-opacity: 0.6;
+        }
+
+        body.theme-neonoir {
+            --bg: #050510; --surface: #0e0e1e; --surface2: #121225; --border: #2a2a4a;
+            --text: #b0b8e0; --text-light: #8090c0; --accent: #6a4ac0; --accent-glow: #8a6ae0;
+            --font-main: 'Vazirmatn', sans-serif; --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Courier Prime', monospace; --font-cinema: 'Playfair Display', serif;
+            --location-size: 16px; --card-bg: linear-gradient(180deg, #0e0e1e 0%, #08081a 100%);
+            --card-border: #2a2a4a; --card-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(106,74,192,0.1);
+            --btn-bg: linear-gradient(135deg, #1a1a30, #0a0a1a); --btn-border: #4a3a6a;
+            --btn-text: #b0b8e0; --btn-hover-border: #6a4ac0; --btn-hover-shadow: 0 6px 20px rgba(106,74,192,0.4);
+            --dialogue-bg: rgba(106,74,192,0.06); --header-border: #2a2a4a;
+            --scanlines: none; --screen-curve: 0px; --paper-lines: none;
+            --blood-drips: none; --weapon-opacity: 0; --mist-opacity: 0.5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; }
         body {
             background: var(--bg);
             color: var(--text);
             font-family: var(--font-main);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            transition: background 0.6s, color 0.6s;
-            position: relative;
-            overflow-x: hidden;
-            line-height: 1.6;
+            min-height: 100vh; min-height: 100dvh;
+            display: flex; justify-content: center; align-items: center;
+            padding: 12px; transition: background var(--transition-speed), color var(--transition-speed);
+            position: relative; overflow-x: hidden; line-height: 1.6;
+            -webkit-tap-highlight-color: transparent; user-select: none;
         }
 
-        /* ========== قاب CRT ========== */
-        .crt-frame {
-            display: none;
-            position: relative;
-            background: var(--frame-bg);
-            border: var(--frame-border);
-            border-radius: 18px;
-            padding: var(--frame-padding);
-            box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8);
-        }
-        body.theme-crt .crt-frame,
-        body.theme-morgue .crt-frame,
-        body.theme-interrogation .crt-frame,
-        body.theme-slaughterhouse .crt-frame { display: block; }
+        .crt-scanlines { display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 100; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); animation: scanMove 0.3s linear infinite; }
+        @keyframes scanMove { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
+        .crt-curve { display: var(--scanlines); position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 99; border-radius: var(--screen-curve); box-shadow: inset 0 0 80px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.3); }
+        .paper-lines { display: var(--paper-lines); position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0; background-image: repeating-linear-gradient(transparent, transparent 31px, #d4c5a0 31px, #d4c5a0 32px); background-size: 100% 32px; }
+        .paper-red-line { display: var(--paper-lines); position: absolute; top: 0; left: 50px; width: 2px; height: 100%; pointer-events: none; z-index: 0; background: rgba(255,0,0,0.15); }
 
-        /* ========== خون چکنده Canvas ========== */
-        #bloodCanvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: var(--blood-opacity);
-            transition: opacity 0.8s;
-        }
+        #bloodCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 90; display: var(--blood-drips); }
 
-        /* ========== سلاح‌های شناور ========== */
-        .weapon-real {
-            position: fixed;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 1.5s, transform 2s;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
-        }
-        .weapon-real.visible { opacity: var(--axe-opacity); }
-        .weapon-real.axe1 { top: 5%; left: 3%; width: 80px; height: 80px; }
-        .weapon-real.axe2 { top: 70%; right: 2%; width: 65px; height: 65px; }
-        .weapon-real.gun1 { bottom: 10%; left: 8%; width: 90px; height: 60px; }
-        .weapon-real.gun2 { top: 40%; right: 5%; width: 75px; height: 50px; }
-        .weapon-real.knife1 { top: 30%; left: 88%; width: 50px; height: 70px; }
+        .crt-frame { display: none; position: relative; background: #1a1a0a; border: 10px solid #111; border-radius: 18px; padding: 18px; box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8); }
+        body.theme-crt .crt-frame { display: block; }
 
-        /* ========== wrapper ========== */
-        .app-wrapper { position: relative; z-index: 2; width: 100%; max-width: 800px; }
-
-        .top-bar {
-            display: flex; justify-content: flex-end; align-items: center;
-            gap: 10px; margin-bottom: 12px; padding: 0 5px;
-        }
-        .mini-btn {
-            width: var(--btn-size); height: var(--btn-size);
-            border-radius: 50%; background: var(--surface2);
-            border: 1px solid var(--border); color: var(--text-light);
-            cursor: pointer; font-size: 16px;
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.3s;
-        }
-        .mini-btn:hover { border-color: var(--accent); color: #fff; box-shadow: 0 0 14px var(--accent-glow); }
+        .app-wrapper { position: relative; z-index: 2; width: 100%; max-width: 800px; margin: 0 auto; }
+        .top-bar { display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-bottom: 10px; padding: 0 5px; }
+        .mini-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); color: var(--text-light); cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+        .mini-btn:active { transform: scale(0.92); }
         .mini-btn.playing { border-color: var(--accent); animation: musicPulse 1.5s infinite; }
         @keyframes musicPulse { 0%,100%{box-shadow:0 0 5px var(--accent-glow)}50%{box-shadow:0 0 20px var(--accent-glow)} }
 
-        .game-container {
-            width: 100%; background: var(--card-bg);
-            border: 1px solid var(--card-border); padding: 40px;
-            border-radius: 4px; box-shadow: var(--card-shadow);
-            min-height: 500px; max-height: 85vh;
-            overflow-y: auto; transition: all 0.5s;
-            scroll-behavior: smooth; position: relative;
-        }
-        .game-container::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0;
-            height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
+        .game-container { width: 100%; background: var(--card-bg); border: 1px solid var(--card-border); padding: 28px 24px; border-radius: 6px; box-shadow: var(--card-shadow); min-height: 480px; max-height: 82vh; max-height: 82dvh; overflow-y: auto; transition: all var(--transition-speed); scroll-behavior: smooth; position: relative; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--accent) var(--surface); }
+        .game-container::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); z-index: 5; }
 
-        .game-header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 25px; padding-bottom: 18px;
-            border-bottom: 1px solid var(--border);
-            position: sticky; top: 0; background: var(--surface); z-index: 5;
-        }
-        .game-title {
-            font-family: var(--font-cinema); color: var(--accent);
-            font-size: 24px; letter-spacing: 6px;
-            text-shadow: 0 0 15px var(--accent-glow);
-        }
-        .status-pills { display: flex; gap: 15px; font-size: 10px; letter-spacing: 2px; color: var(--text-light); font-family: var(--font-mono); }
+        .game-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--header-border); position: sticky; top: 0; background: var(--surface); z-index: 5; padding-top: 4px; }
+        .game-title { font-family: var(--font-cinema); color: var(--accent); font-size: clamp(18px, 5vw, 24px); letter-spacing: 4px; text-shadow: 0 0 15px var(--accent-glow); }
+        .status-pills { display: flex; gap: 12px; font-size: 9px; letter-spacing: 2px; color: var(--text-light); font-family: var(--font-mono); white-space: nowrap; }
 
-        .location {
-            font-family: var(--font-cinema); font-size: var(--location-size);
-            letter-spacing: 5px; text-transform: uppercase; color: var(--accent);
-            margin-bottom: 26px; opacity: 0.9; font-weight: 600;
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-        .scene-text { font-size: 16px; line-height: 2.5; color: var(--text); margin-bottom: 24px; font-family: var(--font-serif); }
-        .dialogue-box {
-            padding: 18px 22px; margin-bottom: 28px;
-            border-right: 3px solid var(--accent);
-            background: linear-gradient(90deg, rgba(139,58,58,0.06) 0%, transparent 100%);
-            font-style: italic; color: var(--text-light); line-height: 2.4;
-            border-radius: 0 3px 3px 0; font-family: var(--font-serif);
-        }
+        .location { font-family: var(--font-cinema); font-size: var(--location-size); letter-spacing: 4px; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; opacity: 0.9; font-weight: 600; text-shadow: 0 0 10px var(--accent-glow); animation: fadeInUp 0.4s ease; }
+        .scene-text { font-size: clamp(14px, 3.8vw, 16px); line-height: 2.5; color: var(--text); margin-bottom: 22px; font-family: var(--font-serif); animation: fadeInUp 0.5s ease; }
+        .dialogue-box { padding: 16px 20px; margin-bottom: 24px; border-right: 3px solid var(--accent); background: linear-gradient(90deg, var(--dialogue-bg) 0%, transparent 100%); font-style: italic; color: var(--text-light); line-height: 2.3; border-radius: 0 4px 4px 0; font-family: var(--font-serif); animation: fadeInUp 0.6s ease; word-break: break-word; }
 
-        .choices {
-            display: flex; flex-direction: column; gap: 12px;
-            position: sticky; bottom: 0; background: var(--surface);
-            padding-top: 15px; border-top: 1px solid var(--border);
-        }
-        .choice-btn {
-            width: 100%; text-align: right;
-            background: var(--btn-bg); color: var(--btn-text);
-            border: 1px solid var(--btn-border); padding: 15px 22px;
-            font-family: var(--font-main); font-size: 15px;
-            cursor: pointer; transition: 0.3s; border-radius: 3px;
-            letter-spacing: 0.5px; position: relative; overflow: hidden;
-        }
-        .choice-btn::before {
-            content: ''; position: absolute; left: 0; top: 0;
-            width: 3px; height: 100%; background: var(--accent);
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .choice-btn:hover {
-            border-color: var(--btn-hover-border); color: #fff;
-            transform: translateX(-6px); box-shadow: var(--btn-hover-shadow);
-        }
+        .choices { display: flex; flex-direction: column; gap: 10px; position: sticky; bottom: 0; background: var(--surface); padding-top: 14px; border-top: 1px solid var(--border); z-index: 5; }
+        .choice-btn { width: 100%; text-align: right; background: var(--btn-bg); color: var(--btn-text); border: 1px solid var(--btn-border); padding: 16px 20px; font-family: var(--font-main); font-size: clamp(13px, 3.5vw, 15px); cursor: pointer; transition: all 0.25s; border-radius: 4px; letter-spacing: 0.4px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; touch-action: manipulation; min-height: 50px; display: flex; align-items: center; }
+        .choice-btn::before { content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; transition: opacity 0.3s; }
+        .choice-btn:active { transform: scale(0.97); }
+        .choice-btn:hover { border-color: var(--btn-hover-border); color: #fff; box-shadow: var(--btn-hover-shadow); }
         .choice-btn:hover::before { opacity: 1; }
 
-        .game-footer {
-            margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--border);
-            font-size: 10px; letter-spacing: 2px; color: var(--text-light); opacity: 0.5;
-            font-family: var(--font-mono);
-        }
+        .game-footer { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 9px; letter-spacing: 2px; color: var(--text-light); opacity: 0.5; font-family: var(--font-mono); text-align: center; }
 
-        .tutorial-overlay {
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.94); z-index: 100;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .tutorial-box {
-            background: var(--surface); border: 1px solid var(--border);
-            padding: 40px; max-width: 600px; width: 90%;
-            border-radius: 4px; text-align: center; font-family: var(--font-main);
-        }
-        .tutorial-box h2 { font-family: var(--font-cinema); color: var(--accent); letter-spacing: 6px; margin-bottom: 25px; font-size: 26px; }
-        .tutorial-box p { line-height: 2.2; margin-bottom: 15px; color: var(--text-light); }
-        .tutorial-box .start-btn {
-            background: var(--accent); color: #fff; border: none;
-            padding: 14px 40px; font-family: var(--font-cinema); font-size: 16px;
-            cursor: pointer; letter-spacing: 4px; margin-top: 20px;
-            transition: 0.3s; border-radius: 3px;
-        }
-        .tutorial-box .start-btn:hover { box-shadow: 0 0 25px var(--accent-glow); }
+        .tutorial-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.95); z-index: 200; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .tutorial-box { background: var(--surface); border: 1px solid var(--border); padding: 32px 24px; max-width: 500px; width: 100%; border-radius: 6px; text-align: center; font-family: var(--font-main); }
+        .tutorial-box h2 { font-family: var(--font-cinema); color: var(--accent); letter-spacing: 5px; margin-bottom: 22px; font-size: clamp(20px, 6vw, 26px); }
+        .tutorial-box p { line-height: 2.2; margin-bottom: 12px; color: var(--text-light); font-size: clamp(13px, 3.5vw, 15px); }
+        .tutorial-box .start-btn { background: var(--accent); color: #fff; border: none; padding: 14px 36px; font-family: var(--font-cinema); font-size: clamp(14px, 4vw, 16px); cursor: pointer; letter-spacing: 3px; margin-top: 18px; transition: all 0.3s; border-radius: 4px; min-height: 50px; }
+        .tutorial-box .start-btn:active { transform: scale(0.95); }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bloodDrip { 0% { transform: translateY(-10px); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.3; } 100% { transform: translateY(105vh); opacity: 0; } }
+        @keyframes weaponFloat { 0%, 100% { transform: rotate(-3deg) translateY(0); } 25% { transform: rotate(6deg) translateY(-14px); } 50% { transform: rotate(-4deg) translateY(-6px); } 75% { transform: rotate(5deg) translateY(-18px); } }
+        @keyframes mistDrift { 0%, 100% { opacity: 0.2; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.1); } }
+
+        .weapon-real { position: fixed; pointer-events: none; z-index: 0; opacity: var(--weapon-opacity); filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6)); animation: weaponFloat 12s ease-in-out infinite; }
+        .weapon-real.axe1 { top: 6%; left: 4%; width: 70px; height: 70px; }
+        .weapon-real.axe2 { top: 72%; right: 3%; width: 55px; height: 55px; animation-delay: -4s; }
+        .weapon-real.gun1 { bottom: 12%; left: 10%; width: 80px; height: 50px; animation-delay: -7s; }
+        .weapon-real.gun2 { top: 38%; right: 6%; width: 65px; height: 40px; animation-delay: -2s; }
+        .weapon-real.knife1 { top: 28%; left: 85%; width: 40px; height: 60px; animation-delay: -9s; }
+
+        .mist-overlay { position: fixed; pointer-events: none; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 50% 50%, rgba(100,80,60,0.04) 0%, transparent 70%); animation: mistDrift 15s ease-in-out infinite; }
 
         @media (max-width: 600px) {
-            .game-container { padding: 20px 15px; }
-            .game-title { font-size: 16px; }
-            .scene-text { font-size: 14px; }
-            .location { font-size: 12px; }
-            body.theme-newspaper .game-container { column-count: 1; }
+            body { padding: 8px; align-items: flex-start; padding-top: 20px; }
+            .game-container { padding: 20px 16px; max-height: 88vh; max-height: 88dvh; border-radius: 4px; }
+            .game-header { margin-bottom: 16px; padding-bottom: 12px; }
+            .location { margin-bottom: 16px; }
+            .scene-text { margin-bottom: 16px; }
+            .dialogue-box { margin-bottom: 18px; padding: 14px 16px; }
+            .choice-btn { padding: 14px 16px; min-height: 48px; }
+            .choices { gap: 8px; padding-top: 10px; }
+            .top-bar { margin-bottom: 6px; }
+            .mini-btn { width: 34px; height: 34px; font-size: 14px; }
         }
     </style>
 </head>
 <body class="theme-classic">
 
-    <!-- قاب CRT -->
+    <div class="crt-scanlines"></div>
+    <div class="crt-curve"></div>
     <div class="crt-frame" id="crtFrame"><div class="app-wrapper"></div></div>
 
-    <!-- سلاح‌های شناور -->
-    <div class="weapon-real axe1 visible" id="weapon1"><svg viewBox="0 0 100 100"><rect x="35" y="10" width="8" height="80" rx="2" fill="#5a3a2a"/><path d="M25 15 L55 5 L58 25 L28 35 Z" fill="#666"/></svg></div>
-    <div class="weapon-real axe2 visible" id="weapon2"><svg viewBox="0 0 100 100"><rect x="38" y="5" width="7" height="85" rx="2" fill="#4a2a1a"/><path d="M20 10 L60 0 L62 30 L22 40 Z" fill="#777"/></svg></div>
-    <div class="weapon-real gun1 visible" id="weapon3"><svg viewBox="0 0 120 80"><rect x="10" y="25" width="90" height="15" rx="3" fill="#444"/><rect x="100" y="20" width="15" height="8" rx="2" fill="#333"/></svg></div>
-    <div class="weapon-real gun2 visible" id="weapon4"><svg viewBox="0 0 100 70"><rect x="5" y="20" width="80" height="12" rx="3" fill="#555"/><rect x="85" y="18" width="12" height="7" rx="2" fill="#222"/></svg></div>
-    <div class="weapon-real knife1 visible" id="weapon5"><svg viewBox="0 0 50 80"><rect x="22" y="5" width="6" height="40" rx="2" fill="#3a2a1a"/><path d="M15 45 L35 45 L30 70 L20 70 Z" fill="#777"/></svg></div>
+    <div class="weapon-real axe1"><svg viewBox="0 0 100 100"><rect x="35" y="8" width="8" height="82" rx="2" fill="#4a2a1a"/><path d="M22 14 L56 4 L60 26 L26 36 Z" fill="url(#metalGrad)"/><defs><linearGradient id="metalGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#999"/><stop offset="100%" stop-color="#333"/></linearGradient></defs></svg></div>
+    <div class="weapon-real axe2"><svg viewBox="0 0 100 100"><rect x="36" y="6" width="7" height="84" rx="2" fill="#3a1a0a"/><path d="M18 12 L58 2 L62 28 L22 38 Z" fill="url(#metalGrad2)"/><defs><linearGradient id="metalGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#aaa"/><stop offset="100%" stop-color="#444"/></linearGradient></defs></svg></div>
+    <div class="weapon-real gun1"><svg viewBox="0 0 120 80"><rect x="8" y="24" width="92" height="16" rx="3" fill="#444"/><rect x="100" y="18" width="14" height="8" rx="2" fill="#333"/><rect x="14" y="40" width="22" height="10" rx="2" fill="#2a1a0a"/><circle cx="12" cy="32" r="4" fill="#222"/></svg></div>
+    <div class="weapon-real gun2"><svg viewBox="0 0 100 70"><rect x="5" y="18" width="82" height="14" rx="3" fill="#555"/><rect x="87" y="16" width="11" height="6" rx="2" fill="#333"/></svg></div>
+    <div class="weapon-real knife1"><svg viewBox="0 0 50 80"><rect x="22" y="5" width="6" height="38" rx="2" fill="#3a2a1a"/><path d="M14 43 L36 43 L30 72 L20 72 Z" fill="url(#knifeGrad)"/><defs><linearGradient id="knifeGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ccc"/><stop offset="100%" stop-color="#555"/></linearGradient></defs></svg></div>
 
-    <!-- Canvas خون -->
+    <div class="mist-overlay"></div>
     <canvas id="bloodCanvas"></canvas>
 
-    <!-- آهنگ‌ها -->
     <audio id="bgMusic1" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%201%20(2019)/320/11.%20Gott%20Gib%20Mir%20Gelassenheit.mp3" preload="auto"></audio>
     <audio id="bgMusic2" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%202%20(2019)/320/01.%20Schwarze%20Materie.mp3" preload="auto"></audio>
 
     <div class="app-wrapper" id="mainWrapper">
         <div class="top-bar">
-            <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" title="موسیقی">🎵</button>
-            <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" title="تغییر تم">🎨</button>
+            <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" aria-label="موسیقی">🎵</button>
+            <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" aria-label="تغییر تم">🎨</button>
         </div>
 
         <main class="game-container" id="gameContainer">
+            <div class="paper-lines"></div>
+            <div class="paper-red-line"></div>
             <header class="game-header">
                 <h1 class="game-title">آخرین صلیب</h1>
                 <div class="status-pills"><span id="clueCount">سرنخ: ۰</span><span id="timeDisplay">روز: ۱</span></div>
@@ -577,8 +306,7 @@
             localStorage.setItem('lastCrossTheme', themes[currentTheme]);
             const crtFrame = document.getElementById('crtFrame');
             const mainWrapper = document.getElementById('mainWrapper');
-            const needsFrame = ['theme-crt','theme-morgue','theme-interrogation','theme-slaughterhouse'];
-            if (needsFrame.includes(themes[currentTheme])) {
+            if (themes[currentTheme] === 'theme-crt') {
                 if (!crtFrame.contains(mainWrapper)) crtFrame.querySelector('.app-wrapper').appendChild(mainWrapper);
             } else {
                 if (crtFrame.contains(mainWrapper)) document.body.insertBefore(mainWrapper, crtFrame);
@@ -605,11 +333,11 @@
         let drops = [];
         function resizeCanvas() { canvas.width = innerWidth; canvas.height = innerHeight; }
         window.addEventListener('resize', resizeCanvas); resizeCanvas();
-        for (let i=0;i<30;i++) drops.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height*0.3, speed:0.2+Math.random()*1.5, size:1+Math.random()*4, opacity:0.1+Math.random()*0.6});
+        for (let i=0;i<35;i++) drops.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height*0.4, speed:0.15+Math.random()*1.4, size:1+Math.random()*5, opacity:0.08+Math.random()*0.5});
         function drawBlood() {
             ctx.clearRect(0,0,canvas.width,canvas.height);
-            for (let d of drops) { d.y+=d.speed; if(d.y>canvas.height+10){d.y=-10;d.x=Math.random()*canvas.width;}
-                ctx.beginPath(); ctx.ellipse(d.x,d.y,d.size,d.size*3.5,0,0,Math.PI*2); ctx.fillStyle=`rgba(120,0,0,${d.opacity})`; ctx.fill(); }
+            for (let d of drops) { d.y+=d.speed; if(d.y>canvas.height+15){d.y=-15;d.x=Math.random()*canvas.width;}
+                ctx.beginPath(); ctx.ellipse(d.x,d.y,d.size,d.size*4,0,0,Math.PI*2); ctx.fillStyle=`rgba(110,0,0,${d.opacity})`; ctx.fill(); }
             requestAnimationFrame(drawBlood);
         }
         drawBlood();
@@ -621,10 +349,13 @@
             if (savedTheme && themes.includes(savedTheme)) { document.body.className = savedTheme; currentTheme = themes.indexOf(savedTheme); }
             const savedMusic = localStorage.getItem('lastCrossMusic');
             if (savedMusic==='true') { bgMusic1.play().then(()=>{ musicPlaying=true; musicBtn.classList.add('playing'); musicBtn.innerHTML='🎵'; }).catch(()=>{}); }
-            const needsFrame = ['theme-crt','theme-morgue','theme-interrogation','theme-slaughterhouse'];
-            if (needsFrame.includes(savedTheme)) { const crt=document.getElementById('crtFrame'); const mw=document.getElementById('mainWrapper'); if(!crt.contains(mw)) crt.querySelector('.app-wrapper').appendChild(mw); }
+            if (savedTheme === 'theme-crt') {
+                const crt=document.getElementById('crtFrame'); const mw=document.getElementById('mainWrapper');
+                if(!crt.contains(mw)) crt.querySelector('.app-wrapper').appendChild(mw);
+            }
         });
     </script>
     <script src="story.js"></script>
+    <!-- ★★★ پایان فایل index.html — این فایل کامل است و نیازی به تغییر نیست ★★★ -->
 </body>
 </html>
