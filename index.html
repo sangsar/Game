@@ -3,12 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>آخرین صلیب | The Last Cross</title>
     
+    <!-- ═══════════════ سئو و متاتگ‌ها ═══════════════ -->
+    <title>آخرین صلیب | بازی جنایی-روان‌شناختی تعاملی</title>
+    <meta name="description" content="در شهر بارانی نورثبروک، قاتلی سریالی با طناب قربانیانش را خفه می‌کند و صلیبی چوبی در دهانشان می‌گذارد. کارآگاه جیمی مورو باش و در این داستان تعاملی جنایی-روان‌شناختی، قاتل را پیدا کن. انتخاب‌هایت مسیر داستان را عوض می‌کنند.">
+    <meta name="keywords" content="بازی جنایی, داستان تعاملی, کارآگاه, قاتل سریالی, معمایی, روان‌شناختی, آخرین صلیب, The Last Cross, نورثبروک, بازی متنی, رمان تعاملی, جنایی, وحشت روانی, داستان کارآگاهی">
+    <meta name="author" content="تیم توسعه آخرین صلیب">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://your-domain.com/">
+    
+    <!-- Open Graph (تلگرام، فیسبوک، واتساپ) -->
+    <meta property="og:title" content="آخرین صلیب — بازی جنایی-روان‌شناختی تعاملی">
+    <meta property="og:description" content="قاتل سریالی در نورثبروک آزادانه پرسه می‌زند. کارآگاه جیمی مورو باش، سرنخ‌ها را دنبال کن، و در این داستان تعاملی تاریک، تصمیم بگیر چه کسی زنده بماند.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:locale" content="fa_IR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="آخرین صلیب — بازی جنایی تعاملی">
+    <meta name="twitter:description" content="پرونده‌ای ۸ ساله با ۲۹ قربانی. انتخاب‌های تو سرنوشت کارآگاه جیمی مورو و شهر نورثبروک را رقم می‌زند.">
+    
+    <!-- Schema.org برای بازی ویدئویی / داستان تعاملی -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "آخرین صلیب",
+      "alternateName": "The Last Cross",
+      "description": "یک بازی داستانی تعاملی در ژانر جنایی و وحشت روان‌شناختی که در شهر خیالی نورثبروک جریان دارد. بازیکن در نقش کارآگاه جیمی مورو به همراه همکارش الن هریس، به دنبال قاتل سریالی می‌گردد که با طناب قربانیانش را خفه می‌کند.",
+      "genre": ["جنایی", "معمایی", "روان‌شناختی", "تعاملی", "ماجراجویی متنی"],
+      "playMode": "SinglePlayer",
+      "applicationCategory": "Game",
+      "operatingSystem": "Web",
+      "author": {
+        "@type": "Organization",
+        "name": "تیم توسعه آخرین صلیب"
+      },
+      "inLanguage": "fa",
+      "about": {
+        "@type": "Thing",
+        "name": "پرونده قاتل سریالی نورثبروک",
+        "description": "داستان کارآگاه جیمی مورو و تعقیب قاتل صلیبی که ۲۹ زن را در ۸ سال به قتل رسانده است."
+      }
+    }
+    </script>
+
+    <!-- فونت‌های فارسی -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/lalezar@v1.0.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/samim@v4.0.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/tanha@v1.0.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/gandom@v1.0.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/parastoo@v1.0.0/dist/font-face.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/nahid@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
-    
+
     <style>
+        /* ═══════════════ متغیرهای پایه (تم پیش‌فرض: Dark) ═══════════════ */
         :root {
             --bg: #0a0a0a;
             --surface: #111111;
@@ -16,16 +68,19 @@
             --border: #2a2a2a;
             --text: #c8c0b8;
             --text-light: #a09890;
-            --accent: #8b0000;
-            --accent-glow: #b01010;
-            --gold: #c8a850;
+            --accent: #8b3a3a;
+            --accent-glow: #a04040;
             --font-main: 'Vazirmatn', sans-serif;
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Special Elite', 'Courier New', monospace;
+            --blood-opacity: 0.03;
+            --axe-opacity: 0.06;
+            --btn-size: 36px;
             --transition: 0.3s ease;
         }
-        
-        .theme-blood {
+
+        /* ═══════════════ ۸ تم مختلف ═══════════════ */
+        body.theme-blood {
             --bg: #0d0505;
             --surface: #1a0a0a;
             --surface2: #220a0a;
@@ -34,21 +89,92 @@
             --text-light: #b09090;
             --accent: #cc0000;
             --accent-glow: #ff2020;
+            --blood-opacity: 0.06;
+            --axe-opacity: 0.12;
+            --font-main: 'Lalezar', sans-serif;
         }
-        
-        .theme-light {
+        body.theme-light {
             --bg: #f5f0eb;
             --surface: #ffffff;
             --surface2: #f0ebe3;
             --border: #d4c5b5;
             --text: #3a2a1a;
             --text-light: #6b5040;
-            --accent: #8b0000;
-            --accent-glow: #b01010;
+            --accent: #8b3a3a;
+            --accent-glow: #a04040;
+            --blood-opacity: 0.02;
+            --axe-opacity: 0.03;
+            --font-main: 'Samim', sans-serif;
         }
-        
+        body.theme-midnight {
+            --bg: #020510;
+            --surface: #0a0e1a;
+            --surface2: #111625;
+            --border: #1e2640;
+            --text: #b0b8d0;
+            --text-light: #8090a8;
+            --accent: #4a6a8a;
+            --accent-glow: #5a7a9a;
+            --blood-opacity: 0.04;
+            --axe-opacity: 0.05;
+            --font-main: 'Tanha', sans-serif;
+        }
+        body.theme-forest {
+            --bg: #050a05;
+            --surface: #0a120a;
+            --surface2: #0f1a0f;
+            --border: #1a2a1a;
+            --text: #b0c0b0;
+            --text-light: #809080;
+            --accent: #3a5a3a;
+            --accent-glow: #4a6a4a;
+            --blood-opacity: 0.03;
+            --axe-opacity: 0.06;
+            --font-main: 'Gandom', sans-serif;
+        }
+        body.theme-coffee {
+            --bg: #0d0a07;
+            --surface: #1a1410;
+            --surface2: #221c18;
+            --border: #3a2a1a;
+            --text: #c8b8a8;
+            --text-light: #a09080;
+            --accent: #6b4b3a;
+            --accent-glow: #7b5b4a;
+            --blood-opacity: 0.04;
+            --axe-opacity: 0.07;
+            --font-main: 'Parastoo', sans-serif;
+        }
+        body.theme-ocean {
+            --bg: #020a0d;
+            --surface: #08141a;
+            --surface2: #0c1c24;
+            --border: #1a2a3a;
+            --text: #a0b8c8;
+            --text-light: #7a90a0;
+            --accent: #3a5a6b;
+            --accent-glow: #4a6a7b;
+            --blood-opacity: 0.03;
+            --axe-opacity: 0.04;
+            --font-main: 'Nahid', sans-serif;
+        }
+        body.theme-purple {
+            --bg: #0a050a;
+            --surface: #1a0a1a;
+            --surface2: #220a22;
+            --border: #3a1a3a;
+            --text: #c0b0c0;
+            --text-light: #a090a0;
+            --accent: #6b3a6b;
+            --accent-glow: #7b4a7b;
+            --blood-opacity: 0.04;
+            --axe-opacity: 0.06;
+            --font-main: 'Vazirmatn', sans-serif;
+        }
+
+        /* ═══════════════ استایل کلی ═══════════════ */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             background: var(--bg);
             color: var(--text);
@@ -59,52 +185,102 @@
             align-items: center;
             padding: 20px;
             transition: background 0.5s, color 0.5s;
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        
+
+        /* لکه‌های خون */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -10%; left: -5%;
+            width: 120%; height: 120%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: var(--blood-opacity);
+            background:
+                radial-gradient(ellipse at 20% 80%, #8b0000 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 15%, #8b0000 0%, transparent 35%),
+                radial-gradient(ellipse at 60% 70%, #8b0000 0%, transparent 50%),
+                radial-gradient(ellipse at 15% 30%, #8b0000 0%, transparent 30%),
+                radial-gradient(ellipse at 90% 60%, #8b0000 0%, transparent 45%);
+            animation: bloodPulse 8s ease-in-out infinite;
+        }
+        @keyframes bloodPulse {
+            0%, 100% { opacity: var(--blood-opacity); }
+            50% { opacity: calc(var(--blood-opacity) * 1.6); }
+        }
+
+        /* تبرهای شناور */
+        .axe {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: var(--axe-opacity);
+            font-size: 48px;
+            animation: axeFloat 12s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+        }
+        .axe:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .axe:nth-child(2) { top: 70%; right: 3%; animation-delay: -4s; font-size: 36px; }
+        .axe:nth-child(3) { top: 40%; left: 80%; animation-delay: -8s; font-size: 55px; }
+        .axe:nth-child(4) { bottom: 15%; left: 15%; animation-delay: -2s; font-size: 40px; }
+
+        @keyframes axeFloat {
+            0%, 100% { transform: rotate(0deg) translateY(0); }
+            25% { transform: rotate(10deg) translateY(-15px); }
+            50% { transform: rotate(-8deg) translateY(-5px); }
+            75% { transform: rotate(5deg) translateY(-20px); }
+        }
+
+        /* ═══════════════ wrapper ═══════════════ */
         .app-wrapper {
+            position: relative;
+            z-index: 2;
             width: 100%;
             max-width: 750px;
         }
-        
+
         .top-bar {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
+            gap: 10px;
             margin-bottom: 12px;
             padding: 0 5px;
         }
-        
-        .theme-dots {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .theme-dot {
-            width: 18px;
-            height: 18px;
+        .mini-btn {
+            width: var(--btn-size);
+            height: var(--btn-size);
             border-radius: 50%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text-light);
             cursor: pointer;
-            border: 2px solid transparent;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
+            backdrop-filter: blur(4px);
         }
-        
-        .theme-dot.dark { background: #1a1a1a; border-color: #444; }
-        .theme-dot.blood { background: #3a0000; border-color: #661010; }
-        .theme-dot.light { background: #f5f0eb; border-color: #d4c5b5; }
-        .theme-dot.active { border-color: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
-        
-        .badge {
-            background: rgba(139,0,0,0.12);
-            border: 1px solid rgba(139,0,0,0.25);
-            padding: 6px 14px;
-            font-size: 11px;
-            letter-spacing: 2px;
-            color: var(--accent);
-            border-radius: 2px;
-            font-family: var(--font-mono);
+        .mini-btn:hover {
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 10px var(--accent-glow);
         }
-        
+        .mini-btn.playing {
+            border-color: var(--accent);
+            animation: musicPulse 1.5s infinite;
+        }
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 0 5px var(--accent-glow); }
+            50% { box-shadow: 0 0 15px var(--accent-glow); }
+        }
+
         .game-container {
+            width: 100%;
             background: var(--surface);
             border: 1px solid var(--border);
             padding: 40px;
@@ -115,8 +291,16 @@
             overflow-y: auto;
             transition: background 0.5s, border-color 0.5s;
             scroll-behavior: smooth;
+            position: relative;
         }
-        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
         .game-header {
             display: flex;
             justify-content: space-between;
@@ -128,16 +312,13 @@
             top: 0;
             background: var(--surface);
             z-index: 5;
-            padding-top: 10px;
         }
-        
         .game-title {
             font-family: var(--font-mono);
             color: var(--accent);
             font-size: 20px;
             letter-spacing: 5px;
         }
-        
         .status-pills {
             display: flex;
             gap: 15px;
@@ -146,7 +327,7 @@
             color: var(--text-light);
             font-family: var(--font-mono);
         }
-        
+
         .location {
             font-family: var(--font-mono);
             font-size: 11px;
@@ -156,7 +337,6 @@
             margin-bottom: 20px;
             opacity: 0.85;
         }
-        
         .scene-text {
             font-size: 16px;
             line-height: 2.4;
@@ -164,19 +344,18 @@
             margin-bottom: 22px;
             font-family: var(--font-serif);
         }
-        
         .dialogue-box {
             padding: 18px 22px;
             margin-bottom: 25px;
             border-right: 3px solid var(--accent);
-            background: linear-gradient(90deg, rgba(139,0,0,0.06) 0%, transparent 100%);
+            background: linear-gradient(90deg, rgba(139,58,58,0.06) 0%, transparent 100%);
             font-style: italic;
             color: var(--text-light);
             line-height: 2.3;
             border-radius: 0 3px 3px 0;
             font-family: var(--font-serif);
         }
-        
+
         .choices {
             display: flex;
             flex-direction: column;
@@ -187,7 +366,6 @@
             padding-top: 15px;
             border-top: 1px solid var(--border);
         }
-        
         .choice-btn {
             width: 100%;
             text-align: right;
@@ -200,16 +378,14 @@
             cursor: pointer;
             transition: var(--transition);
             border-radius: 3px;
-            letter-spacing: 0.5px;
         }
-        
         .choice-btn:hover {
             border-color: var(--accent);
             color: #ffffff;
             transform: translateX(-4px);
-            box-shadow: 0 4px 15px rgba(139,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(139,58,58,0.15);
         }
-        
+
         .game-footer {
             margin-top: 25px;
             padding-top: 15px;
@@ -220,29 +396,16 @@
             opacity: 0.5;
             font-family: var(--font-mono);
         }
-        
-        /* حالت تایپ */
-        .typing {
-            border-left: 2px solid var(--accent);
-            animation: blink 0.8s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 100% { border-color: var(--accent); }
-            50% { border-color: transparent; }
-        }
-        
-        /* صفحه آموزش */
+
         .tutorial-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.92);
             z-index: 100;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
         .tutorial-box {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -251,21 +414,19 @@
             width: 90%;
             border-radius: 4px;
             text-align: center;
+            font-family: var(--font-main);
         }
-        
         .tutorial-box h2 {
             font-family: var(--font-mono);
             color: var(--accent);
             letter-spacing: 4px;
             margin-bottom: 25px;
         }
-        
         .tutorial-box p {
             line-height: 2.2;
             margin-bottom: 15px;
             color: var(--text-light);
         }
-        
         .tutorial-box .start-btn {
             background: var(--accent);
             color: #fff;
@@ -277,13 +438,13 @@
             letter-spacing: 3px;
             margin-top: 20px;
             transition: var(--transition);
+            border-radius: 3px;
         }
-        
         .tutorial-box .start-btn:hover {
             background: var(--accent-glow);
-            box-shadow: 0 0 20px rgba(139,0,0,0.4);
+            box-shadow: 0 0 20px rgba(139,58,58,0.4);
         }
-        
+
         @media (max-width: 600px) {
             .game-container { padding: 20px 15px; }
             .game-title { font-size: 16px; }
@@ -292,37 +453,40 @@
     </style>
 </head>
 <body>
+
+    <div class="axe" aria-label="تبر شناور">🪓</div>
+    <div class="axe" aria-label="تبر شناور">🪓</div>
+    <div class="axe" aria-label="تبر شناور">🪓</div>
+    <div class="axe" aria-label="تبر شناور">🪓</div>
+
+    <audio id="bgMusic" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%201%20(2019)/320/01.%20Alles%20Ist%20Miteinander%20Verbunden.mp3" loop preload="auto"></audio>
+
     <div class="app-wrapper">
         <div class="top-bar">
-            <span class="badge">پروندهٔ فعال</span>
-            <div class="theme-dots">
-                <span class="theme-dot dark active" onclick="setTheme('dark')" title="تم تاریک"></span>
-                <span class="theme-dot blood" onclick="setTheme('blood')" title="تم خون‌رنگ"></span>
-                <span class="theme-dot light" onclick="setTheme('light')" title="تم روشن"></span>
-            </div>
+            <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" title="موسیقی">🎵</button>
+            <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" title="تغییر تم">🎨</button>
         </div>
-        
-        <div class="game-container" id="gameContainer">
-            <div class="game-header">
-                <div class="game-title">آخرین صلیب</div>
+
+        <main class="game-container" id="gameContainer">
+            <header class="game-header">
+                <h1 class="game-title">آخرین صلیب</h1>
                 <div class="status-pills">
                     <span id="clueCount">سرنخ: ۰</span>
                     <span id="timeDisplay">روز: ۱</span>
                 </div>
-            </div>
-            
+            </header>
+
             <div class="location" id="location"></div>
             <div class="scene-text" id="sceneText"></div>
             <div class="dialogue-box" id="dialogue"></div>
-            <div class="choices" id="choices"></div>
-            
-            <div class="game-footer">
+            <nav class="choices" id="choices"></nav>
+
+            <footer class="game-footer">
                 نورثبروک، اورگن
-            </div>
-        </div>
+            </footer>
+        </main>
     </div>
-    
-    <!-- صفحه آموزش -->
+
     <div class="tutorial-overlay" id="tutorial">
         <div class="tutorial-box">
             <h2>✞ آخرین صلیب ✞</h2>
@@ -333,20 +497,70 @@
             <button class="start-btn" onclick="startGame()">شروع پرونده</button>
         </div>
     </div>
-    
+
     <script>
-        function setTheme(theme) {
-            document.body.className = theme === 'dark' ? '' : 'theme-' + theme;
-            document.querySelectorAll('.theme-dot').forEach(d => d.classList.remove('active'));
-            document.querySelector('.theme-dot.' + theme).classList.add('active');
+        const themes = ['', 'theme-blood', 'theme-light', 'theme-midnight', 'theme-forest', 'theme-coffee', 'theme-ocean', 'theme-purple'];
+        let currentTheme = 0;
+
+        function cycleTheme() {
+            currentTheme = (currentTheme + 1) % themes.length;
+            document.body.className = themes[currentTheme];
+            localStorage.setItem('lastCrossTheme', themes[currentTheme]);
         }
-        
+
+        const bgMusic = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let musicPlaying = false;
+
+        function toggleMusic() {
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.innerHTML = '🔇';
+            } else {
+                bgMusic.play().catch(() => {});
+                musicBtn.classList.add('playing');
+                musicBtn.innerHTML = '🎵';
+            }
+            musicPlaying = !musicPlaying;
+            localStorage.setItem('lastCrossMusic', musicPlaying);
+        }
+
+        document.addEventListener('click', function initAudio() {
+            if (!musicPlaying) {
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicBtn.classList.add('playing');
+                    musicBtn.innerHTML = '🎵';
+                }).catch(() => {});
+            }
+        }, { once: true });
+
         function startGame() {
             document.getElementById('tutorial').style.display = 'none';
-            loadScene('scene1');
+            if (typeof loadScene === 'function') {
+                loadScene('scene0_flashback');
+            }
         }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('lastCrossTheme');
+            if (savedTheme) {
+                document.body.className = savedTheme;
+                currentTheme = themes.indexOf(savedTheme);
+                if (currentTheme < 0) currentTheme = 0;
+            }
+            const savedMusic = localStorage.getItem('lastCrossMusic');
+            if (savedMusic === 'true') {
+                bgMusic.play().then(() => {
+                    musicPlaying = true;
+                    musicBtn.classList.add('playing');
+                    musicBtn.innerHTML = '🎵';
+                }).catch(() => {});
+            }
+        });
     </script>
-    
+
     <script src="story.js"></script>
 </body>
 </html>
