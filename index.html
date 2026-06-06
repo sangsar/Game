@@ -4,15 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>آخرین صلیب | The Last Cross</title>
-
-    <!-- سئو -->
     <meta name="description" content="در شهر بارانی نورثبروک، قاتلی سریالی با طناب قربانیانش را خفه می‌کند. کارآگاه جیمی مورو باش و در این داستان تعاملی جنایی-روان‌شناختی، قاتل را پیدا کن.">
-    <meta name="keywords" content="بازی جنایی, داستان تعاملی, کارآگاه, قاتل سریالی, معمایی, روان‌شناختی, آخرین صلیب">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="آخرین صلیب — بازی جنایی-روان‌شناختی تعاملی">
-    <meta property="og:description" content="قاتل سریالی در نورثبروک آزادانه پرسه می‌زند. کارآگاه جیمی مورو باش، سرنخ‌ها را دنبال کن.">
+    <meta property="og:description" content="قاتل سریالی در نورثبروک آزادانه پرسه می‌زند. کارآگاه جیمی مورو باش.">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
 
     <!-- فونت‌ها -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
@@ -22,10 +18,10 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/gandom@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/parastoo@v1.0.0/dist/font-face.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/nahid@v1.0.0/dist/font-face.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Special+Elite&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IM+Fell+English+SC&family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Walter+Turncoat&family=Creepster&display=swap" rel="stylesheet">
 
     <style>
-        /* ═══════════════ متغیرهای پایه (تم پیش‌فرض: جنایی کلاسیک) ═══════════════ */
+        /* ═══════════════ متغیرهای پایه ═══════════════ */
         :root {
             --bg: #0d0d0d;
             --surface: #1a1a1a;
@@ -37,26 +33,32 @@
             --accent-glow: #a04040;
             --font-main: 'Vazirmatn', sans-serif;
             --font-serif: 'Crimson Text', serif;
-            --font-mono: 'Special Elite', 'Courier New', monospace;
+            --font-mono: 'Special Elite', monospace;
             --font-cinema: 'Playfair Display', serif;
             --blood-opacity: 0.04;
             --axe-opacity: 0.08;
             --btn-size: 36px;
             --transition: 0.3s ease;
+            --location-size: 15px;
             --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
             --card-border: #333;
-            --card-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(139,0,0,0.08);
-            --location-size: 14px;
+            --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            --frame-bg: transparent;
+            --frame-border: none;
+            --frame-padding: 0;
             --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a);
             --btn-border: #5a3a2a;
             --btn-text: #d0c0a0;
             --btn-hover-border: #8b0000;
             --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
+            --blood-visibility: visible;
+            --weapon-visibility: visible;
+            --mist-visibility: visible;
         }
 
-        /* ═══════════════ ۸ تم کاملاً متفاوت ═══════════════ */
+        /* ═══════════════ ۹ تم ═══════════════ */
 
-        /* ۱. تم کلاسیک جنایی (پیش‌فرض) — مثل پرونده‌های پلیسی قدیمی */
+        /* ۱. کلاسیک جنایی */
         body.theme-classic {
             --bg: #0d0d0d;
             --surface: #1a1a1a;
@@ -72,20 +74,26 @@
             --font-cinema: 'Playfair Display', serif;
             --blood-opacity: 0.04;
             --axe-opacity: 0.08;
+            --location-size: 15px;
             --card-bg: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
             --card-border: #333;
-            --card-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(139,0,0,0.08);
-            --location-size: 14px;
+            --card-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            --frame-bg: transparent;
+            --frame-border: none;
+            --frame-padding: 0;
             --btn-bg: linear-gradient(135deg, #2a1a0a, #1a0a0a);
             --btn-border: #5a3a2a;
             --btn-text: #d0c0a0;
             --btn-hover-border: #8b0000;
             --btn-hover-shadow: 0 6px 20px rgba(139,0,0,0.3);
+            --blood-visibility: visible;
+            --weapon-visibility: visible;
+            --mist-visibility: visible;
         }
 
-        /* ۲. ترمینال قدیمی (کامپیوتر سبز) */
+        /* ۲. ترمینال قدیمی */
         body.theme-terminal {
-            --bg: #020804;
+            --bg: #1a1a0a;
             --surface: #0a1208;
             --surface2: #0c160a;
             --border: #1a3a1a;
@@ -93,39 +101,32 @@
             --text-light: #22cc22;
             --accent: #00ff00;
             --accent-glow: #00ff00;
-            --font-main: 'VT323', 'Courier Prime', 'Vazirmatn', monospace;
-            --font-serif: 'VT323', 'Courier Prime', monospace;
-            --font-mono: 'VT323', 'Courier Prime', monospace;
-            --font-cinema: 'VT323', 'Courier Prime', monospace;
+            --font-main: 'VT323', monospace;
+            --font-serif: 'VT323', monospace;
+            --font-mono: 'VT323', monospace;
+            --font-cinema: 'VT323', monospace;
             --blood-opacity: 0;
             --axe-opacity: 0;
-            --card-bg: linear-gradient(180deg, #0a1208 0%, #050a04 100%);
+            --location-size: 18px;
+            --card-bg: #0a1208;
             --card-border: #1a3a1a;
-            --card-shadow: 0 0 40px rgba(0,255,0,0.1), 0 20px 60px rgba(0,0,0,0.8);
-            --location-size: 16px;
-            --btn-bg: linear-gradient(135deg, #0a1a0a, #051005);
+            --card-shadow: 0 0 30px rgba(0,255,0,0.15), inset 0 0 100px rgba(0,0,0,0.4);
+            --frame-bg: #2a2a1a;
+            --frame-border: 12px solid #1a1a0a;
+            --frame-padding: 20px;
+            --btn-bg: #0a1a0a;
             --btn-border: #33ff33;
             --btn-text: #33ff33;
             --btn-hover-border: #00ff00;
-            --btn-hover-shadow: 0 0 20px rgba(0,255,0,0.4);
-        }
-        body.theme-terminal .game-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            z-index: 10;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px);
-            animation: scanlines 0.5s linear infinite;
-        }
-        @keyframes scanlines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(4px); }
+            --btn-hover-shadow: 0 0 20px rgba(0,255,0,0.5);
+            --blood-visibility: hidden;
+            --weapon-visibility: hidden;
+            --mist-visibility: hidden;
         }
 
-        /* ۳. دفتر یادداشت کارآگاه */
+        /* ۳. دفتر یادداشت */
         body.theme-notebook {
-            --bg: #f4ecd8;
+            --bg: #c4b595;
             --surface: #faf5e8;
             --surface2: #f0e8d0;
             --border: #d4c5a0;
@@ -133,37 +134,30 @@
             --text-light: #5a4a3a;
             --accent: #8b4513;
             --accent-glow: #a0522d;
-            --font-main: 'Tanha', 'Vazirmatn', sans-serif;
+            --font-main: 'Walter Turncoat', cursive;
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Special Elite', monospace;
             --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.02;
-            --axe-opacity: 0.04;
-            --card-bg: linear-gradient(180deg, #faf5e8 0%, #f4ecd8 100%);
+            --blood-opacity: 0.01;
+            --axe-opacity: 0.03;
+            --location-size: 16px;
+            --card-bg: #faf5e8;
             --card-border: #d4c5a0;
-            --card-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
-            --location-size: 14px;
-            --btn-bg: linear-gradient(135deg, #f0e8d0, #e8dcc0);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            --frame-bg: #c4b595;
+            --frame-border: none;
+            --frame-padding: 25px;
+            --btn-bg: #f0e8d0;
             --btn-border: #c4b590;
             --btn-text: #3a2a1a;
             --btn-hover-border: #8b4513;
-            --btn-hover-shadow: 0 4px 12px rgba(139,69,19,0.2);
-        }
-        body.theme-notebook .game-container {
-            background-image: repeating-linear-gradient(transparent, transparent 31px, #d4c5a0 31px, #d4c5a0 32px);
-            background-size: 100% 32px;
-        }
-        body.theme-notebook .game-container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 40px;
-            width: 2px;
-            height: 100%;
-            background: rgba(255,0,0,0.15);
-            z-index: 0;
+            --btn-hover-shadow: 0 4px 12px rgba(139,69,19,0.3);
+            --blood-visibility: hidden;
+            --weapon-visibility: hidden;
+            --mist-visibility: hidden;
         }
 
-        /* ۴. اتاق بازجویی (بتن سرد) */
+        /* ۴. اتاق بازجویی */
         body.theme-interrogation {
             --bg: #1a1c1e;
             --surface: #25282a;
@@ -177,22 +171,28 @@
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Courier Prime', monospace;
             --font-cinema: 'IM Fell English SC', serif;
-            --blood-opacity: 0.02;
-            --axe-opacity: 0.04;
+            --blood-opacity: 0.01;
+            --axe-opacity: 0.02;
+            --location-size: 14px;
             --card-bg: linear-gradient(180deg, #25282a 0%, #1c1e20 100%);
             --card-border: #3a3e41;
             --card-shadow: 0 20px 60px rgba(0,0,0,0.7);
-            --location-size: 13px;
-            --btn-bg: linear-gradient(135deg, #2c3033, #1c1e20);
+            --frame-bg: transparent;
+            --frame-border: 3px solid #4a4e51;
+            --frame-padding: 15px;
+            --btn-bg: #2c3033;
             --btn-border: #4a4e51;
             --btn-text: #b0b4b8;
             --btn-hover-border: #6a7a8a;
             --btn-hover-shadow: 0 4px 15px rgba(90,106,122,0.3);
+            --blood-visibility: hidden;
+            --weapon-visibility: hidden;
+            --mist-visibility: hidden;
         }
 
-        /* ۵. مشروح پزشکی قانونی (کاشی سفید) */
+        /* ۵. مشروح پزشکی قانونی */
         body.theme-morgue {
-            --bg: #e8ecf0;
+            --bg: #d0d5da;
             --surface: #ffffff;
             --surface2: #f0f4f8;
             --border: #c0c8d0;
@@ -204,20 +204,26 @@
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Courier Prime', monospace;
             --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.01;
-            --axe-opacity: 0.02;
+            --blood-opacity: 0;
+            --axe-opacity: 0;
+            --location-size: 15px;
             --card-bg: #ffffff;
             --card-border: #c0c8d0;
             --card-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            --location-size: 14px;
-            --btn-bg: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+            --frame-bg: #e0e5ea;
+            --frame-border: 6px solid #d0d5da;
+            --frame-padding: 25px;
+            --btn-bg: #f0f4f8;
             --btn-border: #a0b0c0;
             --btn-text: #2a3a4a;
             --btn-hover-border: #3a6a8a;
             --btn-hover-shadow: 0 4px 15px rgba(58,106,138,0.2);
+            --blood-visibility: hidden;
+            --weapon-visibility: hidden;
+            --mist-visibility: hidden;
         }
 
-        /* ۶. روزنامه قدیمی (سپیا) */
+        /* ۶. روزنامه قدیمی */
         body.theme-newspaper {
             --bg: #d4c5a0;
             --surface: #e8dcc0;
@@ -231,20 +237,26 @@
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'IM Fell English SC', serif;
             --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.03;
-            --axe-opacity: 0.05;
+            --blood-opacity: 0.02;
+            --axe-opacity: 0.04;
+            --location-size: 17px;
             --card-bg: #e8dcc0;
             --card-border: #c4b590;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            --location-size: 15px;
+            --frame-bg: transparent;
+            --frame-border: none;
+            --frame-padding: 0;
             --btn-bg: #ddd0b0;
             --btn-border: #b4a580;
             --btn-text: #3a2a1a;
             --btn-hover-border: #8b1a1a;
             --btn-hover-shadow: 0 4px 12px rgba(139,26,26,0.3);
+            --blood-visibility: hidden;
+            --weapon-visibility: hidden;
+            --mist-visibility: hidden;
         }
 
-        /* ۷. خون و تاریکی (وحشت محض) */
+        /* ۷. خون و وحشت */
         body.theme-bloodlust {
             --bg: #0a0202;
             --surface: #1a0505;
@@ -258,20 +270,26 @@
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Special Elite', monospace;
             --font-cinema: 'IM Fell English SC', serif;
-            --blood-opacity: 0.1;
-            --axe-opacity: 0.18;
+            --blood-opacity: 0.15;
+            --axe-opacity: 0.22;
+            --location-size: 18px;
             --card-bg: linear-gradient(180deg, #1a0505 0%, #0d0202 100%);
             --card-border: #4a1010;
-            --card-shadow: 0 20px 60px rgba(139,0,0,0.3);
-            --location-size: 16px;
+            --card-shadow: 0 20px 60px rgba(139,0,0,0.4);
+            --frame-bg: transparent;
+            --frame-border: none;
+            --frame-padding: 0;
             --btn-bg: linear-gradient(135deg, #3a0a0a, #1a0000);
             --btn-border: #8b0000;
             --btn-text: #ffaaaa;
             --btn-hover-border: #ff0000;
             --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.5);
+            --blood-visibility: visible;
+            --weapon-visibility: visible;
+            --mist-visibility: visible;
         }
 
-        /* ۸. باران شبانه (نئون-نوآر) */
+        /* ۸. باران شبانه */
         body.theme-neonoir {
             --bg: #050510;
             --surface: #0e0e1e;
@@ -285,17 +303,82 @@
             --font-serif: 'Crimson Text', serif;
             --font-mono: 'Courier Prime', monospace;
             --font-cinema: 'Playfair Display', serif;
-            --blood-opacity: 0.03;
-            --axe-opacity: 0.06;
+            --blood-opacity: 0.02;
+            --axe-opacity: 0.04;
+            --location-size: 16px;
             --card-bg: linear-gradient(180deg, #0e0e1e 0%, #08081a 100%);
             --card-border: #2a2a4a;
-            --card-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(106,74,192,0.1);
-            --location-size: 14px;
+            --card-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 60px rgba(106,74,192,0.1);
+            --frame-bg: transparent;
+            --frame-border: none;
+            --frame-padding: 0;
             --btn-bg: linear-gradient(135deg, #1a1a30, #0a0a1a);
             --btn-border: #4a3a6a;
             --btn-text: #b0b8e0;
             --btn-hover-border: #6a4ac0;
             --btn-hover-shadow: 0 6px 20px rgba(106,74,192,0.4);
+            --blood-visibility: visible;
+            --weapon-visibility: hidden;
+            --mist-visibility: visible;
+        }
+
+        /* ═══════════════ ۹. سلاخ‌خونه — کثیف، زنگ‌زده، پر از خون و لجن (+۱۸) ═══════════════ */
+        body.theme-slaughterhouse {
+            --bg: #1a0a05;
+            --surface: #1c0c07;
+            --surface2: #220e09;
+            --border: #5a2a1a;
+            --text: #d0b8a8;
+            --text-light: #b09888;
+            --accent: #8b1a0a;
+            --accent-glow: #cc2200;
+            --font-main: 'Creepster', 'Walter Turncoat', 'Lalezar', cursive;
+            --font-serif: 'Crimson Text', serif;
+            --font-mono: 'Special Elite', monospace;
+            --font-cinema: 'Creepster', 'IM Fell English SC', cursive;
+            --blood-opacity: 0.35;
+            --axe-opacity: 0.35;
+            --btn-size: 36px;
+            --transition: 0.3s ease;
+            --location-size: 18px;
+            --card-bg: linear-gradient(180deg, #1c0c07 0%, #140804 100%);
+            --card-border: #5a2a1a;
+            --card-shadow: 0 20px 60px rgba(139,0,0,0.5), 0 0 0 2px rgba(139,0,0,0.2);
+            --frame-bg: transparent;
+            --frame-border: 4px solid #3a1a0a;
+            --frame-padding: 20px;
+            --btn-bg: linear-gradient(135deg, #3a1a0a, #1a0505);
+            --btn-border: #6a2a1a;
+            --btn-text: #ffccaa;
+            --btn-hover-border: #ff2200;
+            --btn-hover-shadow: 0 6px 25px rgba(255,0,0,0.6);
+            --blood-visibility: visible;
+            --weapon-visibility: visible;
+            --mist-visibility: visible;
+
+            /* بافت زنگ‌زده و کثیف */
+            background-color: #1a0a05;
+            background-image: 
+                /* زنگ فلز */
+                radial-gradient(ellipse at 20% 30%, rgba(120, 60, 20, 0.6) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(100, 40, 10, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(80, 30, 10, 0.4) 0%, transparent 70%),
+                /* لکه‌های خون خشکیده */
+                radial-gradient(circle at 15% 80%, rgba(80, 0, 0, 0.7) 0%, transparent 25%),
+                radial-gradient(circle at 85% 20%, rgba(60, 0, 0, 0.6) 0%, transparent 30%),
+                radial-gradient(circle at 60% 90%, rgba(90, 0, 0, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 40% 15%, rgba(70, 0, 0, 0.55) 0%, transparent 22%),
+                /* خون تازه (قرمزتر) */
+                radial-gradient(ellipse at 10% 50%, rgba(120, 0, 0, 0.5) 0%, transparent 18%),
+                radial-gradient(ellipse at 90% 60%, rgba(110, 0, 0, 0.45) 0%, transparent 20%),
+                /* لجن و کپک */
+                radial-gradient(ellipse at 25% 65%, rgba(30, 40, 10, 0.5) 0%, transparent 35%),
+                radial-gradient(ellipse at 75% 35%, rgba(25, 35, 8, 0.45) 0%, transparent 30%),
+                /* بافت زنگ‌زدگی ریز */
+                repeating-linear-gradient(45deg, rgba(60,20,5,0.15) 0px, rgba(60,20,5,0.15) 2px, transparent 2px, transparent 8px),
+                repeating-linear-gradient(-45deg, rgba(40,15,5,0.1) 0px, rgba(40,15,5,0.1) 1px, transparent 1px, transparent 6px);
+            background-size: cover;
+            background-attachment: fixed;
         }
 
         /* ═══════════════ استایل کلی ═══════════════ */
@@ -316,7 +399,24 @@
             line-height: 1.6;
         }
 
-        /* ═══════════════ چکیدن خون (Canvas) ═══════════════ */
+        /* ═══════════════ قاب CRT ═══════════════ */
+        .crt-frame {
+            display: none;
+            position: relative;
+            background: var(--frame-bg);
+            border: var(--frame-border);
+            border-radius: 18px;
+            padding: var(--frame-padding);
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 50px rgba(0,0,0,0.8);
+        }
+        body.theme-terminal .crt-frame,
+        body.theme-morgue .crt-frame,
+        body.theme-interrogation .crt-frame,
+        body.theme-slaughterhouse .crt-frame {
+            display: block;
+        }
+
+        /* ═══════════════ چکیدن خون Canvas ═══════════════ */
         #bloodCanvas {
             position: fixed;
             top: 0; left: 0;
@@ -324,47 +424,39 @@
             pointer-events: none;
             z-index: 1;
             opacity: var(--blood-opacity);
+            transition: opacity 0.8s;
         }
 
-        /* ═══════════════ تبر، چاقو، تفنگ ═══════════════ */
-        .weapon {
+        /* ═══════════════ سلاح‌های شناور واقع‌گرایانه ═══════════════ */
+        .weapon-real {
             position: fixed;
             pointer-events: none;
             z-index: 0;
+            opacity: 0;
+            transition: opacity 1.5s, transform 2s;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+        }
+        .weapon-real.visible {
             opacity: var(--axe-opacity);
-            font-size: 56px;
-            animation: weaponFloat 10s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.6)) drop-shadow(0 0 5px rgba(139,0,0,0.5));
-            transition: opacity 0.6s;
         }
-        .weapon.gun { font-size: 46px; }
-        .weapon:nth-child(1) { top: 6%; left: 4%; animation-delay: 0s; }
-        .weapon:nth-child(2) { top: 75%; right: 5%; animation-delay: -3s; font-size: 42px; }
-        .weapon:nth-child(3) { top: 30%; left: 85%; animation-delay: -6s; font-size: 50px; }
-        .weapon:nth-child(4) { bottom: 10%; left: 10%; animation-delay: -1s; }
-        .weapon:nth-child(5) { top: 50%; left: 95%; animation-delay: -4s; font-size: 38px; }
-        .weapon:nth-child(6) { bottom: 25%; right: 10%; animation-delay: -7s; font-size: 48px; }
+        .weapon-real.axe1 { top: 5%; left: 3%; width: 80px; height: 80px; }
+        .weapon-real.axe2 { top: 70%; right: 2%; width: 65px; height: 65px; }
+        .weapon-real.gun1 { bottom: 10%; left: 8%; width: 90px; height: 60px; }
+        .weapon-real.gun2 { top: 40%; right: 5%; width: 75px; height: 50px; }
+        .weapon-real.knife1 { top: 30%; left: 88%; width: 50px; height: 70px; }
 
-        @keyframes weaponFloat {
-            0%, 100% { transform: rotate(-5deg) translateY(0); }
-            20% { transform: rotate(8deg) translateY(-20px); }
-            40% { transform: rotate(-10deg) translateY(-6px); }
-            60% { transform: rotate(6deg) translateY(-24px); }
-            80% { transform: rotate(-3deg) translateY(-2px); }
-        }
-
-        /* ═══════════════ ابر مه مانند ═══════════════ */
+        /* ═══════════════ ابر مه ═══════════════ */
         .mist-overlay {
             position: fixed;
             pointer-events: none;
             z-index: 1;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at 50% 50%, rgba(100,80,60,0.06) 0%, transparent 70%);
-            animation: mistDrift 12s ease-in-out infinite;
+            background: radial-gradient(ellipse at 50% 50%, rgba(100,80,60,0.04) 0%, transparent 70%);
+            animation: mistDrift 15s ease-in-out infinite;
         }
         @keyframes mistDrift {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.12); }
         }
 
         /* ═══════════════ wrapper ═══════════════ */
@@ -454,7 +546,6 @@
             font-family: var(--font-mono);
         }
 
-        /* لوکیشن بزرگتر */
         .location {
             font-family: var(--font-cinema);
             font-size: var(--location-size);
@@ -466,7 +557,6 @@
             font-weight: 600;
             text-shadow: 0 0 10px var(--accent-glow);
         }
-
         .scene-text {
             font-size: 16px;
             line-height: 2.5;
@@ -486,7 +576,6 @@
             font-family: var(--font-serif);
         }
 
-        /* دکمه‌های خاکی-خونی */
         .choices {
             display: flex;
             flex-direction: column;
@@ -589,18 +678,30 @@
             .game-title { font-size: 16px; }
             .scene-text { font-size: 14px; }
             .location { font-size: 12px; }
+            body.theme-newspaper .game-container { column-count: 1; }
         }
     </style>
 </head>
-<body>
+<body class="theme-classic">
+
+    <!-- قاب CRT -->
+    <div class="crt-frame" id="crtFrame">
+        <div class="app-wrapper"></div>
+    </div>
 
     <!-- سلاح‌های شناور -->
-    <div class="weapon">🪓</div>
-    <div class="weapon">🪓</div>
-    <div class="weapon">🔪</div>
-    <div class="weapon">🔪</div>
-    <div class="weapon gun">🔫</div>
-    <div class="weapon gun">🔫</div>
+    <div class="weapon-real axe1 visible" id="weapon1">
+        <svg viewBox="0 0 100 100"><defs><linearGradient id="m1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#888"/><stop offset="50%" style="stop-color:#444"/><stop offset="100%" style="stop-color:#222"/></linearGradient></defs><rect x="35" y="10" width="8" height="80" rx="2" fill="#5a3a2a"/><path d="M25 15 L55 5 L58 25 L28 35 Z" fill="url(#m1)"/></svg>
+    </div>
+    <div class="weapon-real axe2 visible" id="weapon2">
+        <svg viewBox="0 0 100 100"><defs><linearGradient id="m2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#999"/><stop offset="50%" style="stop-color:#555"/><stop offset="100%" style="stop-color:#333"/></linearGradient></defs><rect x="38" y="5" width="7" height="85" rx="2" fill="#4a2a1a"/><path d="M20 10 L60 0 L62 30 L22 40 Z" fill="url(#m2)"/></svg>
+    </div>
+    <div class="weapon-real gun1 visible" id="weapon3">
+        <svg viewBox="0 0 120 80"><defs><linearGradient id="m3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#777"/><stop offset="50%" style="stop-color:#333"/><stop offset="100%" style="stop-color:#111"/></linearGradient></defs><rect x="10" y="25" width="90" height="15" rx="3" fill="url(#m3)"/><rect x="100" y="20" width="15" height="8" rx="2" fill="#444"/><rect x="15" y="40" width="20" height="10" rx="2" fill="#2a1a0a"/></svg>
+    </div>
+    <div class="weapon-real gun2 visible" id="weapon4">
+        <svg viewBox="0 0 100 70"><defs><linearGradient id="m4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#666"/><stop offset="50%" style="stop-color:#222"/><stop offset="100%" style="stop-color:#000"/></linearGradient></defs><rect x="5" y="20" width="80" height="12" rx="3" fill="url(#m4)"/><rect x="85" y="18" width="12" height="7" rx="2" fill="#333"/></svg>
+    </div>
 
     <!-- ابر مه -->
     <div class="mist-overlay"></div>
@@ -612,7 +713,7 @@
     <audio id="bgMusic1" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%201%20(2019)/320/11.%20Gott%20Gib%20Mir%20Gelassenheit.mp3" preload="auto"></audio>
     <audio id="bgMusic2" src="https://dl.just-music.ir/music//Soundtrack/Dark/Dark%20Cycle%202%20(2019)/320/01.%20Schwarze%20Materie.mp3" preload="auto"></audio>
 
-    <div class="app-wrapper">
+    <div class="app-wrapper" id="mainWrapper">
         <div class="top-bar">
             <button class="mini-btn" id="musicBtn" onclick="toggleMusic()" title="موسیقی">🎵</button>
             <button class="mini-btn" id="themeBtn" onclick="cycleTheme()" title="تغییر تم">🎨</button>
@@ -647,16 +748,29 @@
 
     <script>
         // ═══════════════ تم‌ها ═══════════════
-        const themes = ['theme-classic', 'theme-terminal', 'theme-notebook', 'theme-interrogation', 'theme-morgue', 'theme-newspaper', 'theme-bloodlust', 'theme-neonoir'];
+        const themes = ['theme-classic', 'theme-terminal', 'theme-notebook', 'theme-interrogation', 'theme-morgue', 'theme-newspaper', 'theme-bloodlust', 'theme-neonoir', 'theme-slaughterhouse'];
         let currentTheme = 0;
 
         function cycleTheme() {
             currentTheme = (currentTheme + 1) % themes.length;
             document.body.className = themes[currentTheme];
             localStorage.setItem('lastCrossTheme', themes[currentTheme]);
+            // انتقال محتوا به قاب CRT اگر لازم باشه
+            const crtFrame = document.getElementById('crtFrame');
+            const mainWrapper = document.getElementById('mainWrapper');
+            const needsFrame = ['theme-terminal', 'theme-morgue', 'theme-interrogation', 'theme-slaughterhouse'];
+            if (needsFrame.includes(themes[currentTheme])) {
+                if (!crtFrame.contains(mainWrapper)) {
+                    crtFrame.querySelector('.app-wrapper').appendChild(mainWrapper);
+                }
+            } else {
+                if (crtFrame.contains(mainWrapper)) {
+                    document.body.insertBefore(mainWrapper, crtFrame);
+                }
+            }
         }
 
-        // ═══════════════ موسیقی دوگانه ═══════════════
+        // ═══════════════ موسیقی ═══════════════
         const bgMusic1 = document.getElementById('bgMusic1');
         const bgMusic2 = document.getElementById('bgMusic2');
         const musicBtn = document.getElementById('musicBtn');
@@ -683,7 +797,7 @@
             }
         }, { once: true });
 
-        // ═══════════════ چکیدن خون روی Canvas ═══════════════
+        // ═══════════════ چکیدن خون Canvas ═══════════════
         const canvas = document.getElementById('bloodCanvas');
         const ctx = canvas.getContext('2d');
         let drops = [];
@@ -692,8 +806,8 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        for (let i = 0; i < 20; i++) {
-            drops.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height * 0.3, speed: 0.3 + Math.random() * 1.2, size: 1 + Math.random() * 3, opacity: 0.1 + Math.random() * 0.5 });
+        for (let i = 0; i < 30; i++) {
+            drops.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height * 0.3, speed: 0.2 + Math.random() * 1.5, size: 1 + Math.random() * 4, opacity: 0.1 + Math.random() * 0.6 });
         }
 
         function drawBlood() {
@@ -702,7 +816,7 @@
                 d.y += d.speed;
                 if (d.y > canvas.height + 10) { d.y = -10; d.x = Math.random() * canvas.width; }
                 ctx.beginPath();
-                ctx.ellipse(d.x, d.y, d.size, d.size * 3, 0, 0, Math.PI * 2);
+                ctx.ellipse(d.x, d.y, d.size, d.size * 3.5, 0, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(120, 0, 0, ${d.opacity})`;
                 ctx.fill();
             }
@@ -721,6 +835,15 @@
             const savedMusic = localStorage.getItem('lastCrossMusic');
             if (savedMusic === 'true') {
                 bgMusic1.play().then(() => { musicPlaying = true; musicBtn.classList.add('playing'); musicBtn.innerHTML = '🎵'; }).catch(() => {});
+            }
+            // انتقال اولیه برای تم‌های دارای قاب
+            const needsFrame = ['theme-terminal', 'theme-morgue', 'theme-interrogation', 'theme-slaughterhouse'];
+            if (needsFrame.includes(savedTheme)) {
+                const crtFrame = document.getElementById('crtFrame');
+                const mainWrapper = document.getElementById('mainWrapper');
+                if (!crtFrame.contains(mainWrapper)) {
+                    crtFrame.querySelector('.app-wrapper').appendChild(mainWrapper);
+                }
             }
         });
     </script>
